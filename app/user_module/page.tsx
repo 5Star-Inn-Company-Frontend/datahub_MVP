@@ -1,10 +1,11 @@
 import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout";
+import { UserModuleLayout } from "@/components/customui/userModule/userModuleLayoute";
 
-export default function Home() {
+export default function User_module() {
   return (
     <main>
       <DashBoardLayout>
-        Dashborad contents goes here
+        <UserModuleLayout/>
       </DashBoardLayout>
     </main>
   )
