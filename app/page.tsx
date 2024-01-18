@@ -1,10 +1,11 @@
 import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout";
+import {IntroSection} from "@/components/customui/dashboard/introSection"
 
 export default function Home() {
   return (
     <main>
       <DashBoardLayout>
-        Dashborad contents goes here
+          <IntroSection/>
       </DashBoardLayout>
     </main>
   )

@@ -117,7 +117,7 @@ export const Nav =({
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0 1 12 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" />
                                 </svg>
                             </span>
-                            <span>Transactions</span>
+                            <span>Sample</span>
                             <span
                                 className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
                                 data-te-sidenav-rotate-icon-ref>
@@ -192,7 +192,7 @@ export const Nav =({
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                                 </svg>
                             </span>
-                            <span>Report & Analytics</span>
+                            <span>Transactions</span>
                             <span
                                 className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
                                 data-te-sidenav-rotate-icon-ref>
@@ -218,7 +218,7 @@ export const Nav =({
                                         className="group flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.82rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                                         href="#!"
                                         data-te-sidenav-link-ref>
-                                        <span>Wallet Logs</span>
+                                        <span>Users</span>
                                         <span
                                             className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
                                             data-te-sidenav-rotate-icon-ref>
@@ -238,7 +238,7 @@ export const Nav =({
                                                 className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                                                 data-te-sidenav-link-ref
                                                 href="/report-main_wallet"
-                                                >Main Wallet History</a
+                                                >Active</a
                                             >
                                         </li>
                                         <li className="relative">
@@ -246,7 +246,7 @@ export const Nav =({
                                                 className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                                                 data-te-sidenav-link-ref
                                                 href="/report-revenue_wallet"
-                                                >Revenue Wallet History</a
+                                                >Dormant</a
                                             >
                                         </li>
                                     </ul>
@@ -400,8 +400,8 @@ export const Nav =({
                             <a
                                 className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                                 data-te-sidenav-link-ref
-                                href="/report-transaction_summary"
-                                >Transaction Summary</a
+                                href="/transactions/all_transactions"
+                                >All Transactions</a
                             >
                         </li>
                         </ul>

@@ -1,8 +1,9 @@
+import { AiOutlineQrcode } from "react-icons/ai"
 import { Text } from "../text"
 
 export const DashBoardTopNav =()=>{
     return(
-        <div className="flex flex-row justify-between w-full py-4 px-4 items-center bg-[#181516] rounded-lg">
+        <div className="flex flex-row justify-between w-full py-4 px-4 items-center bg-[#181516] rounded">
             <div className="flex items-center">
                 <div className="me-2 hamburger rounded-full bg-[#ff5718]">
                     <div
@@ -24,10 +25,15 @@ export const DashBoardTopNav =()=>{
                         </span>
                     </div>
                 </div>
-                <div>
+                <div className="flex items-center">
+                    <AiOutlineQrcode 
+                        size="1.5rem"
+                        color="#ff5718"
+                        className="me-2"
+                    />
                     <Text
                         style="text-lg text-start text-white font-semibold"
-                        value="M.C.D"
+                        value="DataHubs"
                     />
                 </div>
             </div>
@@ -64,7 +70,7 @@ export const DashBoardTopNav =()=>{
                         </span>
                         <span
                             className="absolute -mt-4 ml-2.5 rounded-full bg-danger px-[0.35em] py-[0.15em] text-[0.6rem] font-bold leading-none text-white"
-                        >
+                        >0
                         </span>
                     </div>
                     <svg 
