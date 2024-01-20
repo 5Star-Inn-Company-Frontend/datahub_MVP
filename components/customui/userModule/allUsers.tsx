@@ -2,15 +2,16 @@ import {
   handleChange,
   handleSearch,
 } from "@/actions/transactionModule/all_transactions/client/actions";
-import { TableLayout } from "../../global/tableLayout";
-import { ViewLayout } from "../../global/viewLayout";
 import { TableCell, TableRow } from "@/components/ui/table";
+import { ViewLayout } from "../global/viewLayout";
+import { TableLayout } from "../global/tableLayout";
 
 interface ApiResponse {
   id: number;
-  user_id: number;
-  title: string;
+  user_id?: number;
+  title?: string;
   amount: number;
+  name?: string;
   charges: number;
   commission: number;
   reference: string;
@@ -31,13 +32,13 @@ interface MyApiInterResponse {
   data: ApiResponse[];
 }
 
-export const All_Transactions = () => {
+ export const All_Users = () => {
   const Apidata: MyApiInterResponse = {
     data: [
       {
         id: 1,
-        user_id: 1,
-        title: "GLO Airtime",
+        // user_id: 1,
+        name: "Stephen Adeyemo",
         amount: 300,
         charges: 0,
         commission: 3,
@@ -57,13 +58,12 @@ export const All_Transactions = () => {
     ],
   };
   return (
-    <ViewLayout navs={["All Trasactions"]}>
+    <ViewLayout navs={["All Users"]}>
       <TableLayout
         tableHeadRow={[
           "S/N",
           "Id",
-          "User Id",
-          "Title",
+          "name",
           "Amount",
           "Charges",
           "Commision",
@@ -78,15 +78,15 @@ export const All_Transactions = () => {
           "Server",
           "Server Response",
         ]}
-        caption={"A List of all your transactions"}
+        caption={"A List of all "}
         handleChange={handleChange}
         handleSearch={handleSearch}
       >
         {Apidata?.data.map((info, index) => {
           const {
+            
             id,
-            user_id,
-            title,
+            name,
             amount,
             charges,
             commission,
@@ -106,9 +106,9 @@ export const All_Transactions = () => {
             <TableRow key={index}>
               <TableCell className="font-medium">{index + 1}</TableCell>
               {[
+                
                 id,
-                user_id,
-                title,
+                name,
                 amount,
                 charges,
                 commission,
@@ -133,3 +133,4 @@ export const All_Transactions = () => {
     </ViewLayout>
   );
 };
+
