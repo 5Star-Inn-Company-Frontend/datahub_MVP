@@ -1,3 +1,4 @@
+
 "use client"
 import { TableLayout } from "../../global/tableLayout"
 import { ViewLayout } from "../../global/viewLayout"
@@ -12,28 +13,28 @@ import { SearchTransaction } from "@/actions/transactionModule/all_transactions/
 import { useToast } from "@/components/ui/use-toast"
 
 interface ApiResponse {
-    id:number,
-    user_id:number,
-    title:string,
-    amount:number,
-    charges:number,
-    commission:number,
-    reference:string,
-    recipient:string,
-    status:number,
-    type:string|null,
-    remark:string,
-    token:string|null,
-    prev_balance:string,
-    new_balance:string,
-    server:number,
-    server_response:string,
-    created_at:string,
-    updated_at:string
-  }
+  id: number;
+  user_id: number;
+  title: string;
+  amount: number;
+  charges: number;
+  commission: number;
+  reference: string;
+  recipient: string;
+  status: number;
+  type: string | null;
+  remark: string;
+  token: string | null;
+  prev_balance: string;
+  new_balance: string;
+  server: number;
+  server_response: string;
+  created_at: string;
+  updated_at: string;
+}
 
 interface MyApiInterResponse {
-    data: ApiResponse[]
+  data: ApiResponse[];
 }
 
 export const All_Transactions=({
@@ -182,3 +183,4 @@ export const All_Transactions=({
         </ViewLayout>
     )
 }
+

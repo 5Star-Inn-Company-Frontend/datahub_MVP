@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
-import { Nav } from "./sideNav"
-import { DashBoardTopNav } from "./topNav"
+import { ReactNode } from "react";
+import { Nav } from "./sideNav";
+import { DashBoardTopNav } from "./topNav";
 
 type children ={
     children:ReactNode,
@@ -34,6 +34,6 @@ export const DashBoardLayout =({
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
+       </div>
+  );
+};
