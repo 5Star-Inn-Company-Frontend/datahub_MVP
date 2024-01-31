@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
  
+main{
+  height: 100vh!important;
+  background:#f5ede9;
+}
 @layer base {
   :root {
-    --background: #f5ede9;
+      height: 100vh!important;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
  
@@ -71,6 +74,7 @@
 }
 .desktopNav{
   position:relative !important;
+  height:100%!important;
 }
 .hamburger{
   position:fixed;

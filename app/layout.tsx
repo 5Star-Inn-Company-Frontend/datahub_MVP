@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { Toaster } from "@/components/ui/toaster"
 import QueryProviders from "@/context/query-provider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +24,7 @@ export default function RootLayout({
       <QueryProviders>
         <body className={inter.className}>
           {children}
+          <Toaster />
           <ToastContainer
             position="top-center"
             autoClose={5000}
