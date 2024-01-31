@@ -6,9 +6,7 @@ import React from "react";
 const cookieStore = cookies();
 const storedItem = cookieStore.get("datahubToken");
 
-type Props = {};
-
-export const page = (props: Props) => {
+export default function UsersPage(){
   return (
     <main>
       <DashBoardLayout
