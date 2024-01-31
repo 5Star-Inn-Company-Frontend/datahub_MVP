@@ -1,7 +1,4 @@
-import {
-  handleChange,
-  handleSearch,
-} from "@/actions/transactionModule/all_transactions/client/actions";
+"use client"
 import { TableCell, TableRow } from "@/components/ui/table";
 import { ViewLayout } from "../global/viewLayout";
 import { TableLayout } from "../global/tableLayout";
@@ -79,8 +76,9 @@ interface MyApiInterResponse {
           "Server Response",
         ]}
         caption={"A List of all "}
-        handleChange={handleChange}
-        handleSearch={handleSearch}
+        hideAction={true}
+        // handleChange={handleChange}
+        // handleSearch={handleSearch}
       >
         {Apidata?.data.map((info, index) => {
           const {
