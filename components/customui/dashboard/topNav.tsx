@@ -1,9 +1,16 @@
 import { AiOutlineQrcode } from "react-icons/ai"
 import { Text } from "../text"
+import { Logo } from "../global/logo"
 
-export const DashBoardTopNav =()=>{
+interface firstnameProps{
+    firstname:string
+}
+export const DashBoardTopNav =({
+    firstname
+}:firstnameProps)=>{
     return(
-        <div className="flex flex-row justify-between w-full py-4 px-4 items-center bg-[#181516] rounded">
+        <div className="lg:p-4 xl:md:p-4 sm:p-2 xs:p-2 h-[14%]">
+        <div className="flex flex-row justify-between w-full h-full px-4 py-2 items-center bg-[#181516] rounded">
             <div className="flex items-center">
                 <div className="me-2 hamburger rounded-full bg-[#ff5718]">
                     <div
@@ -26,10 +33,9 @@ export const DashBoardTopNav =()=>{
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <AiOutlineQrcode 
+                    <Logo
                         size="1.5rem"
-                        color="#ff5718"
-                        className="me-2"
+                        style="me-2"
                     />
                     <Text
                         style="text-lg text-start text-white font-semibold"
@@ -88,11 +94,12 @@ export const DashBoardTopNav =()=>{
                     <div className="w-fit me-2 ">
                         <Text
                             style="text-sm text-start text-white font-semibold"
-                            value="Sarah parker"
+                            value={firstname}
                         />
                     </div>
                 </div>
             </div>        
         </div>
+    </div>
     )
 }

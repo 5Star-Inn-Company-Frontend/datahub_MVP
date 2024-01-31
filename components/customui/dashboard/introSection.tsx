@@ -1,150 +1,106 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
+"use client";
 import frame from "../../../public/Frame 1000002437.svg";
 import frame1 from "../../../public/Frame 1000002437 (1).svg"
-import frame2 from "../../../public/Frame 1000002437 (2).svg"
-import frame3 from "../../../public/Frame 1000002437 (3).svg"
-import frame4 from "../../../public/Frame 1000002437 (4).svg"
-import Image from "next/legacy/image"
-import frame5 from "../../../public/Frame 1000002437 (5).svg"
 import {Text} from "../text"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"  
+import { Service_Select } from "./serviceModule/services";
+import { TotalTransactionCard } from "../transactionModule/totalTransactionCard";
+import { TransactionTypes } from "../transactionModule/transactionTypes";
+import { Request_website } from "../transactionModule/requestWebsite";
+import { ReferAndEarn } from "../transactionModule/refer&earn";
+import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
+import { Button } from "@/components/ui/button";
 
+interface userDetailsProps{
+    id:number,
+    firstname:string,
+    lastname:string,
+    address:string,
+    phone:string,
+    gender:string,
+    dob:string,
+    email:string,
+    email_verified_at:null|string,
+    status:number,
+    status_reason:null|string,
+    package:string,
+    pin:string,
+    role_id:number,
+    bvn:null|string,
+    bank_code:null|string,
+    account_name:null|string,
+    account_number:null|string,
+    created_at:string,
+    updated_at:string
+}
 
-export const IntroSection=()=>{
+interface propTypes {
+    trans_count:number,
+    trans_types:string[],
+    trans_sum:number,
+    userDetails:userDetailsProps
+}
+export const IntroSection=({
+    trans_count,
+    trans_types,
+    trans_sum,
+    userDetails
+}:propTypes)=>{
     return(
         <>
+
+        <Text
+            style="text-md text-gray mb-2"
+            value="Here's what is happening today."
+        />
+        <Text
+            style="text-2xl mb-4 font-semibold"
+            value="Dashboard"
+        />
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
             <div className="col-span-2 bg-white rounded p-4">
-                <Text
-                    style="text-md text-gray mb-2"
-                    value="Here's what is happening today."
-                />
-                <Text
-                    style="text-2xl mb-4 font-semibold"
-                    value="Dashboard"
-                />
                 
-                 {/**Account Info*/}
-                <Tabs defaultValue="account" className="w-full">
-                    <TabsList>
-                        <TabsTrigger value="account" className="rounded px-8 py-2 bg-[#fef2f2] text-[#ff5718] font-semibold">Safe Haven</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="account" className="w-full">
-                        <div className="flex lg:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col justify-between w-full mt-4">
-                            <div>
-                                <div className="flex mb-2">
-                                    <span className="text-lg font-semibold">Account Number :</span>
-                                    <span className="text-lg">8016864957</span>
-                                </div>
-                                <Text
-                                    style="text-lg mb-2"
-                                    value="TECHPLUSNETWORK / 5STAR IDOWU LAWAL"
-                                />
-                                <div className="flex mb-4">
-                                    <span className="text-lg font-semibold">Bank Name :</span>
-                                    <span className="text-lg">Safehaven</span>
-                                </div>
-                                <div className="flex flex-col justify-end items-end mt-4">
-                                    <Text
-                                        style="text-md mb-2"
-                                        value="Automated bank Transfer"
-                                    />
-                                    <Text
-                                        style="text-xs mb-2"
-                                        value="Make transfer to this account to fund your wallet"
-                                    />
-                                </div>
-                            </div>
-                            {/** Select Service */}
-                            <div className="flex flex-col justify-end items-end">
-                                <Select>
-                                    <SelectTrigger className="w-[180px] bg-[#181516] text-white">
-                                        <SelectValue placeholder="Select service" />
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-white">
-                                        <SelectItem value="buy_data_pin_coupon">Buy Data</SelectItem>
-                                        <SelectItem value="buy_data">Buy Data</SelectItem>
-                                        <SelectItem value="buy_airtime">Buy Airtime</SelectItem>
-                                        <SelectItem value="airtime_to_cash">Airtime to Cash</SelectItem>
-                                        <SelectItem value="cable_sub">Cable Subscription</SelectItem>
-                                        <SelectItem value="ele_pay">Electricity Payment</SelectItem>
-                                        <SelectItem value="recharge_card_pin">Recharge card printing</SelectItem>
-                                        <SelectItem value="edu_pin">Education Pin</SelectItem>
-                                        <SelectItem value="bulk_sim">Bulk Sim</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
+                <div className="flex lg:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col justify-between w-full mt-4">
+                    <div>
+                        <div className="flex mb-2">
+                            <span className="text-lg font-semibold">Account Number :</span>
+                            <span className="text-lg">{userDetails?.account_number}</span>
                         </div>
-                    </TabsContent>
-                </Tabs>
-            </div>
-            {/**Wallet*/}
-            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
-                <div className="bg-white rounded p-4 mb-4 w-full">
-                    <div className="flex justify-end items-end mb-2">
-                        <Button variant="outline" className="bg-[#8b5cf6] text-white">Fund Wallet</Button>
+                        <Text
+                            style="text-lg mb-2"
+                            value="TECHPLUSNETWORK / 5STAR IDOWU LAWAL"
+                        />
+                        <div className="flex mb-4">
+                            <span className="text-lg font-semibold">Account Name :</span>
+                            <span className="text-lg">{userDetails?.account_name}</span>
+                        </div>
+                        <div className="flex flex-col justify-end items-end mt-4">
+                            <Text
+                                style="text-md mb-2"
+                                value={userDetails?.package}
+                            />
+                            <Text
+                                style="text-xs mb-2"
+                                value={userDetails?.email}
+                            />
+                        </div>
                     </div>
-                    <Text
-                        style="text-md mb-2"
-                        value="SMART EARNER"
-                    />
-                    <Text
-                        style="text-4xl font-semibold mb-2"
-                        value="0"
-                    />
-                    <Text
-                        style="text-md"
-                        value="WALLET BALANCE"
-                    />
-                </div>
-                <div className="bg-white rounded p-4">
-                    <Text
-                        style="text-lg mb-2"
-                        value="Need some help?"
-                    />
-                    <Text
-                        style="text-sm mb-2"
-                        value="Have anything to say to us? Please contact our Support Team on Whatsapp"
-                    />
-                    <Button variant="outline" className="bg-[#8b5cf6] text-white">Contact Us</Button>
+                    {/** Select Service */}
+                    <div className="flex flex-col justify-end items-end">
+                        <Service_Select/>
+                    </div>
                 </div>
             </div>
-        </div>
-        {/**Users Balance*/}
-        <div className="grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-4">
+            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
             {
                 [
                     {
-                        amount:"0",
+                        amount:trans_sum,
                         img:frame,
-                        title:"WALLET"
+                        title:"Total Transaction Sum"
                     },{
-                        amount:"1",
+                        amount:trans_count,
                         img:frame1,
-                        title:"MTN SME DATA"
-                    },{
-                        amount:"3",
-                        img:frame2,
-                        title:"MTN CG DATA"
-                    },{
-                        amount:"2",
-                        img:frame3,
-                        title:"MTN CG DATA"
-                    },{
-                        amount:"4",
-                        img:frame4,
-                        title:"AIRTEL CG DATA"
-                    },{
-                        amount:"5",
-                        img:frame5,
-                        title:"9MOBILE CG DATA"
+                        title:"Total Transaction Count"
                     }
                 ]?.map((total_details,index)=>{
                     const{
@@ -153,32 +109,77 @@ export const IntroSection=()=>{
                         title
                     }=total_details;
                     return(
-                    <div 
-                        className="flex bg-white items-center p-4 rounded"
-                        key={index}
-                    >
-                        <div className="me-2 relative w-[3rem] h-[3rem]">
-                            <Image
-                                src={img}
-                                alt="object not found"
-                                layout="fill"
-                                className="w-full"
-                            />
-                        </div>
-                        <div>
-                            <Text
-                                style="text-md font-semibold mb-2"
-                                value={title}
-                            />
-                            <Text
-                                style="text-sm"
-                                value={amount}
-                            />
-                        </div>
-                    </div>
+                        <TotalTransactionCard
+                            amount={amount}
+                            img={img}
+                            title={title}
+                            key={index}
+                        />
                     )
                 })
             }
+            </div>
+        </div>
+
+        <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
+            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[28rem]">
+                <DailyReport/>
+            </div>
+            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
+                <div className="bg-white rounded p-4 w-full">
+                   <TransactionTypes 
+                        ApiResponse={trans_types}
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
+            <div className="col-span-2 bg-white rounded p-4">
+                <div className="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4">
+                    <ReferAndEarn/>
+                    <Request_website/>
+                </div>
+            </div>
+            {/**Wallet*/}
+            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
+                <div className="bg-white rounded p-4 mb-4 w-full h-[10rem]">
+                    <div className="flex justify-end mb-2">
+                        <Button 
+                            variant="outline" 
+                            className="bg-[#8b5cf6] text-white"
+                            onClick={()=>window.location.replace("/transactions/total_walletCharge")}
+                        >Wallet charge</Button>
+                    </div>
+                    <Text
+                        style="text-4xl font-semibold mb-2"
+                        value={""}
+                    />
+                    <Text
+                        style="text-md"
+                        value="TOTAL WALLET CHARGE"
+                    />
+                </div>
+                <div className="bg-white rounded p-4 h-[10rem]">
+                    <Text
+                        style="text-4xl font-semibold mb-2"
+                        value={""}
+                    />
+                    <Text
+                        style="text-md"
+                        value="TOTAL WALLET FUND"
+                    />
+                    
+                    <div className="flex justify-end mb-2">
+                        <Button 
+                            variant="outline" 
+                            className="bg-[#8b5cf6] text-white"
+                            onClick={()=>window.location.replace("/transactions/total_walletFund")}
+                        >Wallet Fund
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </div>
         </>
     )
