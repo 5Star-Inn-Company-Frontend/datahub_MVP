@@ -76,6 +76,7 @@ interface MyApiInterResponse {
           "Server Response",
         ]}
         caption={"A List of all "}
+        hideAction={true}
         // handleChange={handleChange}
         // handleSearch={handleSearch}
       >
