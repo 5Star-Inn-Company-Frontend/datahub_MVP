@@ -58,7 +58,7 @@ export const ViewLayout =({
                     </ol>
                 </nav>
             </div>
-            <div className="w-full overflow-auto pb-4 px-4">
+            <div className="w-full overflow-auto pb-4">
                 {children}
             </div>
         </div>
