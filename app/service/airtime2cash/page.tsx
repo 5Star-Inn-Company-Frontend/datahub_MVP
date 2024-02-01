@@ -3,11 +3,10 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { Airtime_To_CashService } from "@/components/customui/service/airtime2cash";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getAirtime2Cash() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}listairtime2cash`, {
         method: "GET",
@@ -29,6 +28,8 @@ async function getAirtime2Cash() {
 }
 
 export default async function All_Airtime2CashService() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getAirtime2Cash()
   return (
     <main>

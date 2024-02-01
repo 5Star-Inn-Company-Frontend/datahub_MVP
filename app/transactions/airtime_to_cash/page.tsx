@@ -3,10 +3,10 @@ import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout
 import { Airtime_To_Cash } from "@/components/customui/transactionModule/airtime_to_cash/airtimeTocash";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getAirtimeTocash() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}airtime2cash`, {
           method: "GET",
@@ -24,6 +24,8 @@ async function getAirtimeTocash() {
 }
 }
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getAirtimeTocash()
   return (
     <main>

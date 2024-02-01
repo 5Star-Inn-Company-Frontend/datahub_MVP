@@ -2,11 +2,12 @@
 import { cookies } from "next/headers";
 import { baseUrl,token } from "../baseUrl";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 export async function getMonthlyReport(
     date:string
 ) {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
+
   if(storedItem?.value){
     const response = await fetch(`${baseUrl}monthlyrepor`, {
       method: "POST",

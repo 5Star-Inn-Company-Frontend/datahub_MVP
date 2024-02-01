@@ -3,10 +3,10 @@ import { Dormant_Users_Transactions } from "@/components/customui/transactionMod
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getDormantUsers() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}dormantuser`, {
           method: "GET",
@@ -24,6 +24,8 @@ async function getDormantUsers() {
 }
 }
 export default async function Dormant_Users_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getDormantUsers()
   return (
     <main>

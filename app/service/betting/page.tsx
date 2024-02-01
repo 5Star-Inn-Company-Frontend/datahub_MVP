@@ -3,12 +3,10 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { BettingService } from "@/components/customui/service/betting";
 import { cookies } from "next/headers";
 
-
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getBetting() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}listbetting`, {
         method: "GET",
@@ -30,6 +28,8 @@ async function getBetting() {
 }
 
 export default async function All_BettingService() {
+  const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
   const data = await getBetting()
   return (
     <main>

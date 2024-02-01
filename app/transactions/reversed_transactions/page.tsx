@@ -3,11 +3,10 @@ import { Reversed_Transactions } from "@/components/customui/transactionModule/r
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getReversedTransactions() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}reversedtransaction`, {
         method: "GET",
@@ -25,6 +24,8 @@ async function getReversedTransactions() {
 }
 }
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getReversedTransactions()
   return (
     <main>

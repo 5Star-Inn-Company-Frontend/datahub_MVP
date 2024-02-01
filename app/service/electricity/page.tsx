@@ -3,11 +3,11 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { ElectricityService } from "@/components/customui/service/electricity";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 
 async function getElectricity() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}listelectricity`, {
         method: "GET",
@@ -29,6 +29,8 @@ async function getElectricity() {
 }
 
 export default async function All_ElectricityService() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getElectricity()
   return (
     <main>

@@ -3,11 +3,10 @@ import { Vitual_Account_Transactions } from "@/components/customui/transactionMo
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getVirtualAccounts() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}listvirtualacct`, {
         method: "GET",
@@ -25,6 +24,8 @@ async function getVirtualAccounts() {
 }
 }
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getVirtualAccounts()
   return (
     <main>

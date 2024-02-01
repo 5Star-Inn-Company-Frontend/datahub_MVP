@@ -3,10 +3,9 @@ import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout
 import { cookies } from "next/headers";
 import React from "react";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
-export default function UsersPage(){
+export default async function UsersPage(){
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   return (
     <main>
       <DashBoardLayout
