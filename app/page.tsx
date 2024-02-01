@@ -4,10 +4,10 @@ import {IntroSection} from "@/components/customui/dashboard/introSection"
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getTotalTransactionCount() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
       if(storedItem?.value){
         const response = await fetch(`${baseUrl}totalcounttransaction`, {
           method: "GET",
@@ -17,7 +17,7 @@ async function getTotalTransactionCount() {
           }
         });
         const result = await response.json();
-        console.log("Success:", result);
+        console.log("Success:1", result);
         return result
       }
     }catch (error) {
@@ -27,6 +27,8 @@ async function getTotalTransactionCount() {
 
 async function getTotalTransactionSum() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}totalsumtransaction`, {
           method: "GET",
@@ -36,7 +38,7 @@ async function getTotalTransactionSum() {
           }
         });
         const result =await response.json();
-        console.log("Success:", result);
+        console.log("Success:2", result);
         return result
     }
      }catch (error) {
@@ -46,6 +48,8 @@ async function getTotalTransactionSum() {
 
 async function getTransactionTypes() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}transactiontype`, {
           method: "GET",
@@ -55,7 +59,7 @@ async function getTransactionTypes() {
           }
         });
         const result =await response.json();
-        console.log("Success:", result);
+        console.log("Success3:", result);
         return result
     }
    }catch (error) {
@@ -64,6 +68,8 @@ async function getTransactionTypes() {
 }
 
 export default async function Home() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const trans_count = getTotalTransactionCount()
   const trans_sum = getTotalTransactionSum()
   const trans_types = getTransactionTypes()
