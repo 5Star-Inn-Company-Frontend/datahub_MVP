@@ -122,18 +122,19 @@ export function Register() {
                 toast({
                     variant: "destructive",
                     title: "Uh oh! Something went wrong.",
-                    description:`${message?.email}${" "}${message?.phone}`,
+                    description:`${message?.email !=="undefined" && message?.email}${" "}${message?.phone !=="undefined" && message?.phone}`,
                     action: <ToastAction altText="Try again">Try again</ToastAction>,
                 })
             }
         }).catch((error)=>{
             setIsLoading(false)
-            toast({
-                variant: "destructive",
-                title: "Uh oh! Something went wrong.",
-                description:error,
-                action: <ToastAction altText="Try again">Try again</ToastAction>,
-            })
+            console.log("this is error",error)
+            // toast({
+            //     variant: "destructive",
+            //     title: "Uh oh! Something went wrong.",
+            //     description:error,
+            //     action: <ToastAction altText="Try again">Try again</ToastAction>,
+            // })
         })
     }
 
@@ -181,7 +182,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Last Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="lastname" {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -194,7 +195,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="email"/>
+                                <Input placeholder="email" {...field} type="email"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -207,7 +208,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="password"/>
+                                <Input placeholder="password" {...field} type="password"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -220,7 +221,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Confirm Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="password"/>
+                                <Input placeholder="confirm the password entered" {...field} type="password"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -233,7 +234,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Phone Number</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="tel"/>
+                                <Input placeholder="phone number" {...field} type="tel"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -246,7 +247,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Gender</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="gender" {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -259,7 +260,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Address</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="address" {...field} />
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -272,7 +273,7 @@ export function Register() {
                             <FormItem>
                             <FormLabel>Date of Birth</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="date"/>
+                                <Input placeholder="date" {...field} type="date"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
