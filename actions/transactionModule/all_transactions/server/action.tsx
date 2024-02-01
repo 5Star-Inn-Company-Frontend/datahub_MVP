@@ -1,13 +1,12 @@
 "use server";
 import { baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
-// import { baseUrl,token } from "../baseUrl";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 export async function SearchTransaction(
     filter:string
 ) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}searchtransaction`, {
         method: "POST",

@@ -6,11 +6,13 @@ interface bodyPropType {
     refer:string,
     amount_to_earn:string
 }
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
+
 export async function PostRefer(
     bodydata:bodyPropType
 ) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}referandearn`, {
         method: "POST",

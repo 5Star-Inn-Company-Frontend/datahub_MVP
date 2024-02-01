@@ -3,10 +3,10 @@ import { All_Transactions } from "@/components/customui/transactionModule/all_tr
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getAllTransactions() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}listalltransaction`, {
         method: "GET",
@@ -25,6 +25,8 @@ async function getAllTransactions() {
 }
 
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data =await getAllTransactions()
   return (
     <main>

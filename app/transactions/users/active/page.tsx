@@ -3,10 +3,10 @@ import { Active_Users_Transactions } from "@/components/customui/transactionModu
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getActiveUsers() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}activeuser`, {
         method: "GET",
@@ -24,6 +24,8 @@ async function getActiveUsers() {
 }
 }
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getActiveUsers()
   return (
     <main>

@@ -4,14 +4,14 @@ import { cookies } from "next/headers";
 import { baseUrl,token } from "../baseUrl";
 import { revalidateTag } from "next/cache";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 
 export async function ModifyAction(
     service:string,
     id:number,
     status:number
 ) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(
         `${baseUrl}

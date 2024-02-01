@@ -1,13 +1,13 @@
 "use server";
 import { cookies } from "next/headers";
-import { baseUrl,token } from "../baseUrl";
-
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
+import { baseUrl} from "../baseUrl";
 
 export async function PostWalletFund(
     date:string,
 ) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    
     if(storedItem?.value){
         const response = await fetch(`${baseUrl}totalwalletfund`, {
             method: "POST",

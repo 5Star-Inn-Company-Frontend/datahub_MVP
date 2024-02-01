@@ -3,10 +3,10 @@ import { Pending_Transactions } from "@/components/customui/transactionModule/pe
 import { token,baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
 async function getPendingTransactions() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}pendingtransaction`, {
           method: "GET",
@@ -24,6 +24,8 @@ async function getPendingTransactions() {
 }
 }
 export default async function All_Transaction_Page() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getPendingTransactions()
   return (
     <main>

@@ -3,11 +3,10 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { DataService } from "@/components/customui/service/data";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getData() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}listlldata`, {
         method: "GET",
@@ -29,6 +28,8 @@ async function getData() {
 }
 
 export default async function All_DataService() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getData()
   return (
     <main>

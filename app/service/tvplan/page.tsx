@@ -3,11 +3,10 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { TvService } from "@/components/customui/service/tvplan";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getTvPlan() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}listalltvplan`, {
         method: "GET",
@@ -29,6 +28,8 @@ async function getTvPlan() {
 }
 
 export default async function All_TvPlanService() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getTvPlan()
   return (
     <main>

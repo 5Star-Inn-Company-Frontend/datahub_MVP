@@ -3,11 +3,10 @@ import { token,baseUrl } from "@/actions/baseUrl";
 import { AirtimeService } from "@/components/customui/service/airtime";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-const storedItem = cookieStore.get("datahubToken");
-
 async function getAirtime() {
   try {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}listallairtime`, {
         method: "GET",
@@ -29,6 +28,8 @@ async function getAirtime() {
 }
 
 export default async function All_AirtimeService() {
+  const cookieStore = cookies();
+  const storedItem = cookieStore.get("datahubToken");
   const data = await getAirtime()
   return (
     <main>

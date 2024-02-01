@@ -1,8 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-const cookieStore = cookies();
-
 export async function LogOutUser() {
+    const cookieStore = cookies();
     cookieStore.delete("datahubToken");
 }
