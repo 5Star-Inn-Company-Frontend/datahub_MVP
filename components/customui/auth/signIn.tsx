@@ -71,7 +71,7 @@ export function SignIn() {
                 toast({
                     description:`Authenticated as ${data?.user?.email}`
                 })
-                window.location.replace("/");
+                window.location.href ="/";
             }else{
                 toast({
                     variant: "destructive",
