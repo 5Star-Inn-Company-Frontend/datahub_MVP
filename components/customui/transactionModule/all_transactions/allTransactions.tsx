@@ -71,6 +71,7 @@ export const All_Transactions=({
     }
 
     const handleSearch =()=>{
+        setFilterIsLoading(true)
         SearchTransaction(itemToSearch).then((response)=>{
             const{
                 search_result

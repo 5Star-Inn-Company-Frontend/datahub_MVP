@@ -65,10 +65,6 @@ export const IntroSection=({
                             <span className="text-lg font-semibold">Account Number :</span>
                             <span className="text-lg">{userDetails?.account_number}</span>
                         </div>
-                        <Text
-                            style="text-lg mb-2"
-                            value="TECHPLUSNETWORK / 5STAR IDOWU LAWAL"
-                        />
                         <div className="flex mb-4">
                             <span className="text-lg font-semibold">Account Name :</span>
                             <span className="text-lg">{userDetails?.account_name}</span>

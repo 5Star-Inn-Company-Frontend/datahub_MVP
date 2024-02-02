@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DataApiObjectType, DataReportLayout } from "./dataLayout"
 import { ElectricityApiObjectType, ElectricityReportLayout } from "./electricityLayout"
 import { useEffect, useState } from "react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export interface ReportLayoutTabPropsType{
     data:DataApiObjectType[],
@@ -31,6 +32,7 @@ export const ReportLayoutTab=({
     return(
         <div>
         <Tabs defaultValue="data" className="w-full">
+            <ScrollArea className="w-full whitespace-nowrap">
             <TabsList>
                 <TabsTrigger value="data" className=" text-[#ff5718] px-4 py-2 bg-[#fef2f2] rounded me-2">Data</TabsTrigger>
                 <TabsTrigger value="airtime" className="text-[#ff5718] px-4 py-2 bg-[#fef2f2] rounded me-2">Airtime</TabsTrigger>
@@ -38,6 +40,8 @@ export const ReportLayoutTab=({
                 <TabsTrigger value="electricity" className="text-[#ff5718] px-4 py-2 bg-[#fef2f2] rounded me-2">Electricity</TabsTrigger>
                 <TabsTrigger value="betting" className="text-[#ff5718] px-4 py-2 bg-[#fef2f2] rounded">Betting</TabsTrigger>
             </TabsList>
+            <ScrollBar orientation="horizontal" />
+            </ScrollArea>
             {
                 isMounted &&(
                     <>
