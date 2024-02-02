@@ -98,9 +98,9 @@ export function SignIn() {
             <CardHeader className="mb-0">
                 <CardTitle>
                     <div className="flex flex-col justify-center items-center">
-                        <div className="rounded-full p-8 bg-[#ff5718]">
+                        <div className="rounded-full p-4 bg-[#ff5718]">
                             <AiOutlineUser 
-                                size="3rem"
+                                size="2rem"
                                 color="white"
                             />
                         </div>

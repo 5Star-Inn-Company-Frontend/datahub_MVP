@@ -249,9 +249,7 @@ export const Nav =({
                             href="#"
                             data-te-sidenav-link-ref
                             onClick={()=>{
-                                LogOutUser().then(()=>{
-                                    router.push("/auth/signin")
-                                })
+                                LogOutUser()
                             }}
                         >
                             <span

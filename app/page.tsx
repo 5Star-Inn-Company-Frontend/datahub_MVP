@@ -1,6 +1,7 @@
 import { token ,baseUrl} from "@/actions/baseUrl";
 import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout";
 import {IntroSection} from "@/components/customui/dashboard/introSection"
+import Spinner from "@/components/customui/global/spinner";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 
@@ -80,7 +81,7 @@ export default async function Home() {
       <DashBoardLayout
         firstname={storedItem?.value && JSON.parse(storedItem?.value)?.user?.firstname}
       >
-        <Suspense fallback={<div>loading....</div>}>
+        <Suspense fallback={<Spinner/>}>
           <IntroSection
             trans_count={count?.total_count_transaction}
             trans_sum={sum?.total_sum_transaction}

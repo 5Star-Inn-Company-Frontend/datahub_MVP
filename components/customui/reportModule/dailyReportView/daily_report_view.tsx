@@ -15,7 +15,7 @@ export const DailyReport =()=>{
         betting:[]
     })
     return(
-        <div className="h-full w-full overflow-auto">
+        <div className="h-full w-full">
             <Reportlayout 
                 title="Daily"
                 setTabcontent={setTabcontent}
