@@ -69,7 +69,6 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                description:error,
                                                 action: <ToastAction altText="Try again">Try again</ToastAction>,
                                             })
                                         })
@@ -81,11 +80,10 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             setIsLoading(false)
                                         }).catch((error)=>{
                                             setIsLoading(false)
-                                            console.log("error:",error)
+                                             console.log("error:",error)
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                description:error,
                                                 action: <ToastAction altText="Try again">Try again</ToastAction>,
                                             })
                                         })
@@ -97,11 +95,10 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             setIsLoading(false)
                                         }).catch((error)=>{
                                             setIsLoading(false)
-                                            console.log("error:",error)
+                                             console.log("error:",error)
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                description:error,
                                                 action: <ToastAction altText="Try again">Try again</ToastAction>,
                                             })
                                         })

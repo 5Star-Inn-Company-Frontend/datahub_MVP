@@ -1,134 +1,181 @@
-"use client"
-import { TableCell, TableRow } from "@/components/ui/table";
-import { ViewLayout } from "../global/viewLayout";
-import { TableLayout } from "../global/tableLayout";
 
-interface ApiResponse {
-  id: number;
-  user_id?: number;
-  title?: string;
-  amount: number;
-  name?: string;
-  charges: number;
-  commission: number;
-  reference: string;
-  recipient: string;
-  status: number;
-  type: string | null;
-  remark: string;
-  token: string | null;
-  prev_balance: string;
-  new_balance: string;
-  server: number;
-  server_response: string;
-  created_at: string;
-  updated_at: string;
-}
+"use client"
+import {
+    TableCell,
+    TableRow,
+  } from "@/components/ui/table"
+import { useEffect, useState } from "react"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
+import { UserDetailsPropType } from "../transactionModule/users/active/activeUsers"
+import Spinner from "../global/spinner"
+import { ViewLayout } from "../global/viewLayout"
+import { TableLayout } from "../global/tableLayout"
+import { SearchUsers } from "@/actions/userModule/action"
+import { SuspendUserComponent } from "./suspendUser"
+import { ModifyUserComponent } from "./modifyUers"
 
 interface MyApiInterResponse {
-  data: ApiResponse[];
+  data: UserDetailsPropType[];
 }
 
- export const All_Users = () => {
-  const Apidata: MyApiInterResponse = {
-    data: [
-      {
-        id: 1,
-        // user_id: 1,
-        name: "Stephen Adeyemo",
-        amount: 300,
-        charges: 0,
-        commission: 3,
-        reference: "1012647157",
-        recipient: "08166939205",
-        status: 1,
-        type: "debit",
-        remark: "Successful",
-        token: null,
-        prev_balance: "0",
-        new_balance: "0",
-        server: 0,
-        server_response: "{'status':'success'}",
-        created_at: "2024-01-03T17:18:45.000000Z",
-        updated_at: "2024-01-05T20:56:40.000000Z",
-      },
-    ],
-  };
-  return (
-    <ViewLayout navs={["All Users"]}>
-      <TableLayout
-        tableHeadRow={[
-          "S/N",
-          "Id",
-          "name",
-          "Amount",
-          "Charges",
-          "Commision",
-          "Reference",
-          "Recepient",
-          "Status",
-          "Type",
-          "Remark",
-          "Token",
-          "Previous Balance",
-          "New Balance",
-          "Server",
-          "Server Response",
-        ]}
-        caption={"A List of all "}
-        hideAction={true}
-        // handleChange={handleChange}
-        // handleSearch={handleSearch}
-      >
-        {Apidata?.data.map((info, index) => {
-          const {
-            
-            id,
-            name,
-            amount,
-            charges,
-            commission,
-            reference,
-            recipient,
-            status,
-            type,
-            remark,
-            token,
-            prev_balance,
-            server,
-            server_response,
-            created_at,
-            updated_at,
-          } = info;
-          return (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{index + 1}</TableCell>
-              {[
-                
-                id,
-                name,
-                amount,
-                charges,
-                commission,
-                reference,
-                recipient,
-                status,
-                type,
-                remark,
-                token,
-                prev_balance,
-                server,
-                //    (JSON.parse(server_response))?.status,
-              ].map((bodyInfo, index) => (
-                <TableCell key={index}>{bodyInfo}</TableCell>
-              ))}
-              <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-              <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
-            </TableRow>
-          );
-        })}
-      </TableLayout>
-    </ViewLayout>
-  );
-};
+export const All_Users=({
+    data
+}:MyApiInterResponse)=>{
+    const{toast} = useToast();
+    const[
+        dataSetter,
+        setData
+    ]=useState<UserDetailsPropType[]>([]);
+    const[
+        filterIsLoading,
+        setFilterIsLoading
+    ]=useState(false);
+    const[
+        itemToSearch,
+        setItemToSearch
+    ]=useState<string>("")
+    const[
+        isMounted,
+        setIsMounted
+    ] = useState(false);
 
+    useEffect(()=>{
+        setData(data)
+    },[data])
+
+    useEffect(()=>{
+        setIsMounted(true)
+    },[])
+
+    const handleChange=(e:any)=>{
+        setItemToSearch(e);
+    }
+
+    const handleSearch =()=>{
+        setFilterIsLoading(true)
+        SearchUsers(itemToSearch).then((response)=>{
+            const{
+                search_result
+            }=response;
+            setData(search_result)
+            setFilterIsLoading(false)
+        }).catch((error)=>{
+            setFilterIsLoading(false)
+            console.log("error:",error)
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                action: <ToastAction altText="Try again">Try again</ToastAction>,
+            })
+        })
+    }
+    
+    if(!isMounted){
+        return <Spinner/>
+    }
+    return(
+        <ViewLayout 
+            navs={[
+                "All users"
+            ]}
+        >
+          
+            {
+                filterIsLoading?
+                    <Spinner/>:
+                    <TableLayout
+                        tableHeadRow={[
+                            "S/N",
+                            "Id",
+                            "Firstname",
+                            "Lastname",
+                            "Address",
+                            "Phone",
+                            "Gender",
+                            "Date of Birth",
+                            "Email",
+                            "Email verified at",
+                            "Status",
+                            "Status Reason",
+                            "package",
+                            "Pin",
+                            "Role Id",
+                            "Bvn",
+                            "Bank code",
+                            "Account Name",
+                            "Account Number",
+                            "Created At",
+                            "Updated At",
+                            "Suspend",
+                            "Modify"
+                        ]}
+                        caption={"A List of all users"}
+                        handleChange={handleChange}
+                        handleSearch={handleSearch}
+                    >
+                        {
+                        dataSetter?.map((info,index)=>{
+                                const{
+                                  id,
+                                  firstname,
+                                  lastname,
+                                  address,
+                                  phone,
+                                  gender,
+                                  dob,
+                                  email,
+                                  email_verified_at,
+                                  status,
+                                  status_reason,
+                                  pin,
+                                  role_id,
+                                  bvn,
+                                  bank_code,
+                                  account_name,
+                                  account_number,
+                                  created_at,
+                                  updated_at
+                                }=info;
+                                if(info?.id){
+                                return(
+
+                                    <TableRow key={index}>
+                                        <TableCell className="font-medium">{index +1}</TableCell>
+                                        {
+                                            [
+                                              id,
+                                              firstname,
+                                              lastname,
+                                              address,
+                                              phone,
+                                              gender,
+                                              dob,
+                                              email,
+                                              email_verified_at,
+                                              status,
+                                              status_reason,
+                                              info?.package,
+                                              pin,
+                                              role_id,
+                                              bvn,
+                                              bank_code,
+                                              account_name,
+                                              account_number
+                                            //    (JSON.parse(server_response))?.status,
+                                            ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
+                                        }
+                                        <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
+                                        <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
+                                        <TableCell><SuspendUserComponent id={id}/></TableCell>
+                                        <TableCell><ModifyUserComponent id={id}/></TableCell>
+                                    </TableRow>
+                                )
+                                }
+                            })
+                        }
+                    </TableLayout>
+                }
+        </ViewLayout>
+    )
+}

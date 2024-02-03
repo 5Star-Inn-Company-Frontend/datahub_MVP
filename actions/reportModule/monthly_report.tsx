@@ -9,7 +9,7 @@ export async function getMonthlyReport(
   const storedItem = cookieStore.get("datahubToken");
 
   if(storedItem?.value){
-    const response = await fetch(`${baseUrl}monthlyrepor`, {
+    const response = await fetch(`${baseUrl}monthlyreport`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -33,13 +33,13 @@ interface ApiResponse {
   updated_at: string;
 }
 
-interface MyApiInterResponse {
+export interface transactionApiInterResponse {
   data: ApiResponse[];
 }
 
 export const All_Transactions=({
     data
-}:MyApiInterResponse)=>{
+}:transactionApiInterResponse)=>{
     const{toast} = useToast();
     const[
         dataSetter,
@@ -84,7 +84,6 @@ export const All_Transactions=({
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",
-                description:error,
                 action: <ToastAction altText="Try again">Try again</ToastAction>,
             })
         })

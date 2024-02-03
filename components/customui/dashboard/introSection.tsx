@@ -118,7 +118,7 @@ export const IntroSection=({
         </div>
 
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[28rem]">
+            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[30rem]">
                 <DailyReport/>
             </div>
             <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
