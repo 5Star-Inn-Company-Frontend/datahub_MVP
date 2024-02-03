@@ -128,13 +128,12 @@ export function Register() {
             }
         }).catch((error)=>{
             setIsLoading(false)
-            console.log("this is error",error)
-            // toast({
-            //     variant: "destructive",
-            //     title: "Uh oh! Something went wrong.",
-            //     description:error,
-            //     action: <ToastAction altText="Try again">Try again</ToastAction>,
-            // })
+            console.log("error:",error)
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                action: <ToastAction altText="Try again">Try again</ToastAction>,
+            })
         })
     }
 

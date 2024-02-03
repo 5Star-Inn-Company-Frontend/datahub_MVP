@@ -12,18 +12,9 @@ export async function ModifyAction(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
+    console.log(service,id,status)
     if(storedItem?.value){
-    const response = await fetch(
-        `${baseUrl}
-            ${
-            service ==="airtime"?"modifyairtime":
-            service ==="data"?"modifydata":
-            service ==="tv"?"modifytvplan":
-            service ==="electricity"?"modifyelectricity":
-            service ==="betting"?"modifybetting":
-            "modifyairtime2cash"
-        }/${id}
-        `, {
+    const response = await fetch(`${baseUrl}${service ==="airtime"?"modifyairtime":service ==="data"?"modifydata":service ==="tv"?"modifytvplan":service ==="electricity"?"modifyelectricity":service ==="betting"?"modifybetting":"modifyairtime2cash"}/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

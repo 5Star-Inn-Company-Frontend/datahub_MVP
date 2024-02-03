@@ -38,7 +38,7 @@ export const DashBoardTopNav =({
                         style="me-2"
                     />
                     <Text
-                        style="text-lg text-start text-white font-semibold"
+                        style="text-md text-start text-white font-semibold"
                         value="DataHubs"
                     />
                 </div>
@@ -50,7 +50,7 @@ export const DashBoardTopNav =({
                         value="Welcome"
                     />
                     <Text
-                        style="lg:text-lg xl:text-lg md:text-lg sm:text-md xs:text-md text-start text-white font-semibold"
+                        style="lg:text-md xl:text-md md:text-md sm:text-md xs:text-md text-start text-white font-semibold"
                         value="Hello Admin"
                     />
                 </div>

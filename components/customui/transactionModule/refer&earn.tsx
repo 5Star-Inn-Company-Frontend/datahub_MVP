@@ -71,7 +71,6 @@ export function ReferAndEarn() {
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",
-                description:error,
                 action: <ToastAction altText="Try again">Try again</ToastAction>,
             })
         })
