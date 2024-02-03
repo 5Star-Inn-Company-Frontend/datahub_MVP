@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 
 export async function LogOutUser() {
     const cookieStore = cookies();
-    cookieStore.delete("datahubToken");
-    redirect("/auth/signin");
+    if(cookieStore.has("datahubToken")){
+       
+        redirect("/auth/signin");
+    }
 }
