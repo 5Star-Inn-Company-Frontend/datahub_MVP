@@ -24,46 +24,85 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { PostOwnWebsite } from "@/actions/transactionModule/ownawebsite"
+import { useState } from "react"
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 const formSchema = z.object({
-  refer_text: z.string({
-    required_error: "Referer number is required.",
+  name: z.string({
+    required_error: "Business Name is required.",
   }),
-  amount: z.number({
-    required_error: "Amount is required.",
+  logo: z.string({
+    required_error: "Business Logo Url is required.",
+  }),
+  web_address: z.string({
+    required_error: "Website address is required.",
+  }),
+  phone: z.string({
+    required_error: "Business contact number is required.",
   }),
 })
 
 export function Request_website() {
+    const { toast } = useToast()
+    const[isLoading, setIsLoading]=useState<boolean>(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            refer_text: "",
-            amount:0
+            name: "",
+            logo:"",
+            phone:"",
+            web_address:""
+
         },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
+        PostOwnWebsite(
+            {
+                business_name:values?.name,
+                business_logo_url:values?.logo,
+                website_address:values?.web_address,
+                business_phone_no:values?.phone 
+            }
+        ).then((response)=>{
+            const{
+                message
+            }=response;
+            setIsLoading(false)
+            console.log(message)
+            toast({
+                description:message
+            })
+        }).catch((error)=>{
+            setIsLoading(false)
+            console.log("error:",error)
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                action: <ToastAction altText="Try again">Try again</ToastAction>,
+            })
+        })
     }
 
   return (
     <Card  className="shadow-none rounded border">
         <CardHeader className="mb-0">
             <CardTitle>Request a website</CardTitle>
-            <CardDescription>kindly enter the request text and the amount</CardDescription>
+            <CardDescription>kindly provide the required informations</CardDescription>
         </CardHeader>
         <CardContent className="mb-0">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
                     <FormField
                     control={form.control}
-                    name="refer_text"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Request</FormLabel>
                         <FormControl>
-                            <Input placeholder="request" {...field} />
+                            <Input placeholder="Business Name" {...field} />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -71,19 +110,46 @@ export function Request_website() {
                     />
                     <FormField
                     control={form.control}
-                    name="amount"
+                    name="logo"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Amount</FormLabel>
                         <FormControl>
-                            <Input placeholder="shadcn" {...field} />
+                            <Input placeholder="Business Logo Url" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                    <FormField
+                    control={form.control}
+                    name="web_address"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormControl>
+                            <Input placeholder="Website Address" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                    <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormControl>
+                            <Input placeholder="Business Contact Phone Number" {...field} type="tel"/>
                         </FormControl>
                         <FormMessage />
                         </FormItem>
                     )}
                     />
                     <div className="flex justify-end items-end">
-                        <Button type="submit" className="text-white" >Submit</Button>
+                        {
+                            isLoading?
+                                <Button type="submit" disabled className="text-white" >Sending request...</Button>:
+                                    <Button type="submit" className="text-white" >Submit</Button>
+                        }
                     </div>
                 </form>
              </Form>
