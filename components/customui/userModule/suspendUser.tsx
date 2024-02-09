@@ -82,7 +82,7 @@ export function SuspendUserComponent({
       <DrawerTrigger asChild>
         <Button variant="outline">Suspend</Button>
       </DrawerTrigger>
-      <DrawerContent className="bg-white">
+      <DrawerContent className="bg-white p-4">
         <DrawerHeader className="text-left">
           <DrawerTitle>Suspend user</DrawerTitle>
           <DrawerDescription>
