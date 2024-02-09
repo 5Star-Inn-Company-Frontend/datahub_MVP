@@ -82,7 +82,7 @@ export function ModifyUserComponent({
       <DrawerTrigger asChild>
         <Button variant="outline">Modify</Button>
       </DrawerTrigger>
-      <DrawerContent className="bg-white">
+      <DrawerContent className="bg-white p-4">
         <DrawerHeader className="text-left">
           <DrawerTitle>Modify user</DrawerTitle>
           <DrawerDescription>
