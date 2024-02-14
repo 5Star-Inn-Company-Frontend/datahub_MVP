@@ -15,6 +15,14 @@ export async function LoginAction(
         },
         body: JSON.stringify(bodydata)
       });
+    if(!response.ok){
+      let result = await response.json();
+      if(result?.message){
+        return result;
+      }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+      }
+    }
     const result = await response.json();
     if(result?.status){
       cookies().set(
@@ -25,6 +33,5 @@ export async function LoginAction(
         }
       )
     }
-    console.log("Success:", result);
     return result;
 }

@@ -132,12 +132,14 @@ function ProfileForm({ id }:userIdPropType) {
             })
         }).catch((error)=>{
             setIsLoading(false)
-            console.log("error:",error)
             toast({
-                variant: "destructive",
-                title: "Uh oh! Something went wrong.",
-                action: <ToastAction altText="Try again">Try again</ToastAction>,
+              variant: "destructive",
+              title: "Uh oh! Something went wrong.",
+              description:`${error}`
             })
+            return{
+                errorMessage:error,
+            }
         })
     }
 

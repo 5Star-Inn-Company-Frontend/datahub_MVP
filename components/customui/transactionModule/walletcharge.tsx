@@ -83,12 +83,14 @@ export const Total_Wallet_Charge=()=>{
                                     setIsLoading(false)
                                 }).catch((error)=>{
                                     setIsLoading(false)
-                                    console.log("error:",error)
                                     toast({
                                         variant: "destructive",
                                         title: "Uh oh! Something went wrong.",
-                                        action: <ToastAction altText="Try again">Try again</ToastAction>,
+                                        description:`${error}`
                                     })
+                                    return{
+                                        errorMessage:error,
+                                    }
                                 })
                             }
                         }}

@@ -14,7 +14,6 @@ export async function PostOwnWebsite(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
-    
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}ownwebsite`, {
         method: "POST",
@@ -24,8 +23,15 @@ export async function PostOwnWebsite(
         },
         body: JSON.stringify(bodydata)
     });
-    const result = await response.json();
-    console.log("Success:", result);
-    return result;
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
     }
+    const result = await response.json();
+    return result;
+}
 }

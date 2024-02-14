@@ -12,7 +12,6 @@ export async function ModifyAction(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
-    console.log(service,id,status)
     if(storedItem?.value){
     const response = await fetch(`${baseUrl}${service ==="airtime"?"modifyairtime":service ==="data"?"modifydata":service ==="tv"?"modifytvplan":service ==="electricity"?"modifyelectricity":service ==="betting"?"modifybetting":"modifyairtime2cash"}/${id}`, {
         method: "POST",
@@ -22,9 +21,16 @@ export async function ModifyAction(
         },
         body: JSON.stringify({"status":status})
     });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
     const result = await response.json();
-    console.log("Success:", result);
     revalidateTag(service)
     return result;
-    }
+}
 }

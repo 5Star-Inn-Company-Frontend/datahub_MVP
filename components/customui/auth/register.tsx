@@ -121,19 +121,19 @@ export function Register() {
             }else{
                 toast({
                     variant: "destructive",
-                    title: "Uh oh! Something went wrong.",
-                    description:`${message?.email !=="undefined" && message?.email}${" "}${message?.phone !=="undefined" && message?.phone}`,
-                    action: <ToastAction altText="Try again">Try again</ToastAction>,
+                    description:`${message?.email !=="undefined" && message?.email}${" "}${message?.phone !=="undefined" && message?.phone}`
                 })
             }
         }).catch((error)=>{
             setIsLoading(false)
-            console.log("error:",error)
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",
-                action: <ToastAction altText="Try again">Try again</ToastAction>,
+                description:`${error}`
             })
+            return{
+                errorMessage:error,
+            }
         })
     }
 
