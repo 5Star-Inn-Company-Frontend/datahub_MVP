@@ -7,7 +7,6 @@ export async function getYearlyReport(
 ) {
   const cookieStore = cookies();
  const storedItem = cookieStore.get("datahubToken");
-
   if(storedItem?.value){
     const response = await fetch(`${baseUrl}yearlyreport`, {
       method: "POST",
@@ -17,8 +16,15 @@ export async function getYearlyReport(
       },
       body: JSON.stringify({"year":date})
     });
+    if(!response.ok){
+      let result = await response.json();
+      if(result){
+        return result;
+      }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+      }
+    }
     const result = await response.json();
-    console.log("Success:", result);
     return result;
-  }
+}
 }

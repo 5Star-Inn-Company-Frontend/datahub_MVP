@@ -112,12 +112,14 @@ export const AirtimeService=({
                                                         })
                                                     }).catch((error)=>{
                                                         setIsLoading(false)
-                                                        console.log("error:",error)
                                                         toast({
                                                             variant: "destructive",
                                                             title: "Uh oh! Something went wrong.",
-                                                            action: <ToastAction altText="Try again">Try again</ToastAction>,
+                                                            description:`${error}`
                                                         })
+                                                        return{
+                                                            errorMessage:error,
+                                                        }
                                                     })
                                                 }}
                                                 >{status===1?"disable":"enable"}

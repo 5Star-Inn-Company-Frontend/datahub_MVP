@@ -7,18 +7,24 @@ export async function getDailyReport(
 ) {
   const cookieStore = cookies();
   const storedItem = cookieStore.get("datahubToken");
-  
-  if(storedItem?.value){
-    const response = await fetch(`${baseUrl}dailyreport`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
-        },
-        body: JSON.stringify({"date":date})
-      });
-      const result = await response.json();
-      console.log("Success:", result);
-    return result;
-  }
+    if(storedItem?.value){
+      const response = await fetch(`${baseUrl}dailyreport`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+          },
+          body: JSON.stringify({"date":date})
+        });
+        if(!response.ok){
+          let result = await response.json();
+          if(result){
+            return result;
+          }else{
+            throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+          }
+        }
+        const result = await response.json();
+      return result;
+    }
 }

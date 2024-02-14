@@ -53,7 +53,7 @@ export const IntroSection=({
             value="Here's what is happening today."
         />
         <Text
-            style="text-2xl mb-4 font-semibold"
+            style="mb-4 font-semibold text-md"
             value="Dashboard"
         />
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
@@ -62,12 +62,12 @@ export const IntroSection=({
                 <div className="flex lg:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col justify-between w-full mt-4">
                     <div>
                         <div className="flex mb-2">
-                            <span className="text-lg font-semibold">Account Number :</span>
-                            <span className="text-lg">{userDetails?.account_number}</span>
+                            <span className="font-semibold text-md text-grey">Account Number :</span>
+                            <span className="text-md">{userDetails?.account_number}</span>
                         </div>
                         <div className="flex mb-4">
-                            <span className="text-lg font-semibold">Account Name :</span>
-                            <span className="text-lg">{userDetails?.account_name}</span>
+                            <span className="font-semibold text-md text-grey">Account Name :</span>
+                            <span className="text-md">{userDetails?.account_name}</span>
                         </div>
                         <div className="flex flex-col justify-end items-end mt-4">
                             <Text

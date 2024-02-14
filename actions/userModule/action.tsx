@@ -17,8 +17,10 @@ export async function SearchUsers(
         },
         body: JSON.stringify({"search":filter})
     });
+    if(!response.ok){
+        throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+    }
     const result = await response.json();
-    console.log("Success:", result);
     return result;
     }
 }
@@ -30,23 +32,30 @@ export async function ModifyUser(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
-    console.log(phone,address,id)
-    if(storedItem?.value){
-    const response = await fetch(`${baseUrl}modifyuser/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
-        },
-        body: JSON.stringify({
-            "address" : address,
-            "phone" : phone
-        })
-    });
-    const result = await response.json();
-    console.log("Success:", result);
-    revalidateTag("users")
-    return result;
+        console.log(phone,address,id)
+        if(storedItem?.value){
+        const response = await fetch(`${baseUrl}modifyuser/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+            },
+            body: JSON.stringify({
+                "address" : address,
+                "phone" : phone
+            })
+        });
+        if(!response.ok){
+            let result = await response.json();
+            if(result?.message){
+              return result;
+            }else{
+              throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+            }
+        }
+        const result = await response.json();
+        revalidateTag("users")
+        return result;
     }
 }
 
@@ -56,20 +65,27 @@ export async function SuspendUser(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
-    if(storedItem?.value){
-    const response = await fetch(`${baseUrl}suspenduser/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
-        },
-        body: JSON.stringify({
-            "reason" : reason
-        })
-    });
-    const result = await response.json();
-    console.log("Success:", result);
-    revalidateTag("users")
-    return result;
-    }
+        if(storedItem?.value){
+            const response = await fetch(`${baseUrl}suspenduser/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+                },
+                body: JSON.stringify({
+                    "reason" : reason
+                })
+            });
+            if(!response.ok){
+                let result = await response.json();
+                if(result?.message){
+                return result;
+                }else{
+                throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+                }
+            }
+            const result = await response.json();
+            revalidateTag("users")
+            return result;
+        }
 }

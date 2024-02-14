@@ -2,13 +2,12 @@ import { token ,baseUrl} from "@/actions/baseUrl";
 import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout";
 import {IntroSection} from "@/components/customui/dashboard/introSection"
 import Spinner from "@/components/customui/global/spinner";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 
-async function getTotalTransactionCount() {
+async function getTotalTransactionCount(storedItem:RequestCookie | undefined) {
   try {
-    const cookieStore = cookies();
-    const storedItem = cookieStore.get("datahubToken");
       if(storedItem?.value){
         const response = await fetch(`${baseUrl}totalcounttransaction`, {
           method: "GET",
@@ -17,19 +16,21 @@ async function getTotalTransactionCount() {
               "Authorization": `Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
           }
         });
+        if(!response.ok){
+          throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+        }
         const result = await response.json();
-        console.log("Success:1", result);
         return result
       }
     }catch (error) {
-      console.error("Error:", error);
+      return{
+        status :500
+      }
   }
 }
 
-async function getTotalTransactionSum() {
+async function getTotalTransactionSum(storedItem:RequestCookie | undefined) {
   try {
-    const cookieStore = cookies();
-    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}totalsumtransaction`, {
           method: "GET",
@@ -38,44 +39,49 @@ async function getTotalTransactionSum() {
               "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
           }
         });
+        if(!response.ok){
+          throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+        }
         const result =await response.json();
-        console.log("Success:2", result);
         return result
     }
      }catch (error) {
-      console.error("Error:", error);
+      return{
+        status :500
+      }
   }
 }
 
-async function getTransactionTypes() {
+async function getTransactionTypes(storedItem:RequestCookie | undefined) {
   try {
-    const cookieStore = cookies();
-    const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
       const response = await fetch(`${baseUrl}transactiontype`, {
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json",
-              "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
-          }
-        });
-        const result =await response.json();
-        console.log("Success3:", result);
-        return result
-    }
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        }
+      });
+      if(!response.ok){
+        throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+      }
+      const result =await response.json();
+      return result
+  }
    }catch (error) {
-    console.error("Error:", error);
+    return{
+      status :500
+    }
 }
 }
 
 export default async function Home() {
   const cookieStore = cookies();
   const storedItem = cookieStore.get("datahubToken");
-  const trans_count = getTotalTransactionCount()
-  const trans_sum = getTotalTransactionSum()
-  const trans_types = getTransactionTypes()
+  const trans_count = getTotalTransactionCount(storedItem)
+  const trans_sum = getTotalTransactionSum(storedItem)
+  const trans_types = getTransactionTypes(storedItem)
   const [sum, types, count] = await Promise.all([trans_sum, trans_types, trans_count])
-  console.log("datahubToken",cookies().get("datahubToken"))
   return (
     <main>
       <DashBoardLayout

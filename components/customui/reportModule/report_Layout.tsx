@@ -65,12 +65,14 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             setIsLoading(false)
                                         }).catch((error)=>{
                                             setIsLoading(false)
-                                            console.log("error:",error)
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                action: <ToastAction altText="Try again">Try again</ToastAction>,
+                                                description:`${error}`
                                             })
+                                            return{
+                                                errorMessage:error,
+                                            }
                                         })
                                     break;
                                     case "Monthly":
@@ -80,12 +82,14 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             setIsLoading(false)
                                         }).catch((error)=>{
                                             setIsLoading(false)
-                                             console.log("error:",error)
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                action: <ToastAction altText="Try again">Try again</ToastAction>,
+                                                description:`${error}`
                                             })
+                                            return{
+                                                errorMessage:error,
+                                            }
                                         })
                                     break;
                                     default:
@@ -95,12 +99,14 @@ export const Reportlayout =({children,title,setTabcontent}:PropType)=>{
                                             setIsLoading(false)
                                         }).catch((error)=>{
                                             setIsLoading(false)
-                                             console.log("error:",error)
                                             toast({
                                                 variant: "destructive",
                                                 title: "Uh oh! Something went wrong.",
-                                                action: <ToastAction altText="Try again">Try again</ToastAction>,
+                                                description:`${error}`
                                             })
+                                            return{
+                                                errorMessage:error,
+                                            }
                                         })
                                 }
                             }

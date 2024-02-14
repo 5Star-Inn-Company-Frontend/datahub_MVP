@@ -45,28 +45,6 @@ export const Active_Users_Transactions=({
     useEffect(()=>{
         setIsMounted(true)
     },[])
-    
-    const{
-        id,
-        firstname,
-        lastname,
-        address,
-        phone,
-        gender,
-        dob,
-        email,
-        email_verified_at,
-        status,
-        status_reason,
-        pin,
-        role_id,
-        bvn,
-        bank_code,
-        account_name,
-        account_number,
-        created_at,
-        updated_at
-    }=data;
 
     if(!isMounted){
         return <Spinner/>
@@ -100,37 +78,36 @@ export const Active_Users_Transactions=({
                     "Bank code",
                     "Account Name",
                     "Account Number",
-                    "Created At",
-                    "Updated At"
+                    "Created At"
                 ]}
                 caption={"A List of all active users"}
                 hideAction={true}
             >
                 <TableRow>
                     {
+                        
                         [
-                            id,
-                            firstname,
-                            lastname,
-                            address,
-                            phone,
-                            gender,
-                            dob,
-                            email,
-                            email_verified_at,
-                            status,
-                            status_reason,
+                            data?.id,
+                            data?.firstname,
+                            data?.lastname,
+                            data?.address,
+                            data?.phone,
+                            data?.gender,
+                            data?.dob,
+                            data?.email,
+                            data?.email_verified_at,
+                            data?.status,
+                            data?.status_reason,
                             data?.package,
-                            pin,
-                            role_id,
-                            bvn,
-                            bank_code,
-                            account_name,
-                            account_number
+                            data?.pin,
+                            data?.role_id,
+                            data?.bvn,
+                            data?.bank_code,
+                            data?.account_name,
+                            data?.account_number
                         ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                     }
-                    <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                    <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
+                    <TableCell>{data?.created_at && new Date(data?.created_at).toLocaleString()}</TableCell>
                 </TableRow>
             </TableLayout>
         </ViewLayout>

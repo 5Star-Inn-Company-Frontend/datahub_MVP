@@ -7,7 +7,6 @@ export async function PostWalletCharge(
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
-    
     if(storedItem?.value){
         const response = await fetch(`${baseUrl}totalwalletcharge`, {
             method: "POST",
@@ -17,8 +16,10 @@ export async function PostWalletCharge(
             },
             body: JSON.stringify({"date":date})
         });
+        if(!response.ok){
+            throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+        }
         const result = await response.json();
-        console.log("Success:", result);
         return result;
     }
 }
