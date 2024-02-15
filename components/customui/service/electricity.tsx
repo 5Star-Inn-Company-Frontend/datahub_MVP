@@ -65,8 +65,7 @@ export const ElectricityService=({
                             "Status",
                             "Discount",
                             "Server",
-                            "Creation Date",
-                            "Updated At",
+                            "Creation Date"
                         ]}
                         caption={"A list of electricity bills"}
                         hideAction={true}
@@ -81,8 +80,7 @@ export const ElectricityService=({
                                     server,
                                     status,
                                     code,
-                                    created_at,
-                                    updated_at
+                                    created_at
                                 }=info;
                                 return(
                                     <TableRow key={index}>
@@ -99,7 +97,6 @@ export const ElectricityService=({
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                         <TableCell
                                             onClick={()=>{
                                                 let modifystatusto:number = status===1?0:1

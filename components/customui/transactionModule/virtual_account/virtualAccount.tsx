@@ -7,6 +7,8 @@ import {
     TableCell,
     TableRow,
   } from "@/components/ui/table"
+import { ModifyStatus } from "@/actions/transactionModule/virtual_account/server/action"
+import { useToast } from "@/components/ui/use-toast";
 
 interface Users{
     id: number,
@@ -51,9 +53,14 @@ interface MyApiInterResponse {
 export const Vitual_Account_Transactions=({
     data
 }:MyApiInterResponse)=>{
+    const { toast } = useToast()
     const[
         isMounted,
         setIsMounted
+    ] = useState(false);
+    const[
+        isLoading,
+        setIsLoading
     ] = useState(false);
     useEffect(()=>{
         setIsMounted(true)
@@ -69,95 +76,100 @@ export const Vitual_Account_Transactions=({
                 "Virtual Account"
             ]}
         >
-            <TableLayout
-                tableHeadRow={[
-                    "S/N",
-                    "Id",
-                    "User Id",
-                    "Reference",
-                    "Status",
-                    "Account Name",
-                    "Account Number",
-                    "Provider",
-                    "Domain",
-                    "Assignment",
-                    "User Id",
-                    "User First Name",
-                    "User Last Name",
-                    "User Address",
-                    "User Phone",
-                    "User Gender",
-                    "User date of Birth",
-                    "User Email",
-                    "User status",
-                    "User Status Reason",
-                    "user Package",
-                    "User Pin",
-                    "User BVN",
-                    "User bank Code",
-                    "User Account Name",
-                    "User Account Number",
-                    "Creation Date",
-                    "Updated At",
-                ]}
-                caption={"A List of all virtual account transactions"}
-                hideAction={true}
-            >
-                {
-                    data?.map((info,index)=>{
-                        const{
-                            id,
-                            user_id,
-                            reference,
-                            status,
-                            account_name,
-                            account_number,
-                            provider,
-                            domain,
-                            assignment,
-                            user,
-                            created_at,
-                            updated_at
-                        }=info;
-                        return(
-                            <TableRow key={index}>
-                                <TableCell className="font-medium">{index +1}</TableCell>
-                                {
-                                    [
-                                        id,
-                                        user_id,
-                                        reference,
-                                        status,
-                                        account_name,
-                                        account_number,
-                                        provider,
-                                        domain,
-                                        assignment,
-                                        user?.id,
-                                        user?.firstname,
-                                        user?.lastname,
-                                        user?.address,
-                                        user?.phone,
-                                        user?.gender,
-                                        user?.dob,
-                                        user?.email,
-                                        user?.status,
-                                        user?.status_reason,
-                                        user?.package,
-                                        user?.pin,
-                                        user?.bvn,
-                                        user?.bank_code,
-                                        user?.account_name,
-                                        user?.account_number
-                                    ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
-                                }
-                                <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
-                            </TableRow>
-                        )
-                    })
-                }
-            </TableLayout>
+            {  
+            isLoading?
+                <Spinner/>:(
+                    <TableLayout
+                        tableHeadRow={[
+                            "S/N",
+                            "User Id",
+                            "Status",
+                            "Account Name",
+                            "Account Number",
+                            "Provider",
+                            "Domain",
+                            "Assignment",
+                            "User First Name",
+                            "User Last Name",
+                            "User Phone",
+                            "User Email",
+                            "User Account Name",
+                            "User Account Number",
+                            "Creation Date",
+                        ]}
+                        caption={"A List of all virtual account transactions"}
+                        hideAction={true}
+                    >
+                        {
+                            data?.map((info,index)=>{
+                                const{
+                                    user_id,
+                                    status,
+                                    account_name,
+                                    account_number,
+                                    provider,
+                                    domain,
+                                    assignment,
+                                    user,
+                                    created_at
+                                }=info;
+                                return(
+                                    <TableRow key={index}>
+                                        <TableCell className="font-medium">{index +1}</TableCell>
+                                        {
+                                            [
+                                                user_id,
+                                                status,
+                                                account_name,
+                                                account_number,
+                                                provider,
+                                                domain,
+                                                assignment,
+                                                user?.firstname,
+                                                user?.lastname,
+                                                user?.phone,
+                                                user?.email,
+                                                user?.account_name,
+                                                user?.account_number
+                                            ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
+                                        }
+                                        <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
+                                        <TableCell
+                                            className={status==="active"?"text-danger":"text-success"}
+                                            onClick={()=>{
+                                                let modifystatusto:string = status==="active"?"0":"1"
+                                                setIsLoading(true)
+                                                ModifyStatus(
+                                                    modifystatusto
+                                                ).then((response)=>{
+                                                    const{
+                                                        message
+                                                    }=response;
+                                                    setIsLoading(false)
+                                                    toast({
+                                                        description:message
+                                                    })
+                                                }).catch((error)=>{
+                                                    setIsLoading(false)
+                                                    toast({
+                                                        variant: "destructive",
+                                                        title: "Uh oh! Something went wrong.",
+                                                        description:`${error}`
+                                                    })
+                                                    return{
+                                                        errorMessage:error,
+                                                    }
+                                                })
+                                            }}
+                                            >{status==="active"?"Deactivate":"Activate"}
+                                        </TableCell>
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableLayout>
+            )
+            }
         </ViewLayout>
     )
 }

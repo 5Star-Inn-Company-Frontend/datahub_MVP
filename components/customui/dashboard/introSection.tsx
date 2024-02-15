@@ -1,10 +1,12 @@
 "use client";
 import frame from "../../../public/Frame 1000002437.svg";
 import frame1 from "../../../public/Frame 1000002437 (1).svg"
+import frame2 from "../../../public/Frame 1000002437 (2).svg";
+import frame3 from "../../../public/Frame 1000002437 (3).svg"
 import {Text} from "../text"
 import { Service_Select } from "./serviceModule/services";
 import { TotalTransactionCard } from "../transactionModule/totalTransactionCard";
-import { TransactionTypes } from "../transactionModule/transactionTypes";
+// import { TransactionTypes } from "../transactionModule/transactionTypes";
 import { Request_website } from "../transactionModule/requestWebsite";
 import { ReferAndEarn } from "../transactionModule/refer&earn";
 import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
@@ -35,16 +37,15 @@ interface userDetailsProps{
 
 interface propTypes {
     trans_count:number,
-    trans_types:string[],
     trans_sum:number,
     userDetails:userDetailsProps
 }
 export const IntroSection=({
     trans_count,
-    trans_types,
     trans_sum,
     userDetails
 }:propTypes)=>{
+    console.log(userDetails);
     return(
         <>
 
@@ -61,14 +62,14 @@ export const IntroSection=({
                 
                 <div className="flex lg:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col justify-between w-full mt-4">
                     <div>
-                        <div className="flex mb-2">
-                            <span className="font-semibold text-md text-grey">Account Number :</span>
-                            <span className="text-md">{userDetails?.account_number}</span>
-                        </div>
-                        <div className="flex mb-4">
-                            <span className="font-semibold text-md text-grey">Account Name :</span>
-                            <span className="text-md">{userDetails?.account_name}</span>
-                        </div>
+                        <Text
+                            style="text-md mb-2 text-grey-400 font-semibold"
+                            value={userDetails?.firstname}
+                        />
+                        <Text
+                            style="text-md mb-2 text-grey-400 font-semibold"
+                            value={userDetails?.lastname}
+                        />
                         <div className="flex flex-col justify-end items-end mt-4">
                             <Text
                                 style="text-md mb-2"
@@ -118,62 +119,44 @@ export const IntroSection=({
         </div>
 
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[30rem]">
+            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[31.5rem]">
                 <DailyReport/>
             </div>
             <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
                 <div className="bg-white rounded p-4 w-full">
-                   <TransactionTypes 
-                        ApiResponse={trans_types}
-                    />
-                </div>
-            </div>
-        </div>
-
-        <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4">
-                <div className="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4">
+                    {
+                        [
+                            {
+                                amount:trans_sum,
+                                img:frame2,
+                                title:"Total Wallet Fund"
+                            },{
+                                amount:trans_count,
+                                img:frame3,
+                                title:"Total Wallet Charge"
+                            }
+                        ]?.map((total_details,index)=>{
+                            const{
+                                amount,
+                                img,
+                                title
+                            }=total_details;
+                            return(
+                                <div key={index}>
+                                    <TotalTransactionCard
+                                        amount={amount}
+                                        img={img}
+                                        title={title}
+                                    />
+                                    <Text
+                                        style="mb-4 text-sm cursor-pointer text-end"
+                                        value="view more"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
                     <ReferAndEarn/>
-                    <Request_website/>
-                </div>
-            </div>
-            {/**Wallet*/}
-            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
-                <div className="bg-white rounded p-4 mb-4 w-full h-[10rem]">
-                    <div className="flex justify-end mb-2">
-                        <Button 
-                            variant="outline" 
-                            className="bg-[#8b5cf6] text-white"
-                            onClick={()=>window.location.replace("/transactions/total_walletCharge")}
-                        >Wallet charge</Button>
-                    </div>
-                    <Text
-                        style="text-4xl font-semibold mb-2"
-                        value={""}
-                    />
-                    <Text
-                        style="text-md"
-                        value="TOTAL WALLET CHARGE"
-                    />
-                </div>
-                <div className="bg-white rounded p-4 h-[10rem]">
-                    <Text
-                        style="text-4xl font-semibold mb-2"
-                        value={""}
-                    />
-                    <Text
-                        style="text-md"
-                        value="TOTAL WALLET FUND"
-                    />
-                    
-                    <div className="flex justify-end mb-2">
-                        <Button 
-                            variant="outline" 
-                            className="bg-[#8b5cf6] text-white"
-                            onClick={()=>window.location.replace("/transactions/total_walletFund")}
-                        >Wallet Fund
-                        </Button>
-                    </div>
                 </div>
             </div>
         </div>

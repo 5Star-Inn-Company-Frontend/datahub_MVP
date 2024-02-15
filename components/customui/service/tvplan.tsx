@@ -69,8 +69,7 @@ export const TvService =({
                             "Status",
                             "Discount",
                             "Server",
-                            "Creation Date",
-                            "Updated At",
+                            "Creation Date"
                         ]}
                         caption={"A list of tv plans"}
                         hideAction={true}
@@ -87,8 +86,7 @@ export const TvService =({
                                     server,
                                     status,
                                     code,
-                                    created_at,
-                                    updated_at
+                                    created_at
                                 }=info;
                                 return(
                                     <TableRow key={index}>
@@ -107,7 +105,6 @@ export const TvService =({
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                         <TableCell
                                             onClick={()=>{
                                                 let modifystatusto:number = status===1?0:1

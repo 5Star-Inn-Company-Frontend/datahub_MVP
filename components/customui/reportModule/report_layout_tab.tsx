@@ -1,19 +1,19 @@
 "use client";
-import { AirtimeApiObjectType, AirtimeReportLayout } from "./airtimeLayout"
-import { BettingApiObjectType, BettingReportLayout } from "./bettingLayout"
-import { CableReportLayout, CabletvApiObjectType } from "./cabletvLayout"
+import {AirtimeReportLayout } from "./airtimeLayout"
+import {BettingReportLayout } from "./bettingLayout"
+import {CableReportLayout} from "./cabletvLayout"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DataApiObjectType, DataReportLayout } from "./dataLayout"
-import { ElectricityApiObjectType, ElectricityReportLayout } from "./electricityLayout"
+import {ElectricityReportLayout } from "./electricityLayout"
 import { useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export interface ReportLayoutTabPropsType{
     data:DataApiObjectType[],
-    airtime:AirtimeApiObjectType[],
-    cabletv:CabletvApiObjectType[],
-    electricity:ElectricityApiObjectType[],
-    betting:BettingApiObjectType[]
+    airtime:DataApiObjectType[],
+    cabletv:DataApiObjectType[],
+    electricity:DataApiObjectType[],
+    betting:DataApiObjectType[]
 }
 export const ReportLayoutTab=({
     data,

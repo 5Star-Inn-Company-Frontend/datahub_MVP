@@ -29,10 +29,13 @@ export interface UserDetailsPropType {
     account_number:string|null,
     created_at:string,
     updated_at:string
-  }
+}
 
+interface activeUsersResponseType{
+    user_details: UserDetailsPropType |null
+}
 interface MyApiInterResponse {
-    data: UserDetailsPropType
+    data: activeUsersResponseType[]
 }
 
 export const Active_Users_Transactions=({
@@ -45,22 +48,22 @@ export const Active_Users_Transactions=({
     useEffect(()=>{
         setIsMounted(true)
     },[])
-
+    
     if(!isMounted){
         return <Spinner/>
     }
-
     return(
         <ViewLayout 
             navs={[
                 "All Trasactions",
                 "Users",
-                "Active"
+                "Dormant"
             ]}
         >
             <TableLayout
                 tableHeadRow={[
-                    "Id",
+                    "S/N",
+                    "ID",
                     "Firstname",
                     "Lastname",
                     "Address",
@@ -80,35 +83,64 @@ export const Active_Users_Transactions=({
                     "Account Number",
                     "Created At"
                 ]}
-                caption={"A List of all active users"}
+                caption={"A List of all dormant users"}
                 hideAction={true}
             >
-                <TableRow>
-                    {
-                        
-                        [
-                            data?.id,
-                            data?.firstname,
-                            data?.lastname,
-                            data?.address,
-                            data?.phone,
-                            data?.gender,
-                            data?.dob,
-                            data?.email,
-                            data?.email_verified_at,
-                            data?.status,
-                            data?.status_reason,
-                            data?.package,
-                            data?.pin,
-                            data?.role_id,
-                            data?.bvn,
-                            data?.bank_code,
-                            data?.account_name,
-                            data?.account_number
-                        ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
-                    }
-                    <TableCell>{data?.created_at && new Date(data?.created_at).toLocaleString()}</TableCell>
-                </TableRow>
+                {
+                    data?.map((info,index)=>{
+                        if(info?.user_details){
+                        const{
+                            id,
+                            firstname,
+                            lastname,
+                            address,
+                            phone,
+                            gender,
+                            dob,
+                            email,
+                            email_verified_at,
+                            status,
+                            status_reason,
+                            pin,
+                            role_id,
+                            bvn,
+                            bank_code,
+                            account_name,
+                            account_number,
+                            created_at,
+                            updated_at
+                        }=info?.user_details;
+                        return(
+                            <TableRow key={index}>
+                                <TableCell className="font-medium">{index +1}</TableCell>
+                                {
+                                    [
+                                        id,
+                                        firstname,
+                                        lastname,
+                                        address,
+                                        phone,
+                                        gender,
+                                        dob,
+                                        email,
+                                        email_verified_at,
+                                        status,
+                                        status_reason,
+                                        info?.user_details?.package,
+                                        pin,
+                                        role_id,
+                                        bvn,
+                                        bank_code,
+                                        account_name,
+                                        account_number
+                                    ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
+                                }
+                                <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
+                            </TableRow>
+                        )
+                        }
+                    })
+                }
             </TableLayout>
         </ViewLayout>
     )

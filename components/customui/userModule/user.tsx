@@ -33,7 +33,6 @@ export const Users_Transactions=({
             <TableLayout
                 tableHeadRow={[
                     "S/N",
-                    "Id",
                     "User Id",
                     "Title",
                     "Amount",
@@ -49,8 +48,7 @@ export const Users_Transactions=({
                     "New Balance",
                     "Server",
                     "Server Response",
-                    "Creation Date",
-                    "Updated At",
+                    "Creation Date"
                 ]}
                 caption={"A List of user transactions"}
                 hideAction={true}
@@ -73,9 +71,7 @@ export const Users_Transactions=({
                             prev_balance,
                             new_balance,
                             server,
-                            server_response,
-                            created_at,
-                            updated_at
+                            created_at
                         }=info;
                         return(
                             <TableRow key={index}>
@@ -100,7 +96,6 @@ export const Users_Transactions=({
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                             </TableRow>
                         )
                     })

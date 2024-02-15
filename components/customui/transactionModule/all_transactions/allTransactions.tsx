@@ -104,7 +104,6 @@ export const All_Transactions=({
                     <TableLayout
                         tableHeadRow={[
                             "S/N",
-                            "Id",
                             "User Id",
                             "Title",
                             "Amount",
@@ -119,9 +118,7 @@ export const All_Transactions=({
                             "Previous Balance",
                             "New Balance",
                             "Server",
-                            "Server Response",
-                            "Creation Date",
-                            "Updated At",
+                            "Creation Date"
                         ]}
                         caption={"A List of all your transactions"}
                         handleChange={handleChange}
@@ -145,16 +142,13 @@ export const All_Transactions=({
                                     prev_balance,
                                     new_balance,
                                     server,
-                                    server_response,
-                                    created_at,
-                                    updated_at
+                                    created_at
                                 }=info;
                                 return(
                                     <TableRow key={index}>
                                         <TableCell className="font-medium">{index +1}</TableCell>
                                         {
                                             [
-                                                id,
                                                 user_id,
                                                 title,
                                                 amount,
@@ -168,12 +162,10 @@ export const All_Transactions=({
                                                 token,
                                                 prev_balance,
                                                 new_balance,
-                                                server,
-                                            //    (JSON.parse(server_response))?.status,
+                                                server
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                     </TableRow>
                                 )
                             })
