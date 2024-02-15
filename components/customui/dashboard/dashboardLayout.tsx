@@ -16,7 +16,7 @@ export const DashBoardLayout =({
                 <Nav/>
             </div>
             <div className="w-full h-full">
-                <DashBoardTopNav firstname={firstname}/>
+                <DashBoardTopNav/>
                 <div 
                     className="flex bg-cl"
                     style={{

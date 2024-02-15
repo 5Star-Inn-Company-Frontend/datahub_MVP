@@ -9,7 +9,6 @@ import { ModifyAction } from "@/actions/serviceModule/server";
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import Spinner from "../global/spinner";
-import { ToastAction } from "@/components/ui/toast";
 
 export interface AirtimeApiObjectType {
     id: number,
@@ -62,7 +61,6 @@ export const AirtimeService=({
                                 "Discount",
                                 "Server",
                                 "Creation Date",
-                                "Updated At",
                                 "Action"
                             ]}
                             caption={"A list of your airtime"}
@@ -76,8 +74,7 @@ export const AirtimeService=({
                                         discount,
                                         server,
                                         status,
-                                        created_at,
-                                        updated_at
+                                        created_at
                                     }=info;
                                     return(
                                         <TableRow key={index}>
@@ -92,7 +89,6 @@ export const AirtimeService=({
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                            <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                             <TableCell
                                                 onClick={()=>{
                                                     let modifystatusto:number = status===1?0:1

@@ -89,7 +89,6 @@ export const All_Users=({
                     <TableLayout
                         tableHeadRow={[
                             "S/N",
-                            "Id",
                             "Firstname",
                             "Lastname",
                             "Address",
@@ -108,7 +107,6 @@ export const All_Users=({
                             "Account Name",
                             "Account Number",
                             "Created At",
-                            "Updated At",
                             "Suspend",
                             "Modify"
                         ]}
@@ -119,7 +117,7 @@ export const All_Users=({
                         {
                         dataSetter?.map((info,index)=>{
                                 const{
-                                  id,
+                                    id,
                                   firstname,
                                   lastname,
                                   address,
@@ -136,8 +134,7 @@ export const All_Users=({
                                   bank_code,
                                   account_name,
                                   account_number,
-                                  created_at,
-                                  updated_at
+                                  created_at
                                 }=info;
                                 if(info?.id){
                                 return(
@@ -146,7 +143,6 @@ export const All_Users=({
                                         <TableCell className="font-medium">{index +1}</TableCell>
                                         {
                                             [
-                                              id,
                                               firstname,
                                               lastname,
                                               address,
@@ -164,11 +160,9 @@ export const All_Users=({
                                               bank_code,
                                               account_name,
                                               account_number
-                                            //    (JSON.parse(server_response))?.status,
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                         <TableCell><SuspendUserComponent id={id}/></TableCell>
                                         <TableCell><ModifyUserComponent id={id}/></TableCell>
                                     </TableRow>

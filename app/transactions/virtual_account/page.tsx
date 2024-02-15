@@ -13,6 +13,9 @@ async function getVirtualAccounts() {
         headers: {
             "Content-Type": "application/json",
             "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        next:{
+          tags:["virtual_accounts"]
         }
       });
       if(!response.ok){

@@ -79,8 +79,7 @@ export const DataService=({
                                 "Status",
                                 "Discount",
                                 "Server",
-                                "Creation Date",
-                                "Updated At",
+                                "Creation Date"
                             ]}
                             caption={"A list of data"}
                             hideAction={true}
@@ -102,8 +101,7 @@ export const DataService=({
                                         discount,
                                         server,
                                         status,
-                                        created_at,
-                                        updated_at
+                                        created_at
                                     }=info;
                                     return(
                                         <TableRow key={index}>
@@ -127,7 +125,6 @@ export const DataService=({
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                            <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                             <TableCell
                                                 onClick={()=>{
                                                     let modifystatusto:number = status===1?0:1

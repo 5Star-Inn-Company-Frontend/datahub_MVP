@@ -57,7 +57,6 @@ export const Pending_Transactions=({
             <TableLayout
                 tableHeadRow={[
                     "S/N",
-                    "Id",
                     "User Id",
                     "Title",
                     "Amount",
@@ -72,9 +71,7 @@ export const Pending_Transactions=({
                     "Previous Balance",
                     "New Balance",
                     "Server",
-                    "Server Response",
-                    "Creation Date",
-                    "Updated At",
+                    "Creation Date"
                 ]}
                 caption={"A List of all pending transactions"}
                 hideAction={true}
@@ -106,7 +103,6 @@ export const Pending_Transactions=({
                                 <TableCell className="font-medium">{index +1}</TableCell>
                                 {
                                     [
-                                        id,
                                         user_id,
                                         title,
                                         amount,
@@ -121,11 +117,9 @@ export const Pending_Transactions=({
                                         prev_balance,
                                         new_balance,
                                         server,
-                                    //    (JSON.parse(server_response))?.status,
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                             </TableRow>
                         )
                     })

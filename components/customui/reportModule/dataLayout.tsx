@@ -1,28 +1,27 @@
 "use client";
 import {TabsContent} from "@/components/ui/tabs"
-import {
-    TableCell,
-    TableRow,
-  } from "@/components/ui/table"
-import { TableLayout } from "../global/tableLayout"
+import { ReportTable } from "./report_table";
 
 export interface DataApiObjectType {
     id: number,
     price:string,
-    network: string,
-    name:string,
-    coded:string,
-    category:string,
-    network_code:string|null,
-    dataplan:string,
-    plan_id:string,
-    note:string|null,
+    user_id:number,
+    title:string,
+    charges:number,
+    commision:number,
+    reference:string,
+    recipient:string,
+    type:string,
+    transaction_type:string,
+    remark:string,
+    token:string|null,
+    prev_balance: string;
+    new_balance: string;
+    server: number;
+    server_response: string;
+    created_at: string;
     amount:number|string,
-    created_at:  string,
-    updated_at:  string,
-    discount?:string,
     status: number,
-    server: string,
 }
 
 export interface DataApiArrayType{
@@ -37,77 +36,7 @@ export const DataReportLayout =({
             value="data"
             className="w-full"
         >
-            <TableLayout
-                tableHeadRow={[
-                    "S/N",
-                    "Id",
-                    "Network",
-                    "Name",
-                    " price",
-                    "coded",
-                    "category",
-                    "network_code",
-                    "dataplan",
-                    "plan_id",
-                    "note",
-                    "amount",
-                    "Status",
-                    "Discount",
-                    "Server",
-                    "Creation Date",
-                    "Updated At",
-                ]}
-                caption={"Data Report"}
-                hideAction={true}
-            >
-                {
-                    apiParameter?.map((info,index)=>{
-                        const{
-                            id,
-                            network,
-                            name,
-                            price,
-                            coded,
-                            category,
-                            network_code,
-                            dataplan,
-                            plan_id,
-                            note,
-                            amount,
-                            discount,
-                            server,
-                            status,
-                            created_at,
-                            updated_at
-                        }=info;
-                        return(
-                            <TableRow key={index}>
-                                <TableCell className="font-medium">{index +1}</TableCell>
-                                {
-                                    [
-                                        id,
-                                        network,
-                                        name,
-                                        price,
-                                        coded,
-                                        category,
-                                        network_code,
-                                        dataplan,
-                                        plan_id,
-                                        note,
-                                        amount,
-                                        status,
-                                        discount,
-                                        server
-                                    ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
-                                }
-                                <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
-                            </TableRow>
-                        )
-                    })
-                }
-            </TableLayout>
+           <ReportTable apiParameter={apiParameter}/>
         </TabsContent>
     )
 }

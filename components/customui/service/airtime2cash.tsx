@@ -75,8 +75,7 @@ export const Airtime_To_CashService=({
                     "Device Details",
                     "Version",
                     "Webhook Url",
-                    "Creation Date",
-                    "Updated At",
+                    "Creation Date"
                 ]}
                 caption={"A List of airtime to cash"}
             >
@@ -95,8 +94,7 @@ export const Airtime_To_CashService=({
                             device_details,
                             version,
                             webhook_url,
-                            created_at,
-                            updated_at
+                            created_at
                         }=info;
                         return(
                             <TableRow key={index}>
@@ -118,7 +116,6 @@ export const Airtime_To_CashService=({
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                                 <TableCell
                                     onClick={()=>{
                                         setIsLoading(true)

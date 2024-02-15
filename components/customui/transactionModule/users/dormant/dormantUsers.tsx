@@ -86,8 +86,7 @@ export const Dormant_Users_Transactions=({
                             bank_code,
                             account_name,
                             account_number,
-                            created_at,
-                            updated_at
+                            created_at
                         }=info?.user_details;
                         return(
                             <TableRow key={index}>
@@ -115,7 +114,6 @@ export const Dormant_Users_Transactions=({
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell>{new Date(updated_at).toLocaleString()}</TableCell>
                             </TableRow>
                         )
                         }
