@@ -57,7 +57,7 @@ export const Nav =({
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
                             </span>
-                            <span>User Module</span>
+                            <span>Users</span>
                             <span
                                 className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
                                 data-te-sidenav-rotate-icon-ref>
@@ -170,75 +170,53 @@ export const Nav =({
                             className="show !visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block"
                             data-te-sidenav-collapse-ref>
                             <li className="relative">
-                            <ul
-                                className="relative m-0 list-none px-[0.2rem]"
-                                data-te-sidenav-menu-ref
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/pending_trasactions"
+                                    >Pending Transactions</a
                                 >
-                                <li className="relative">
-                                    <a
-                                        className="group flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.82rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                        href="#!"
-                                        data-te-sidenav-link-ref>
-                                        <span>Users</span>
-                                        <span
-                                            className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
-                                            data-te-sidenav-rotate-icon-ref>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 448 512">
-                                                <path
-                                                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <ul
-                                        className="show !visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block"
-                                        data-te-sidenav-collapse-ref>
-                                        
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="relative">
-                            <a
-                                className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                data-te-sidenav-link-ref
-                                href="/transactions/pending_trasactions"
-                                >Pending Transactions</a
-                            >
-                        </li>
-                        <li className="relative">
-                            <a
-                                className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                data-te-sidenav-link-ref
-                                href="/transactions/reversed_transactions"
-                                >Reversed Transactions</a
-                            >
-                        </li>
-                        <li className="relative">
-                            <a
-                                className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                data-te-sidenav-link-ref
-                                href="/transactions/airtime_to_cash"
-                                >Airtime to Cash</a
-                            >
-                        </li>
-                        <li className="relative">
-                            <a
-                                className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                data-te-sidenav-link-ref
-                                href="/transactions/virtual_account"
-                                >Virtual Accounts</a
-                            >
-                        </li>
-                        <li className="relative">
-                            <a
-                                className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                                data-te-sidenav-link-ref
-                                href="/transactions/all_transactions"
-                                >All Transactions</a
-                            >
-                        </li>
+                            </li>
+                            <li className="relative">
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/reversed_transactions"
+                                    >Reversed Transactions</a
+                                >
+                            </li>
+                            <li className="relative">
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/airtime_to_cash"
+                                    >Airtime to Cash</a
+                                >
+                            </li>
+                            <li className="relative">
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/virtual_account"
+                                    >Virtual Accounts</a
+                                >
+                            </li>
+                            <li className="relative">
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/all_transactions"
+                                    >All Transactions</a
+                                >
+                            </li>
+                            <li className="relative">
+                                <a
+                                    className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-700 outline-none transition duration-300 ease-linear hover:bg-[#ff5718]-400/10 hover:text-[#ff5718]-600 hover:outline-none focus:bg-[#ff5718]-400/10 focus:text-[#ff5718]-600 focus:outline-none active:bg-[#ff5718]-400/10 active:text-[#ff5718]-600 active:outline-none data-[te-sidenav-state-active]:text-[#ff5718]-600 data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                    data-te-sidenav-link-ref
+                                    href="/transactions/referers"
+                                    >Referers</a
+                                >
+                            </li>
                         </ul>
                     </li>
                 </ul>

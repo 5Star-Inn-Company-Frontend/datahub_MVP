@@ -104,6 +104,7 @@ export const Vitual_Account_Transactions=({
                             data?.map((info,index)=>{
                                 const{
                                     user_id,
+                                    id,
                                     status,
                                     account_name,
                                     account_number,
@@ -135,17 +136,27 @@ export const Vitual_Account_Transactions=({
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
                                         <TableCell
-                                            className={status==="active"?"text-danger":"text-success"}
+                                            className={status==="active"?"text-danger cursor-pointer":"text-success cursor-pointer"}
                                             onClick={()=>{
                                                 let modifystatusto:string = status==="active"?"0":"1"
                                                 setIsLoading(true)
                                                 ModifyStatus(
+                                                    id,
                                                     modifystatusto
                                                 ).then((response)=>{
                                                     const{
-                                                        message
+                                                        message,
+                                                        error
                                                     }=response;
-                                                    setIsLoading(false)
+                                                    setIsLoading(false);
+                                                    if(error){
+                                                        toast({
+                                                            variant: "destructive",
+                                                            title: "Uh oh! Something went wrong.",
+                                                            description:`${error}`
+                                                        }) 
+                                                        return;
+                                                    }
                                                     toast({
                                                         description:message
                                                     })

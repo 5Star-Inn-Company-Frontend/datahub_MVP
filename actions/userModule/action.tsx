@@ -28,7 +28,15 @@ export async function SearchUsers(
 export async function ModifyUser(
     id:number,
     address:string,
-    phone:string
+    phone:string,
+    email:string,
+    status:number,
+    status_reason:string,
+    pin:string,
+    bvn:string,
+    bank_code:string,
+    account_name:string,
+    account_number:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -41,8 +49,16 @@ export async function ModifyUser(
                 "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
             },
             body: JSON.stringify({
-                "address" : address,
-                "phone" : phone
+                "address" : address !== "null"? address:null,
+                "phone" : phone!== "null"? phone:null,
+                "email":email!== "null"? email:null,
+                "status":status,
+                "status_reason":status_reason!== "null"? status_reason:null,
+                "pin":pin!== "null"? pin:null,
+                "bvn":bvn!== "null"? bvn:null,
+                "bank_code":bank_code!== "null"? bank_code:null,
+                "account_name":account_name!== "null"? account_name:null,
+                "account_number":account_number!== "null"?account_number:null
             })
         });
         if(!response.ok){

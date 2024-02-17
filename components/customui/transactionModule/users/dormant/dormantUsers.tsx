@@ -59,8 +59,7 @@ export const Dormant_Users_Transactions=({
                 "Bank code",
                 "Account Name",
                 "Account Number",
-                "Created At",
-                "Updated At"
+                "Created At"
                 ]}
                 caption={"A List of all dormant users"}
                 hideAction={true}

@@ -5,12 +5,13 @@ import { baseUrl } from "@/actions/baseUrl";
 
 
 export async function ModifyStatus(
+    id:number,
     service:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
-    const response = await fetch(`${baseUrl}deactivateacct/${service}`, {
+    const response = await fetch(`${baseUrl}deactivateacct/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,7 +21,7 @@ export async function ModifyStatus(
     });
     if(!response.ok){
         let result = await response.json();
-        if(result?.message){
+        if(result?.error){
         return result;
         }else{
         throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
