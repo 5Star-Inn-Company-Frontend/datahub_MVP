@@ -4,14 +4,13 @@ import {Text} from "../text"
 interface cardprops {
     img:string,
     title:string,
-    amount:number
+    amount:string
 }
 export const TotalTransactionCard=({
     img,
     title,
     amount
 }:cardprops)=>{
-    console.log("amount:",amount)
     return(
         <div 
             className="flex bg-white items-center p-4 rounded"

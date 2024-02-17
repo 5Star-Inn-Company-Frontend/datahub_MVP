@@ -6,11 +6,9 @@ import frame3 from "../../../public/Frame 1000002437 (3).svg"
 import {Text} from "../text"
 import { Service_Select } from "./serviceModule/services";
 import { TotalTransactionCard } from "../transactionModule/totalTransactionCard";
-// import { TransactionTypes } from "../transactionModule/transactionTypes";
-import { Request_website } from "../transactionModule/requestWebsite";
 import { ReferAndEarn } from "../transactionModule/refer&earn";
 import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface userDetailsProps{
     id:number,
@@ -91,11 +89,11 @@ export const IntroSection=({
             {
                 [
                     {
-                        amount:trans_sum,
+                        amount:`${trans_sum}naira`,
                         img:frame,
                         title:"Total Transaction Sum"
                     },{
-                        amount:trans_count,
+                        amount:`${trans_count}`,
                         img:frame1,
                         title:"Total Transaction Count"
                     }
@@ -119,7 +117,7 @@ export const IntroSection=({
         </div>
 
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[31.5rem]">
+            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[34rem]">
                 <DailyReport/>
             </div>
             <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
@@ -127,19 +125,22 @@ export const IntroSection=({
                     {
                         [
                             {
-                                amount:trans_sum,
+                                amount:`${trans_sum}naira`,
                                 img:frame2,
-                                title:"Total Wallet Fund"
+                                title:"Total Wallet Fund",
+                                route:"total_walletFund"
                             },{
-                                amount:trans_count,
+                                amount:`${trans_count}`,
                                 img:frame3,
-                                title:"Total Wallet Charge"
+                                title:"Total Wallet Charge",
+                                route:"total_walletCharge"
                             }
                         ]?.map((total_details,index)=>{
                             const{
                                 amount,
                                 img,
-                                title
+                                title,
+                                route
                             }=total_details;
                             return(
                                 <div key={index}>
@@ -148,10 +149,11 @@ export const IntroSection=({
                                         img={img}
                                         title={title}
                                     />
-                                    <Text
-                                        style="mb-4 text-sm cursor-pointer text-end"
-                                        value="view more"
-                                    />
+                                    <Link
+                                        href={`transactions/${route}`}
+                                        className="mb-4 text-sm cursor-pointer text-end"
+                                    >view more
+                                    </Link>
                                 </div>
                             )
                         })

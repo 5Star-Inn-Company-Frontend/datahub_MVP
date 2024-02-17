@@ -8,6 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
+  DialogFooter,
 } from "@/components/ui/dialog"
 import {
   Drawer,
@@ -20,7 +22,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
-import { TableCell } from "@/components/ui/table"
 import { useMediaQuery } from "@uidotdev/usehooks";
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -37,7 +38,6 @@ import {
 } from "@/components/ui/form"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
-import { ToastAction } from "@/components/ui/toast"
 import { SuspendUser } from "@/actions/userModule/action";
 
 const formSchema = z.object({
@@ -50,13 +50,19 @@ const formSchema = z.object({
 })
 
 interface userIdPropType{
-    id:number
+    id:number,
+    modalCloseTrigger :React.MutableRefObject<any>
+}
+
+type SuspendPropType={
+  id:number
 }
 export function SuspendUserComponent({
     id
-}:userIdPropType) {
+}:SuspendPropType) {
   const [open, setOpen] = React.useState(false)
-  const isDesktop = useMediaQuery("only screen and (min-width: 768px)")
+  const isDesktop = useMediaQuery("only screen and (min-width: 768px)");
+  const modalCloseTrigger = React.useRef(null);
 
   if (isDesktop) {
     return (
@@ -71,7 +77,21 @@ export function SuspendUserComponent({
                 State the reason for user suspension.
             </DialogDescription>
           </DialogHeader>
-          <ProfileForm id={id}/>
+          <ProfileForm 
+            id={id}
+            modalCloseTrigger={modalCloseTrigger}
+          />
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button 
+                type="button" 
+                variant="secondary"
+                ref={modalCloseTrigger}
+              >
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     )
@@ -89,10 +109,16 @@ export function SuspendUserComponent({
             State the reason for user suspension.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm id={id}/>
+        <ProfileForm 
+          id={id}
+          modalCloseTrigger={modalCloseTrigger}
+        />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button 
+              variant="outline"
+              ref={modalCloseTrigger}
+              >Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -100,7 +126,11 @@ export function SuspendUserComponent({
   )
 }
 
-function ProfileForm({ id }:userIdPropType) {
+function ProfileForm({ 
+    id,
+    modalCloseTrigger 
+  }:userIdPropType
+) {
 
     const[isLoading, setIsLoading]=useState<boolean>(false);
     const {toast} = useToast()
@@ -113,7 +143,6 @@ function ProfileForm({ id }:userIdPropType) {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
         const {
             reason,
             address
@@ -126,7 +155,10 @@ function ProfileForm({ id }:userIdPropType) {
             const{
                 message,
             }=resp;
-            setIsLoading(false)
+            setIsLoading(false);
+            if(modalCloseTrigger.current){
+              modalCloseTrigger.current?.click();
+            }
             toast({
                 description:message
             })

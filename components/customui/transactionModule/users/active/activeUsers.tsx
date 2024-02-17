@@ -23,10 +23,10 @@ export interface UserDetailsPropType {
     package:string,
     pin:string,
     role_id:number,
-    bvn:string|null,
-    bank_code:string|null,
-    account_name:string|null,
-    account_number:string|null,
+    bvn:string,
+    bank_code:string,
+    account_name:string,
+    account_number:string,
     created_at:string,
     updated_at:string
 }
@@ -57,7 +57,7 @@ export const Active_Users_Transactions=({
             navs={[
                 "All Trasactions",
                 "Users",
-                "Dormant"
+                "Active"
             ]}
         >
             <TableLayout
@@ -83,7 +83,7 @@ export const Active_Users_Transactions=({
                     "Account Number",
                     "Created At"
                 ]}
-                caption={"A List of all dormant users"}
+                caption={"A List of all active users"}
                 hideAction={true}
             >
                 {

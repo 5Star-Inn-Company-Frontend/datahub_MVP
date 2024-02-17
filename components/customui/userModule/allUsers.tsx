@@ -118,23 +118,23 @@ export const All_Users=({
                         dataSetter?.map((info,index)=>{
                                 const{
                                     id,
-                                  firstname,
-                                  lastname,
-                                  address,
-                                  phone,
-                                  gender,
-                                  dob,
-                                  email,
-                                  email_verified_at,
-                                  status,
-                                  status_reason,
-                                  pin,
-                                  role_id,
-                                  bvn,
-                                  bank_code,
-                                  account_name,
-                                  account_number,
-                                  created_at
+                                    firstname,
+                                    lastname,
+                                    address,
+                                    phone,
+                                    gender,
+                                    dob,
+                                    email,
+                                    email_verified_at,
+                                    status,
+                                    status_reason,
+                                    pin,
+                                    role_id,
+                                    bvn,
+                                    bank_code,
+                                    account_name,
+                                    account_number,
+                                    created_at
                                 }=info;
                                 if(info?.id){
                                 return(
@@ -164,7 +164,7 @@ export const All_Users=({
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
                                         <TableCell><SuspendUserComponent id={id}/></TableCell>
-                                        <TableCell><ModifyUserComponent id={id}/></TableCell>
+                                        <TableCell><ModifyUserComponent id={id} data={info}/></TableCell>
                                     </TableRow>
                                 )
                                 }

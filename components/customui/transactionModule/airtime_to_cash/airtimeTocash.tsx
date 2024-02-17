@@ -33,7 +33,7 @@ interface userInfoProps{
     updated_at: string
 }
 
-interface ApiResponse {
+interface subAirtimeToCash {
     id: number,
     reference: string,
     network: string,
@@ -51,8 +51,12 @@ interface ApiResponse {
     updated_at: string
 }
 
+interface AirtimeToCash {
+    airtime2cash: subAirtimeToCash
+}
+
 interface MyApiInterResponse {
-    data:ApiResponse[]
+    data:AirtimeToCash[]
 }
 
 export const Airtime_To_Cash=({
@@ -93,6 +97,7 @@ export const Airtime_To_Cash=({
                         "Status",
                         "Receiver",
                         "User id",
+                        "User First Name",
                         "User email",
                         "User Phone Number",
                         "Creation Date"
@@ -103,6 +108,7 @@ export const Airtime_To_Cash=({
                     {
                         data?.map((info,index)=>{
                             const{
+                                id,
                                 network,
                                 amount,
                                 phoneno,
@@ -110,7 +116,7 @@ export const Airtime_To_Cash=({
                                 user,
                                 receiver,
                                 created_at
-                            }=info;
+                            }=info?.airtime2cash;
                             return(
                                 <TableRow key={index}>
                                     <TableCell className="font-medium">{index +1}</TableCell>
@@ -122,24 +128,34 @@ export const Airtime_To_Cash=({
                                             status,
                                             receiver,
                                             user?.id,
+                                            user?.firstname,
                                             user?.email,
-                                            user?.phone,
-                                            created_at
+                                            user?.phone
                                         ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                     }
                                     <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
                                     <TableCell
-                                            className={`${status==="active"?"text-danger":"text-success"} cursor-auto`}
+                                            className={`${status==="active"?"text-danger":"text-success"} cursor-pointer`}
                                             onClick={()=>{
                                                 let modifystatusto:string = status==="active"?"0":"1"
                                                 setIsLoading(true)
                                                 ModifyStatus(
+                                                    id,
                                                     modifystatusto
                                                 ).then((response)=>{
                                                     const{
-                                                        message
+                                                        message,
+                                                        error
                                                     }=response;
-                                                    setIsLoading(false)
+                                                    setIsLoading(false);
+                                                    if(error){
+                                                        toast({
+                                                            variant: "destructive",
+                                                            title: "Uh oh! Something went wrong.",
+                                                            description:`${error}`
+                                                        }) 
+                                                        return;
+                                                    }
                                                     toast({
                                                         description:message
                                                     })

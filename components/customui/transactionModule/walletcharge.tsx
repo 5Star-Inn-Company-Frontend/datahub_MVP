@@ -1,8 +1,14 @@
 "use client"
 import * as React from "react"
 import { CalendarIcon } from "@radix-ui/react-icons"
-import { format } from "date-fns"
- 
+import { addDays, format } from "date-fns"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -19,7 +25,6 @@ import { TableLayout } from "../global/tableLayout"
 import { ViewLayout } from "../global/viewLayout"
 import { PostWalletCharge } from "@/actions/transactionModule/totalWalletCharge"
 import { useToast } from "@/components/ui/use-toast"
-import { ToastAction } from "@/components/ui/toast"
 import Spinner from "../global/spinner"
 
 export interface ApiResponse {
@@ -41,6 +46,32 @@ export const Total_Wallet_Charge=()=>{
     React.useEffect(()=>{
         setIsMounted(true)
     },[])
+
+    React.useEffect(()=>{
+        if(date){
+            const withHyphens = [new Date(date).getFullYear(),new Date(date).getMonth()+1,new Date(date).getDate()].join('-')
+            setIsLoading(true)
+            PostWalletCharge(
+                withHyphens
+            ).then((response)=>{
+                const{
+                    total_wallet_charge
+                }=response;
+                setData(total_wallet_charge)
+                setIsLoading(false)
+            }).catch((error)=>{
+                setIsLoading(false)
+                toast({
+                    variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description:`${error}`
+                })
+                return{
+                    errorMessage:error,
+                }
+            })
+        }
+    },[date])
     
     if(!isMounted){
         return <Spinner/>
@@ -62,40 +93,30 @@ export const Total_Wallet_Charge=()=>{
                         )}
                         >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                        {date ? format(date, "PPP") : <span>Select date</span>}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={(date)=>{
-                            if(date){
-                                const withHyphens = [new Date(date).getFullYear(),new Date(date).getMonth()+1,new Date(date).getDate()].join('-')
-                                setIsLoading(true)
-                                PostWalletCharge(
-                                    withHyphens
-                                ).then((response)=>{
-                                    const{
-                                        total_wallet_charge
-                                    }=response;
-                                    setData(total_wallet_charge)
-                                    setIsLoading(false)
-                                }).catch((error)=>{
-                                    setIsLoading(false)
-                                    toast({
-                                        variant: "destructive",
-                                        title: "Uh oh! Something went wrong.",
-                                        description:`${error}`
-                                    })
-                                    return{
-                                        errorMessage:error,
-                                    }
-                                })
+                        <Select
+                            onValueChange={(value) =>
+                                setDate(addDays(new Date(), parseInt(value)))
                             }
-                        }}
-                        initialFocus
-                        />
+                            >
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent position="popper" className="bg-white">
+                                <SelectItem value="0">Today</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <div className="rounded-md border mt-2">
+                            <Calendar
+                                mode="single"
+                                selected={date}
+                                onSelect={setDate}
+                                initialFocus
+                            />
+                        </div>
                     </PopoverContent>
                     </Popover>
             </div>

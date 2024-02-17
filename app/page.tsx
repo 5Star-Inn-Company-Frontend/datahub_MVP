@@ -1,4 +1,4 @@
-import { token ,baseUrl} from "@/actions/baseUrl";
+import { baseUrl} from "@/actions/baseUrl";
 import { DashBoardLayout } from "@/components/customui/dashboard/dashboardLayout";
 import {IntroSection} from "@/components/customui/dashboard/introSection"
 import Spinner from "@/components/customui/global/spinner";

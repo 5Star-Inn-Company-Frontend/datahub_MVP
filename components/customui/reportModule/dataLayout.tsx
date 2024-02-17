@@ -8,7 +8,7 @@ export interface DataApiObjectType {
     user_id:number,
     title:string,
     charges:number,
-    commision:number,
+    commission:number,
     reference:string,
     recipient:string,
     type:string,
