@@ -36,14 +36,17 @@ interface userDetailsProps{
 interface propTypes {
     trans_count:number,
     trans_sum:number,
+    total_charge:number,
+    total_fund:number,
     userDetails:userDetailsProps
 }
 export const IntroSection=({
     trans_count,
     trans_sum,
+    total_charge,
+    total_fund,
     userDetails
 }:propTypes)=>{
-    console.log(userDetails);
     return(
         <>
 
@@ -89,7 +92,7 @@ export const IntroSection=({
             {
                 [
                     {
-                        amount:`${trans_sum}naira`,
+                        amount:`₦${trans_sum}`,
                         img:frame,
                         title:"Total Transaction Sum"
                     },{
@@ -117,7 +120,7 @@ export const IntroSection=({
         </div>
 
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[34rem]">
+            <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[36rem]">
                 <DailyReport/>
             </div>
             <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
@@ -125,12 +128,12 @@ export const IntroSection=({
                     {
                         [
                             {
-                                amount:`${trans_sum}naira`,
+                                amount:`₦${total_fund}`,
                                 img:frame2,
                                 title:"Total Wallet Fund",
                                 route:"total_walletFund"
                             },{
-                                amount:`${trans_count}`,
+                                amount:`₦${total_charge}`,
                                 img:frame3,
                                 title:"Total Wallet Charge",
                                 route:"total_walletCharge"
@@ -149,11 +152,11 @@ export const IntroSection=({
                                         img={img}
                                         title={title}
                                     />
-                                    <Link
-                                        href={`transactions/${route}`}
-                                        className="mb-4 text-sm cursor-pointer text-end"
-                                    >view more
-                                    </Link>
+                                    <Text
+                                        style="text-sm mb-4 text-grey-400 text-end cursor-pointer"
+                                        value="View more"
+                                        clickFunc={()=> window.location.replace(`transactions/${route}`)}
+                                    />
                                 </div>
                             )
                         })

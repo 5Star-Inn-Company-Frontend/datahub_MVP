@@ -7,8 +7,7 @@ import {
   } from "@/components/ui/table"
 import { useEffect, useState } from "react"
 import Spinner from "../../global/spinner"
-import { useToast } from "@/components/ui/use-toast";
-import { ModifyStatus } from "@/actions/transactionModule/virtual_account/server/action"
+import { StatusDropdownMenuCheckboxes } from "./statusEdit"
 
 interface userInfoProps{
     id: number,
@@ -62,7 +61,6 @@ interface MyApiInterResponse {
 export const Airtime_To_Cash=({
     data
 }:MyApiInterResponse)=>{
-    const { toast } = useToast()
     const[
         isLoading,
         setIsLoading
@@ -134,45 +132,12 @@ export const Airtime_To_Cash=({
                                         ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                     }
                                     <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                    <TableCell
-                                            className={`${status==="active"?"text-danger":"text-success"} cursor-pointer`}
-                                            onClick={()=>{
-                                                let modifystatusto:string = status==="active"?"0":"1"
-                                                setIsLoading(true)
-                                                ModifyStatus(
-                                                    id,
-                                                    modifystatusto
-                                                ).then((response)=>{
-                                                    const{
-                                                        message,
-                                                        error
-                                                    }=response;
-                                                    setIsLoading(false);
-                                                    if(error){
-                                                        toast({
-                                                            variant: "destructive",
-                                                            title: "Uh oh! Something went wrong.",
-                                                            description:`${error}`
-                                                        }) 
-                                                        return;
-                                                    }
-                                                    toast({
-                                                        description:message
-                                                    })
-                                                }).catch((error)=>{
-                                                    setIsLoading(false)
-                                                    toast({
-                                                        variant: "destructive",
-                                                        title: "Uh oh! Something went wrong.",
-                                                        description:`${error}`
-                                                    })
-                                                    return{
-                                                        errorMessage:error,
-                                                    }
-                                                })
-                                            }}
-                                            >{status==="active"?"Deactivate":"Activate"}
-                                        </TableCell>
+                                    <TableCell>
+                                        <StatusDropdownMenuCheckboxes 
+                                            id={id}
+                                            setIsLoading={setIsLoading}
+                                        />
+                                    </TableCell>
                                 </TableRow>
                             )
                         })
