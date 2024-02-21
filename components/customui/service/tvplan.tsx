@@ -50,7 +50,7 @@ export const TvService =({
     return(
         <ViewLayout 
             navs={[
-                "Electricity"
+                "Tv Plan"
             ]}
             >
             {
@@ -59,15 +59,15 @@ export const TvService =({
                     <TableLayout
                         tableHeadRow={[
                             "S/N",
-                            "Id",
+                            // "Id",
                             "Name",
-                            "coded",
+                            // "coded",
                             "price",
                             "type",
-                            "Code",
+                            // "Code",
                             "Status",
                             "Discount",
-                            "Server",
+                            // "Server",
                             "Creation Date"
                         ]}
                         caption={"A list of tv plans"}
@@ -92,15 +92,15 @@ export const TvService =({
                                         <TableCell className="font-medium">{index +1}</TableCell>
                                         {
                                             [
-                                                id,
+                                                // id,
                                                 name,
-                                                coded,
+                                                // coded,
                                                 price,
                                                 type,
-                                                code,
+                                                // code,
                                                 status,
-                                                discount,
-                                                server
+                                                discount
+                                                // server
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

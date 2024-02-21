@@ -61,7 +61,7 @@ export const BettingService =({
                             "Code",
                             "Status",
                             "Discount",
-                            "Server",
+                            // "Server",
                             "Creation Date"
                         ]}
                         caption={"A list of bettings"}
@@ -87,8 +87,8 @@ export const BettingService =({
                                                 name,
                                                 code,
                                                 status,
-                                                discount,
-                                                server
+                                                discount
+                                                // server
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

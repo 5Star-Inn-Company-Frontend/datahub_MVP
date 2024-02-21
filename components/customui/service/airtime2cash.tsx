@@ -54,7 +54,7 @@ export const Airtime_To_CashService=({
     return(
         <ViewLayout 
             navs={[
-                "Airtiem to Cash"
+                "Airtime to Cash"
             ]}
         >
         {

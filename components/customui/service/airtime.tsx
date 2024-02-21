@@ -59,7 +59,7 @@ export const AirtimeService=({
                                 "Network",
                                 "Status",
                                 "Discount",
-                                "Server",
+                                // "Server",
                                 "Creation Date",
                                 "Action"
                             ]}
@@ -84,8 +84,8 @@ export const AirtimeService=({
                                                     id,
                                                     network,
                                                     status,
-                                                    discount,
-                                                    server
+                                                    discount
+                                                    // server
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

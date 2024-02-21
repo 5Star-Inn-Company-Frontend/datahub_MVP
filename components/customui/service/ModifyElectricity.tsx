@@ -53,21 +53,21 @@ const formSchema = z.object({
   name: z.string({
     required_error: "Name field is required.",
   }),
-  code: z.string({
-    required_error: "Code field is required.",
-  }),
-  code10: z.string({
-    required_error: "Code10 field is required.",
-  }),
+  // code: z.string({
+  //   required_error: "Code field is required.",
+  // }),
+  // code10: z.string({
+  //   required_error: "Code10 field is required.",
+  // }),
   status: z.string({
     required_error: "Status field is required.",
   }),
   discount: z.string({
     required_error: "Discount field is required.",
-  }),
-  server: z.number({
-    required_error: "Server field is required.",
   })
+  // server: z.number({
+  //   required_error: "Server field is required.",
+  // })
 })
 
 interface profileFormPropType{
@@ -167,10 +167,10 @@ function ProfileForm({
         defaultValues: {
           status: data?.status === 1?"1":"0",
           discount:(data?.discount!==null)?data?.discount:"null",
-          server:data?.server,
-          name:(data?.server!==null)?data?.name:"null",
-          code:(data?.server!==null)?data?.code:"null",
-          code10:(data?.server!==null)?data?.code10:"null",
+          // server:data?.server,
+          name:(data?.server!==null)?data?.name:"null"
+          // code:(data?.server!==null)?data?.code:"null",
+          // code10:(data?.server!==null)?data?.code10:"null",
         },
     })
 
@@ -179,19 +179,19 @@ function ProfileForm({
             name,
             status,
             discount,
-            code,
-            server,
-            code10,
+            // code,
+            // server,
+            // code10,
         }=values;
         setIsLoading(true)
        ModifyElectricity(
             id,
             status==="0"?0:1,
             name,
-            code,
-            code10,
-            discount,
-            server
+            // code,
+            // code10,
+            discount
+            // server
         ).then((response)=>{
             const{
                 message,
@@ -232,7 +232,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="code"
               render={({ field }) => (
@@ -244,8 +244,8 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
-            <FormField
+            /> */}
+            {/* <FormField
               control={form.control}
               name="code10"
               render={({ field }) => (
@@ -257,7 +257,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name="status"
@@ -295,7 +295,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="server"
               render={({ field }) => (
@@ -307,7 +307,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <div className="flex justify-end items-end">
                 {
                     isLoading?
