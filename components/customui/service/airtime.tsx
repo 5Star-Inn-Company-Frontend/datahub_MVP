@@ -5,10 +5,10 @@ import {
   } from "@/components/ui/table"
 import { TableLayout } from "../global/tableLayout"
 import { ViewLayout } from "../global/viewLayout";
-import { ModifyAction } from "@/actions/serviceModule/server";
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import Spinner from "../global/spinner";
+import { ModifyAirtimemodal } from "./ModifyAirtime";
 
 export interface AirtimeApiObjectType {
     id: number,
@@ -83,42 +83,17 @@ export const AirtimeService=({
                                                 [
                                                     id,
                                                     network,
-                                                    status===1?"enabled":"disabled",
+                                                    status,
                                                     discount,
                                                     server
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                            <TableCell
-                                                onClick={()=>{
-                                                    let modifystatusto:number = status===1?0:1
-                                                    setIsLoading(true)
-                                                    ModifyAction(
-                                                        "airtime",
-                                                        id,
-                                                        modifystatusto
-                                                    ).then((response)=>{
-                                                        const{
-                                                            message,
-                                                            user
-                                                        }=response;
-                                                        setIsLoading(false)
-                                                        toast({
-                                                            description:message
-                                                        })
-                                                    }).catch((error)=>{
-                                                        setIsLoading(false)
-                                                        toast({
-                                                            variant: "destructive",
-                                                            title: "Uh oh! Something went wrong.",
-                                                            description:`${error}`
-                                                        })
-                                                        return{
-                                                            errorMessage:error,
-                                                        }
-                                                    })
-                                                }}
-                                                >{status===1?"disable":"enable"}
+                                            <TableCell>
+                                                <ModifyAirtimemodal
+                                                    id={id}
+                                                    data={info}
+                                                />
                                             </TableCell>
                                         </TableRow>
                                     )

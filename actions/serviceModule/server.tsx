@@ -5,21 +5,28 @@ import { baseUrl,token } from "../baseUrl";
 import { revalidateTag } from "next/cache";
 
 
-export async function ModifyAction(
-    service:string,
+export async function ModifyAirtime(
     id:number,
-    status:number
+    status:number,
+    network:string,
+    discount:string,
+    server:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
     if(storedItem?.value){
-    const response = await fetch(`${baseUrl}${service ==="airtime"?"modifyairtime":service ==="data"?"modifydata":service ==="tv"?"modifytvplan":service ==="electricity"?"modifyelectricity":service ==="betting"?"modifybetting":"modifyairtime2cash"}/${id}`, {
+    const response = await fetch(`${baseUrl}modifyairtime/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
         },
-        body: JSON.stringify({"status":status})
+        body: JSON.stringify({
+            "status":status,
+            "network":network,
+            "discount":discount,
+            "server":server
+        })
     });
     if(!response.ok){
         let result = await response.json();
@@ -30,7 +37,210 @@ export async function ModifyAction(
         }
     }
     const result = await response.json();
-    revalidateTag(service)
+    revalidateTag("airtime")
+    return result;
+}
+}
+
+export async function ModifyData(
+    id:number,
+    status:number,
+    name:string,
+    amount:number,
+    price:string,
+    network_code:string,
+    discount:string,
+    server:string
+) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    if(storedItem?.value){
+    const response = await fetch(`${baseUrl}modifydata/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        body: JSON.stringify({
+            "status":status,
+            "name":name,
+            "amount":amount,
+            "price":price,
+            "network_code":network_code,
+            "discount":discount,
+            "server":server
+        })
+    });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
+    const result = await response.json();
+    revalidateTag("data")
+    return result;
+}
+}
+
+export async function ModifyBetting(
+    id:number,
+    status:number,
+    name:string,
+    code:string,
+    discount:string,
+    server:number
+) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    if(storedItem?.value){
+    const response = await fetch(`${baseUrl}modifybetting/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        body: JSON.stringify({
+            "status":status,
+            "name":name,
+            "code":code,
+            "discount":discount,
+            "server":server
+        })
+    });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
+    const result = await response.json();
+    revalidateTag("betting")
+    return result;
+}
+}
+
+export async function ModifyAirtime2Cash(
+    id:number,
+    status:number,
+    network:string,
+    amount:string,
+    phoneno:string
+) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    if(storedItem?.value){
+    const response = await fetch(`${baseUrl}modifyairtime2cash/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        body: JSON.stringify({
+            "status":status,
+            "network":network,
+            "amount":amount,
+            "phoneno":phoneno
+        })
+    });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
+    const result = await response.json();
+    revalidateTag("airtime2cash")
+    return result;
+}
+}
+
+export async function ModifyTvPlan(
+    id:number,
+    status:number,
+    name:string,
+    type:string,
+    price:string,
+    code:string,
+    discount:string,
+    server:number
+) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    if(storedItem?.value){
+    const response = await fetch(`${baseUrl}modifytvplan/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        body: JSON.stringify({
+            "status":status,
+            "name":name,
+            "type":type,
+            "price":price,
+            "code":code,
+            "discount":discount,
+            "server":server
+        })
+    });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
+    const result = await response.json();
+    revalidateTag("tv")
+    return result;
+}
+}
+
+export async function ModifyElectricity(
+    id:number,
+    status:number,
+    name:string,
+    code:string,
+    code10:string,
+    discount:string,
+    server:number
+) {
+    const cookieStore = cookies();
+    const storedItem = cookieStore.get("datahubToken");
+    if(storedItem?.value){
+    const response = await fetch(`${baseUrl}modifyelectricity/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+        },
+        body: JSON.stringify({
+            "status":status,
+            "name":name,
+            "code":code,
+            "code10":code10,
+            "discount":discount,
+            "server":server
+        })
+    });
+    if(!response.ok){
+        let result = await response.json();
+        if(result?.message){
+        return result;
+        }else{
+        throw new Error(`An error occured: ${response.statusText} status code: ${response.status}`)
+        }
+    }
+    const result = await response.json();
+    revalidateTag("electricity")
     return result;
 }
 }

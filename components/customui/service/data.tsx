@@ -7,9 +7,8 @@ import { TableLayout } from "../global/tableLayout"
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { ViewLayout } from "../global/viewLayout";
-import { ModifyAction } from "@/actions/serviceModule/server";
-import { ToastAction } from "@/components/ui/toast";
 import Spinner from "../global/spinner"
+import { ModifyDatamodal } from "./ModifyData";
 
 export interface DataApiObjectType {
     id: number,
@@ -22,7 +21,7 @@ export interface DataApiObjectType {
     dataplan:string,
     plan_id:string,
     note:string|null,
-    amount:number|string,
+    amount:number,
     created_at:  string,
     updated_at:  string,
     discount?:string,
@@ -119,42 +118,17 @@ export const DataService=({
                                                     plan_id,
                                                     note,
                                                     amount,
-                                                    status===1?"enabled":"disabled",
+                                                    status,
                                                     discount,
                                                     server
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                            <TableCell
-                                                onClick={()=>{
-                                                    let modifystatusto:number = status===1?0:1
-                                                    setIsLoading(true)
-                                                    ModifyAction(
-                                                        "data",
-                                                        id,
-                                                        modifystatusto
-                                                    ).then((response)=>{
-                                                        const{
-                                                            message,
-                                                            Dataplan
-                                                        }=response;
-                                                        setIsLoading(false)
-                                                        toast({
-                                                            description:message
-                                                        })
-                                                    }).catch((error)=>{
-                                                        setIsLoading(false)
-                                                        toast({
-                                                            variant: "destructive",
-                                                            title: "Uh oh! Something went wrong.",
-                                                            description:`${error}`
-                                                        })
-                                                        return{
-                                                            errorMessage:error,
-                                                        }
-                                                    })
-                                                }}
-                                                >{status===1?"disable":"enable"}
+                                            <TableCell>
+                                                    <ModifyDatamodal
+                                                        id={id}
+                                                        data={info}
+                                                    />
                                             </TableCell>
                                         </TableRow>
                                     )
