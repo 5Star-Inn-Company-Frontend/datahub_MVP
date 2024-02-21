@@ -6,10 +6,9 @@ import {
 import { TableLayout } from "../global/tableLayout"
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { ModifyAction } from "@/actions/serviceModule/server";
 import { ViewLayout } from "../global/viewLayout";
-import { ToastAction } from "@/components/ui/toast";
 import Spinner from "../global/spinner"
+import { ModifyTvPlanmodal } from "./ModifyTvplan";
 
 export interface CabletvApiObjectType {
     id: number,
@@ -99,42 +98,17 @@ export const TvService =({
                                                 price,
                                                 type,
                                                 code,
-                                                status===1?"enabled":"disabled",
+                                                status,
                                                 discount,
                                                 server
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell
-                                            onClick={()=>{
-                                                let modifystatusto:number = status===1?0:1
-                                                setIsLoading(true)
-                                                ModifyAction(
-                                                    "tv",
-                                                    id,
-                                                    modifystatusto
-                                                ).then((response)=>{
-                                                    const{
-                                                        message,
-                                                        Tvplans
-                                                    }=response;
-                                                    setIsLoading(false)
-                                                    toast({
-                                                        description:message
-                                                    })
-                                                }).catch((error)=>{
-                                                    setIsLoading(false)
-                                                    toast({
-                                                        variant: "destructive",
-                                                        title: "Uh oh! Something went wrong.",
-                                                        description:`${error}`
-                                                    })
-                                                    return{
-                                                        errorMessage:error,
-                                                    }
-                                                })
-                                            }}
-                                            >{status===1?"disable":"enable"}
+                                        <TableCell>
+                                            <ModifyTvPlanmodal
+                                                data={info}
+                                                id={id}
+                                            />
                                         </TableCell>
                                     </TableRow>
                                 )

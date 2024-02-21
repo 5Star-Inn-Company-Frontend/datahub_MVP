@@ -7,9 +7,8 @@ import { TableLayout } from "../global/tableLayout"
 import { ViewLayout } from "../global/viewLayout";
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { ModifyAction } from "@/actions/serviceModule/server";
-import { ToastAction } from "@/components/ui/toast";
 import Spinner from "../global/spinner"
+import { ModifyBettingmodal } from "./ModifyBetting";
 
 export interface  BettingApiObjectType {
     id: number,
@@ -87,42 +86,17 @@ export const BettingService =({
                                                 id,
                                                 name,
                                                 code,
-                                                status===1?"enabled":"disabled",
+                                                status,
                                                 discount,
                                                 server
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                        <TableCell
-                                            onClick={()=>{
-                                                let modifystatusto:number = status===1?0:1
-                                                setIsLoading(true)
-                                                ModifyAction(
-                                                    "betting",
-                                                    id,
-                                                    modifystatusto
-                                                ).then((response)=>{
-                                                    const{
-                                                        message,
-                                                        // Betting plans
-                                                    }=response;
-                                                    setIsLoading(false)
-                                                    toast({
-                                                        description:message
-                                                    })
-                                                }).catch((error)=>{
-                                                    setIsLoading(false)
-                                                    toast({
-                                                        variant: "destructive",
-                                                        title: "Uh oh! Something went wrong.",
-                                                        description:`${error}`
-                                                    })
-                                                    return{
-                                                        errorMessage:error,
-                                                    }
-                                                })
-                                            }}
-                                            >{status===1?"disable":"enable"}
+                                        <TableCell>
+                                            <ModifyBettingmodal
+                                                id={id}
+                                                data={info}
+                                            />
                                         </TableCell>
                                     </TableRow>
                                 )

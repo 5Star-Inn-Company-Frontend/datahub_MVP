@@ -8,7 +8,6 @@ import { Service_Select } from "./serviceModule/services";
 import { TotalTransactionCard } from "../transactionModule/totalTransactionCard";
 import { ReferAndEarn } from "../transactionModule/refer&earn";
 import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
-import Link from "next/link";
 
 interface userDetailsProps{
     id:number,
@@ -49,46 +48,22 @@ export const IntroSection=({
 }:propTypes)=>{
     return(
         <>
-
-        <Text
-            style="text-md text-gray mb-2"
-            value="Here's what is happening today."
-        />
-        <Text
-            style="mb-4 font-semibold text-md"
-            value="Dashboard"
-        />
-        <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
-            <div className="col-span-2 bg-white rounded p-4">
-                
-                <div className="flex lg:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col justify-between w-full mt-4">
-                    <div>
-                        <Text
-                            style="text-md mb-2 text-grey-400 font-semibold"
-                            value={userDetails?.firstname}
-                        />
-                        <Text
-                            style="text-md mb-2 text-grey-400 font-semibold"
-                            value={userDetails?.lastname}
-                        />
-                        <div className="flex flex-col justify-end items-end mt-4">
-                            <Text
-                                style="text-md mb-2"
-                                value={userDetails?.package}
-                            />
-                            <Text
-                                style="text-xs mb-2"
-                                value={userDetails?.email}
-                            />
-                        </div>
-                    </div>
-                    {/** Select Service */}
-                    <div className="flex flex-col justify-end items-end">
-                        <Service_Select/>
-                    </div>
-                </div>
+        <div className="flex jsutify-between flex-wrap items-baseline justify-between">
+            <div> 
+                <Text
+                    style="text-md text-gray mb-2"
+                    value="Here's what is happening today."
+                />
+                <Text
+                    style="mb-4 font-semibold text-md"
+                    value="Dashboard"
+                />
             </div>
-            <div className=" lg:col-span-1 xl:col-span-1 md:col-span-1 sm:col-span-2 xs:col-span-2 flex flex-col justify-between lg:w-auto xl:w-auto sm:w-full md:w-auto xs:w-full">
+            <div className="flex flex-col justify-end items-end">
+                <Service_Select/>
+            </div>
+        </div>
+        <div className="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
             {
                 [
                     {
@@ -116,7 +91,6 @@ export const IntroSection=({
                     )
                 })
             }
-            </div>
         </div>
 
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">

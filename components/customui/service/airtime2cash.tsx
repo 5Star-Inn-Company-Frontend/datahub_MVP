@@ -7,11 +7,11 @@ import { ViewLayout } from "../global/viewLayout"
 import { TableLayout } from "../global/tableLayout"
 import { useEffect, useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
-import { ModifyAction } from "@/actions/serviceModule/server"
 import { ToastAction } from "@/components/ui/toast"
 import Spinner from "../global/spinner"
+import { ModifyAirtime2Cashmodal } from "./ModifyAirtime2Cash"
 
-interface ApiResponse {
+export interface airtime2cashObjectProp {
     id: number,
     reference: string,
     network: string,
@@ -29,7 +29,7 @@ interface ApiResponse {
   }
 
 interface MyApiInterResponse {
-    data:ApiResponse[]
+    data:airtime2cashObjectProp[]
 }
 
 export const Airtime_To_CashService=({
@@ -116,63 +116,11 @@ export const Airtime_To_CashService=({
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
-                                <TableCell
-                                    onClick={()=>{
-                                        setIsLoading(true)
-                                        ModifyAction(
-                                            "airtime2cash",
-                                            id,
-                                            1
-                                        ).then((response)=>{
-                                            const{
-                                                message,
-                                                user
-                                            }=response;
-                                            setIsLoading(false)
-                                            toast({
-                                                description:message
-                                            })
-                                        }).catch((error)=>{
-                                            setIsLoading(false)
-                                            console.log("error:",error)
-                                            toast({
-                                                variant: "destructive",
-                                                title: "Uh oh! Something went wrong.",
-                                                action: <ToastAction altText="Try again">Try again</ToastAction>,
-                                            })
-                                        })
-                                    }}
-                                    >enable
-                                </TableCell>
-                                <TableCell
-                                    onClick={()=>{
-                                        setIsLoading(true)
-                                        ModifyAction(
-                                            "airtime2cash",
-                                            id,
-                                            0
-                                        ).then((response)=>{
-                                            const{
-                                                message,
-                                                Airtime2cash
-                                            }=response;
-                                            setIsLoading(false)
-                                            toast({
-                                                description:message
-                                            })
-                                        }).catch((error)=>{
-                                            setIsLoading(false)
-                                            toast({
-                                                variant: "destructive",
-                                                title: "Uh oh! Something went wrong.",
-                                                description:`${error}`
-                                            })
-                                            return{
-                                                errorMessage:error,
-                                            }
-                                        })
-                                    }}
-                                    >disable
+                                <TableCell>
+                                    <ModifyAirtime2Cashmodal
+                                        id={id}
+                                        data={info}
+                                    />
                                 </TableCell>
                             </TableRow>
                         )
