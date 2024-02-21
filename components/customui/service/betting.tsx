@@ -56,7 +56,7 @@ export const BettingService =({
                     <TableLayout
                         tableHeadRow={[
                             "S/N",
-                            "Id",
+                            // "Id",
                             "Name",
                             "Code",
                             "Status",
@@ -83,7 +83,7 @@ export const BettingService =({
                                         <TableCell className="font-medium">{index +1}</TableCell>
                                         {
                                             [
-                                                id,
+                                                // id,
                                                 name,
                                                 code,
                                                 status,

@@ -46,9 +46,9 @@ export async function ModifyData(
     id:number,
     status:number,
     name:string,
-    amount:number,
-    discount:string,
-    server:string
+    amount:number
+    // discount:string,
+    // server:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -62,9 +62,9 @@ export async function ModifyData(
         body: JSON.stringify({
             "status":status,
             "name":name,
-            "amount":amount,
-            "discount":discount,
-            "server":server
+            "amount":amount
+            // "discount":discount,
+            // "server":server
         })
     });
     if(!response.ok){
