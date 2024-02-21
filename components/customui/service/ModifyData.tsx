@@ -58,13 +58,13 @@ const formSchema = z.object({
   }),
   status: z.string({
     required_error: "Status field is required.",
-  }),
-  discount: z.string({
-    required_error: "Discount field is required.",
-  }),
-  server: z.string({
-    required_error: "Server field is required.",
   })
+  // discount: z.string({
+  //   required_error: "Discount field is required.",
+  // }),
+  // server: z.string({
+  //   required_error: "Server field is required.",
+  // })
 })
 
 interface profileFormPropType{
@@ -163,8 +163,8 @@ function ProfileForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
           status: data?.status === 1?"1":"0",
-          discount:(data?.discount!==null)?data?.discount:"null",
-          server:(data?.server!==null)?data?.server:"null",
+          // discount:(data?.discount!==null)?data?.discount:"null",
+          // server:(data?.server!==null)?data?.server:"null",
           name:(data?.name!==null)?data?.name:"null",
           amount:data?.amount
         },
@@ -174,18 +174,18 @@ function ProfileForm({
         const {
             name,
             status,
-            discount,
-            amount,
-            server
+            // discount,
+            amount
+            // server
         }=values;
         setIsLoading(true)
         ModifyData(
             id,
             status==="0"?0:1,
             name,
-            amount,
-            discount,
-            server
+            amount
+            // discount,
+            // server
         ).then((response)=>{
             const{
                 message,
@@ -263,7 +263,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="discount"
               render={({ field }) => (
@@ -288,7 +288,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <div className="flex justify-end items-end">
                 {
                     isLoading?
