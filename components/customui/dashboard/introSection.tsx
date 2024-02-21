@@ -4,7 +4,7 @@ import frame1 from "../../../public/Frame 1000002437 (1).svg"
 import frame2 from "../../../public/Frame 1000002437 (2).svg";
 import frame3 from "../../../public/Frame 1000002437 (3).svg"
 import {Text} from "../text"
-import { Service_Select } from "./serviceModule/services";
+// import { Service_Select } from "./serviceModule/services";
 import { TotalTransactionCard } from "../transactionModule/totalTransactionCard";
 import { ReferAndEarn } from "../transactionModule/refer&earn";
 import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
@@ -59,9 +59,9 @@ export const IntroSection=({
                     value="Dashboard"
                 />
             </div>
-            <div className="flex flex-col justify-end items-end">
+            {/* <div className="flex flex-col justify-end items-end">
                 <Service_Select/>
-            </div>
+            </div> */}
         </div>
         <div className="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
             {
