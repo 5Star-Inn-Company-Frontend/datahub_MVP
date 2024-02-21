@@ -98,7 +98,7 @@ export function SignIn() {
                 <CardTitle>
                     <div className="flex flex-col justify-center items-center">
                         <div className="rounded-full p-4 bg-[#ff5718]">
-                            <AiOutlineUser 
+                            <AiOutlineUser
                                 size="2rem"
                                 color="white"
                             />
@@ -140,13 +140,13 @@ export function SignIn() {
                             </FormItem>
                         )}
                         />
-                        <div className="flex items-center my-2">
-                            <Text
-                                style="text-sm me-2"
-                                value="Dont have an account?"
-                            />
-                            <Link href="/auth/register" className="text-sm">Register</Link>
-                        </div>
+                        {/*<div className="flex items-center my-2">*/}
+                        {/*    <Text*/}
+                        {/*        style="text-sm me-2"*/}
+                        {/*        value="Dont have an account?"*/}
+                        {/*    />*/}
+                        {/*    <Link href="/auth/register" className="text-sm">Register</Link>*/}
+                        {/*</div>*/}
                         <div className="flex justify-end items-end">
                             {
                                 isLoading?
