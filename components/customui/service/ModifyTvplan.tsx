@@ -62,12 +62,12 @@ const formSchema = z.object({
   discount: z.string({
     required_error: "Discount field is required.",
   }),
-  server: z.number({
-    required_error: "Server field is required.",
-  }),
-  code: z.string({
-    required_error: "Code field is required.",
-  }),
+  // server: z.number({
+  //   required_error: "Server field is required.",
+  // }),
+  // code: z.string({
+  //   required_error: "Code field is required.",
+  // }),
   price: z.string({
     required_error: "Price field is required.",
   })
@@ -170,10 +170,10 @@ function ProfileForm({
         defaultValues: {
           status: data?.status === 1?"1":"0",
           discount:(data?.discount!==null)?data?.discount:"null",
-          server:data?.server,
+          // server:data?.server,
           name:(data?.server!==null)?data?.name:"null",
           type:(data?.server!==null)?data?.type:"null",
-          code:(data?.code!==null)?data?.code:"null",
+          // code:(data?.code!==null)?data?.code:"null",
           price:(data?.price!==null)?data?.price:"null"
         },
     })
@@ -184,9 +184,9 @@ function ProfileForm({
             status,
             discount,
             type,
-            server,
+            // server,
             price,
-            code
+            // code
         }=values;
         setIsLoading(true)
        ModifyTvPlan(
@@ -195,9 +195,9 @@ function ProfileForm({
             name,
             type,
             price,
-            code,
-            discount,
-            server
+            // code,
+            discount
+            // server
         ).then((response)=>{
             const{
                 message,
@@ -288,7 +288,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="server"
               render={({ field }) => (
@@ -313,7 +313,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
               name="price"

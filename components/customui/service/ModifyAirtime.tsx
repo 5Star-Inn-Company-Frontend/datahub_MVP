@@ -58,10 +58,10 @@ const formSchema = z.object({
   }),
   discount: z.string({
     required_error: "Discount field is required.",
-  }),
-  server: z.string({
-    required_error: "Server field is required.",
   })
+  // server: z.string({
+  //   required_error: "Server field is required.",
+  // })
 })
 
 interface profileFormPropType{
@@ -161,7 +161,7 @@ function ProfileForm({
         defaultValues: {
           status: data?.status === 1?"1":"0",
           discount:(data?.discount!==null)?data?.discount:"null",
-          server:(data?.server!==null)?data?.server:"null",
+          // server:(data?.server!==null)?data?.server:"null",
           network:(data?.network!==null)?data?.network:"null",
         },
     })
@@ -170,16 +170,16 @@ function ProfileForm({
         const {
             network,
             status,
-            discount,
-            server,
+            discount
+            // server,
         }=values;
         setIsLoading(true)
        ModifyAirtime(
-        id,
-        status==="0"?0:1,
-        network,
-        discount,
-        server,
+          id,
+          status==="0"?0:1,
+          network,
+          discount
+          // server,
         ).then((response)=>{
             const{
                 message,
@@ -257,7 +257,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="server"
               render={({ field }) => (
@@ -269,7 +269,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <div className="flex justify-end items-end">
                 {
                     isLoading?

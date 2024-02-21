@@ -61,10 +61,10 @@ const formSchema = z.object({
   }),
   discount: z.string({
     required_error: "Discount field is required.",
-  }),
-  server: z.number({
-    required_error: "Server field is required.",
   })
+  // server: z.number({
+  //   required_error: "Server field is required.",
+  // })
 })
 
 interface profileFormPropType{
@@ -164,7 +164,7 @@ function ProfileForm({
         defaultValues: {
           status: data?.status === 1?"1":"0",
           discount:(data?.discount!==null)?data?.discount:"null",
-          server:data?.server,
+          // server:data?.server,
           name:(data?.server!==null)?data?.name:"null",
           code:(data?.server!==null)?data?.code:"null",
         },
@@ -175,8 +175,8 @@ function ProfileForm({
             name,
             status,
             discount,
-            code,
-            server,
+            code
+            // server,
         }=values;
         setIsLoading(true)
        ModifyBetting(
@@ -184,8 +184,8 @@ function ProfileForm({
             status==="0"?0:1,
             name,
             code,
-            discount,
-            server,
+            discount
+            // server,
         ).then((response)=>{
             const{
                 message,
@@ -276,7 +276,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="server"
               render={({ field }) => (
@@ -288,7 +288,7 @@ function ProfileForm({
                   <FormMessage />
                   </FormItem>
               )}
-            />
+            /> */}
             <div className="flex justify-end items-end">
                 {
                     isLoading?

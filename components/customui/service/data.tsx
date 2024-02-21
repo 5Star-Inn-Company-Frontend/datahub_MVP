@@ -64,20 +64,20 @@ export const DataService=({
                         <TableLayout
                             tableHeadRow={[
                                 "S/N",
-                                "Id",
+                                // "Id",
                                 "Network",
                                 "Name",
-                                " price",
-                                "coded",
-                                "category",
-                                "network_code",
-                                "dataplan",
-                                "plan_id",
-                                "note",
-                                "amount",
+                                // "coded",
+                                "Category",
+                                // "network_code",
+                                // "dataplan",
+                                // "plan_id",
+                                "Note",
+                                " Price",
+                                "Selling Price",
                                 "Status",
-                                "Discount",
-                                "Server",
+                                // "Discount",
+                                // "Server",
                                 "Creation Date"
                             ]}
                             caption={"A list of data"}
@@ -107,20 +107,20 @@ export const DataService=({
                                             <TableCell className="font-medium">{index +1}</TableCell>
                                             {
                                                 [
-                                                    id,
+                                                    // id,
                                                     network,
                                                     name,
-                                                    price,
-                                                    coded,
+                                                    // coded,
                                                     category,
-                                                    network_code,
-                                                    dataplan,
-                                                    plan_id,
+                                                    // network_code,
+                                                    // dataplan,
+                                                    // plan_id,
                                                     note,
+                                                    price,
                                                     amount,
-                                                    status,
-                                                    discount,
-                                                    server
+                                                    status
+                                                    // discount,
+                                                    // server
                                                 ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                             }
                                             <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

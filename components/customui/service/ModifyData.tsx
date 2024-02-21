@@ -64,12 +64,6 @@ const formSchema = z.object({
   }),
   server: z.string({
     required_error: "Server field is required.",
-  }),
-  network_code: z.string({
-    required_error: "Network Code field is required.",
-  }),
-  price: z.string({
-    required_error: "Price field is required.",
   })
 })
 
@@ -172,9 +166,7 @@ function ProfileForm({
           discount:(data?.discount!==null)?data?.discount:"null",
           server:(data?.server!==null)?data?.server:"null",
           name:(data?.name!==null)?data?.name:"null",
-          amount:data?.amount,
-          network_code:(data?.network_code!==null)?data?.network_code:"null",
-          price:(data?.price!==null)?data?.price:"null"
+          amount:data?.amount
         },
     })
 
@@ -184,9 +176,7 @@ function ProfileForm({
             status,
             discount,
             amount,
-            server,
-            price,
-            network_code
+            server
         }=values;
         setIsLoading(true)
         ModifyData(
@@ -194,8 +184,6 @@ function ProfileForm({
             status==="0"?0:1,
             name,
             amount,
-            price,
-            network_code,
             discount,
             server
         ).then((response)=>{
@@ -243,7 +231,7 @@ function ProfileForm({
               name="amount"
               render={({ field }) => (
                   <FormItem>
-                  <FormLabel>Amount</FormLabel>
+                  <FormLabel>Selling Price</FormLabel>
                   <FormControl>
                       <Input placeholder="amount" {...field} type="text"/>
                   </FormControl>
@@ -296,32 +284,6 @@ function ProfileForm({
                   <FormLabel>Server</FormLabel>
                   <FormControl>
                       <Input placeholder="server" {...field} type="string"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="network_code"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Network Code</FormLabel>
-                  <FormControl>
-                      <Input placeholder=" network code" {...field} type="string"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="price"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Price</FormLabel>
-                  <FormControl>
-                      <Input placeholder="price" {...field} type="string"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>

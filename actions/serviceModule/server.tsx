@@ -9,8 +9,8 @@ export async function ModifyAirtime(
     id:number,
     status:number,
     network:string,
-    discount:string,
-    server:string
+    discount:string
+    // server:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -24,8 +24,8 @@ export async function ModifyAirtime(
         body: JSON.stringify({
             "status":status,
             "network":network,
-            "discount":discount,
-            "server":server
+            "discount":discount
+            // "server":server
         })
     });
     if(!response.ok){
@@ -47,8 +47,6 @@ export async function ModifyData(
     status:number,
     name:string,
     amount:number,
-    price:string,
-    network_code:string,
     discount:string,
     server:string
 ) {
@@ -65,8 +63,6 @@ export async function ModifyData(
             "status":status,
             "name":name,
             "amount":amount,
-            "price":price,
-            "network_code":network_code,
             "discount":discount,
             "server":server
         })
@@ -90,8 +86,8 @@ export async function ModifyBetting(
     status:number,
     name:string,
     code:string,
-    discount:string,
-    server:number
+    discount:string
+    // server:number
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -106,8 +102,8 @@ export async function ModifyBetting(
             "status":status,
             "name":name,
             "code":code,
-            "discount":discount,
-            "server":server
+            "discount":discount
+            // "server":server
         })
     });
     if(!response.ok){
@@ -167,9 +163,9 @@ export async function ModifyTvPlan(
     name:string,
     type:string,
     price:string,
-    code:string,
-    discount:string,
-    server:number
+    // code:string,
+    discount:string
+    // server:number
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -185,9 +181,9 @@ export async function ModifyTvPlan(
             "name":name,
             "type":type,
             "price":price,
-            "code":code,
-            "discount":discount,
-            "server":server
+            // "code":code,
+            "discount":discount
+            // "server":server
         })
     });
     if(!response.ok){
@@ -208,10 +204,10 @@ export async function ModifyElectricity(
     id:number,
     status:number,
     name:string,
-    code:string,
-    code10:string,
-    discount:string,
-    server:number
+    // code:string,
+    // code10:string,
+    discount:string
+    // server:number
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -225,10 +221,10 @@ export async function ModifyElectricity(
         body: JSON.stringify({
             "status":status,
             "name":name,
-            "code":code,
-            "code10":code10,
-            "discount":discount,
-            "server":server
+            // "code":code,
+            // "code10":code10,
+            "discount":discount
+            // "server":server
         })
     });
     if(!response.ok){
