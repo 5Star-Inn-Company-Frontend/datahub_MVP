@@ -63,6 +63,7 @@ export const Airtime_To_CashService=({
                     "Creation Date"
                 ]}
                 caption={"A List of airtime to cash"}
+                hideAction={true}
             >
                 {
                     data?.map((info,index)=>{
