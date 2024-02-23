@@ -102,13 +102,11 @@ export function ModifyElectricitymodal({
                 {/* Edit user's informations. */}
             </DialogDescription>
           </DialogHeader>
-          <div className="h-[50vh] w-full overflow-y-auto p-2">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-          </div>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button 
@@ -137,13 +135,11 @@ export function ModifyElectricitymodal({
             {/* Edit user's informations. */}
           </DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[50vh] w-full">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-        </ScrollArea>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" ref={modalCloseTrigger}>Cancel</Button>
