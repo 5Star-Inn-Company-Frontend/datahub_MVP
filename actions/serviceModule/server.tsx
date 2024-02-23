@@ -124,8 +124,8 @@ export async function ModifyAirtime2Cash(
     id:number,
     status:number,
     network:string,
-    amount:string,
-    phoneno:string
+    discount:number,
+    number:string
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -139,8 +139,8 @@ export async function ModifyAirtime2Cash(
         body: JSON.stringify({
             "status":status,
             "network":network,
-            "amount":amount,
-            "phoneno":phoneno
+            "discount":discount,
+            "number":number
         })
     });
     if(!response.ok){

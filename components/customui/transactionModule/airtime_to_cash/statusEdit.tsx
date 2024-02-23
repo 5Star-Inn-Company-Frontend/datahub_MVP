@@ -70,7 +70,9 @@ export function StatusDropdownMenuCheckboxes({
         <Button variant="outline">Edit Status</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Status</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {/* Status */}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
           checked={showStatusBar}

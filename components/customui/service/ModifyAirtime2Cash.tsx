@@ -53,13 +53,13 @@ const formSchema = z.object({
   network: z.string({
     required_error: "Network field is required.",
   }),
-  amount: z.string({
-    required_error: "Amount field is required.",
+  discount: z.number({
+    required_error: "Discount field is required.",
   }),
   status: z.string({
     required_error: "Status field is required.",
   }),
-  phoneno: z.string({
+  number: z.string({
     required_error: "Phone Number field field is required.",
   })
 })
@@ -96,13 +96,11 @@ export function ModifyAirtime2Cashmodal({
                 {/* Edit user's informations. */}
             </DialogDescription>
           </DialogHeader>
-          <div className="h-[50vh] w-full overflow-y-auto p-2">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-          </div>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button 
@@ -131,13 +129,11 @@ export function ModifyAirtime2Cashmodal({
             {/* Edit user's informations. */}
           </DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[50vh] w-full">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-        </ScrollArea>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" ref={modalCloseTrigger}>Cancel</Button>
@@ -159,10 +155,10 @@ function ProfileForm({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          status: data?.status ==="Pending"?"2":data?.status ==="Activate"?"1":"0",
-          phoneno:(data?.phoneno!==null)?data?.phoneno:"null",
+          status: data?.status === 1?"1":"0",
+          number:(data?.number!==null)?data?.number:"null",
           network:(data?.network!==null)?data?.network:"null",
-          amount:(data?.amount!==null)?data?.amount:"null",
+          discount:data?.discount,
         },
     })
 
@@ -170,16 +166,16 @@ function ProfileForm({
         const {
             network,
             status,
-            phoneno,
-            amount,
+            number,
+            discount,
         }=values;
         setIsLoading(true)
        ModifyAirtime2Cash(
             id,
-            status==="0"?0:status==="1"?1:2,
+            status==="0"?0:1,
             network,
-            amount,
-            phoneno
+            discount,
+            number
         ).then((response)=>{
             const{
                 message,
@@ -222,12 +218,12 @@ function ProfileForm({
             />
             <FormField
               control={form.control}
-              name="amount"
+              name="discount"
               render={({ field }) => (
                   <FormItem>
-                  <FormLabel>Amount</FormLabel>
+                  <FormLabel>discount</FormLabel>
                   <FormControl>
-                      <Input placeholder="amount" {...field} type="text"/>
+                      <Input placeholder="discount" {...field} type="number"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>
@@ -251,7 +247,6 @@ function ProfileForm({
                     >
                         <SelectItem value="1">Activate</SelectItem>
                         <SelectItem value="0">Deactivate</SelectItem>
-                        <SelectItem value="2">Pending</SelectItem>
                     </SelectContent>
                 </Select>
                   <FormMessage />
@@ -260,12 +255,12 @@ function ProfileForm({
             />
             <FormField
               control={form.control}
-              name="phoneno"
+              name="number"
               render={({ field }) => (
                   <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                      <Input placeholder="phoneno" {...field} type="text"/>
+                      <Input placeholder="number" {...field} type="text"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>
