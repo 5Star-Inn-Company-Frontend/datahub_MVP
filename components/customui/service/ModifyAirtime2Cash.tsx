@@ -53,7 +53,7 @@ const formSchema = z.object({
   network: z.string({
     required_error: "Network field is required.",
   }),
-  discount: z.number({
+  discount: z.string({
     required_error: "Discount field is required.",
   }),
   status: z.string({
@@ -158,7 +158,7 @@ function ProfileForm({
           status: data?.status === 1?"1":"0",
           number:(data?.number!==null)?data?.number:"null",
           network:(data?.network!==null)?data?.network:"null",
-          discount:data?.discount,
+          discount:data?.discount?.toString(),
         },
     })
 
@@ -174,7 +174,7 @@ function ProfileForm({
             id,
             status==="0"?0:1,
             network,
-            discount,
+            Number(discount),
             number
         ).then((response)=>{
             const{
@@ -223,7 +223,7 @@ function ProfileForm({
                   <FormItem>
                   <FormLabel>discount</FormLabel>
                   <FormControl>
-                      <Input placeholder="discount" {...field} type="number"/>
+                      <Input placeholder="discount" {...field} type="text"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>

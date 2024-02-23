@@ -53,7 +53,7 @@ const formSchema = z.object({
   name: z.string({
     required_error: "Name field is required.",
   }),
-  amount: z.number({
+  amount: z.string({
     required_error: "Amount field is required.",
   }),
   status: z.string({
@@ -158,11 +158,11 @@ function ProfileForm({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          status: data?.status === 1?"1":"0",
+          status: data?.status?.toString(),
           // discount:(data?.discount!==null)?data?.discount:"null",
           // server:(data?.server!==null)?data?.server:"null",
           name:(data?.name!==null)?data?.name:"null",
-          amount:data?.amount
+          amount:data?.amount?.toString()
         },
     })
 
@@ -177,9 +177,9 @@ function ProfileForm({
         setIsLoading(true)
         ModifyData(
             id,
-            status==="0"?0:1,
+            Number(status),
             name,
-            amount
+            Number(amount)
             // discount,
             // server
         ).then((response)=>{
