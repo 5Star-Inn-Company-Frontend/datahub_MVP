@@ -172,7 +172,7 @@ function ProfileForm({
         setIsLoading(true)
        ModifyAirtime(
           id,
-          status==="0"?0:1,
+          Number(status),
           network,
           discount
           // server,

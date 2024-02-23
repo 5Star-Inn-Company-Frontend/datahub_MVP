@@ -158,7 +158,7 @@ function ProfileForm({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          status: data?.status === 1?"1":"0",
+          status: data?.status?.toString(),
           discount:(data?.discount!==null)?data?.discount:"null",
           // server:data?.server,
           name:(data?.server!==null)?data?.name:"null",
@@ -177,7 +177,7 @@ function ProfileForm({
         setIsLoading(true)
        ModifyBetting(
             id,
-            status==="0"?0:1,
+            Number(status),
             name,
             code,
             discount
