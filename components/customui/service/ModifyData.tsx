@@ -111,11 +111,13 @@ export function ModifyDatamodal({
                 {/* Edit user's informations. */}
             </DialogDescription>
           </DialogHeader>
+          <div className="h-[50vh] overflow-y-auto">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
+          </div>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button 
@@ -176,7 +178,7 @@ function ProfileForm({
           name:(data?.name!==null)?data?.name:"null",
           amount: data?.amount?.toString(),
           price:data?.price?.toString(),
-          note:data?.note?.toString(),
+          note:(data?.note!==null)?data?.note:"null",
           category:data?.category?.toString(),
           network:data?.network?.toString()
         },
