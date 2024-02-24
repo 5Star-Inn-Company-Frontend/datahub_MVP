@@ -46,7 +46,11 @@ export async function ModifyData(
     id:number,
     status:number,
     name:string,
-    amount:number
+    amount:number,
+    price:string,
+    category:string,
+    network:string,
+    note:string
     // discount:string,
     // server:string
 ) {
@@ -62,7 +66,11 @@ export async function ModifyData(
         body: JSON.stringify({
             "status":status,
             "name":name,
-            "amount":amount
+            "amount":amount,
+            "price":price,
+            "category":category,
+            "network":network,
+            "note":note
             // "discount":discount,
             // "server":server
         })
