@@ -111,11 +111,13 @@ export function ModifyDatamodal({
                 {/* Edit user's informations. */}
             </DialogDescription>
           </DialogHeader>
+          <div className="h-[50vh] overflow-y-auto">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
+          </div>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button 
