@@ -176,7 +176,7 @@ function ProfileForm({
           name:(data?.name!==null)?data?.name:"null",
           amount: data?.amount?.toString(),
           price:data?.price?.toString(),
-          note:data?.note?.toString(),
+          note:(data?.note!==null)?data?.note:"null",
           category:data?.category?.toString(),
           network:data?.network?.toString()
         },
