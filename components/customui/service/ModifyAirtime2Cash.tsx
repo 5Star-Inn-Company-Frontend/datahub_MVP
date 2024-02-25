@@ -156,9 +156,9 @@ function ProfileForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
           status: data?.status === 1?"1":"0",
-          number:(data?.number!==null)?data?.number:"null",
-          network:(data?.network!==null)?data?.network:"null",
-          discount:data?.discount?.toString(),
+          number:(data?.number!==null)?data?.number?.toString():"null",
+          network:(data?.network!==null)?data?.network?.toString():"null",
+          discount:(data?.discount!==null)?data?.discount?.toString():"null",
         },
     })
 

@@ -146,11 +146,13 @@ export function ModifyDatamodal({
             {/* Edit user's informations. */}
           </DrawerDescription>
         </DrawerHeader>
+          <ScrollArea className="h-[50vh]">
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
+          </ScrollArea>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" ref={modalCloseTrigger}>Cancel</Button>
@@ -175,12 +177,12 @@ function ProfileForm({
           status: data?.status?.toString(),
           // discount:(data?.discount!==null)?data?.discount:"null",
           // server:(data?.server!==null)?data?.server:"null",
-          name:(data?.name!==null)?data?.name:"null",
-          amount: data?.amount?.toString(),
-          price:data?.price?.toString(),
-          note:(data?.note!==null)?data?.note:"null",
-          category:data?.category?.toString(),
-          network:data?.network?.toString()
+          name:(data?.name!==null)?data?.name?.toString():"null",
+          amount:(data?.amount!==null)? data?.amount?.toString():"null",
+          price:(data?.price!==null)?data?.price?.toString():"null",
+          note:(data?.note!==null)?data?.note?.toString():"null",
+          category:(data?.category!==null)?data?.category?.toString():"null",
+          network:(data?.network!==null)?data?.network?.toString():"null"
         },
     })
 
