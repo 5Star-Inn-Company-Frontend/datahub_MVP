@@ -159,10 +159,10 @@ function ProfileForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
           status: data?.status?.toString(),
-          discount:(data?.discount!==null)?data?.discount:"null",
+          discount:(data?.discount!==null)?data?.discount?.toString():"null",
           // server:data?.server,
-          name:(data?.server!==null)?data?.name:"null",
-          code:(data?.server!==null)?data?.code:"null",
+          name:(data?.server!==null)?data?.name?.toString():"null",
+          code:(data?.server!==null)?data?.code?.toString():"null",
         },
     })
 
