@@ -47,9 +47,6 @@ export async function ModifyData(
     status:number,
     name:string,
     amount:number,
-    price:string,
-    category:string,
-    network:string,
     note:string
     // discount:string,
     // server:string
@@ -67,9 +64,6 @@ export async function ModifyData(
             "status":status,
             "name":name,
             "amount":amount,
-            "price":price,
-            "category":category,
-            "network":network,
             "note":note
             // "discount":discount,
             // "server":server

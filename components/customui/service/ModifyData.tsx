@@ -54,19 +54,10 @@ const formSchema = z.object({
     required_error: "Name field is required.",
   }),
   amount: z.string({
-    required_error: "Amount field is required.",
+    required_error: "Selling price field is required.",
   }),
   status: z.string({
     required_error: "Status field is required.",
-  }),
-  category: z.string({
-    required_error: "Category field is required.",
-  }),
-  price: z.string({
-    required_error: "Price field is required.",
-  }),
-  network: z.string({
-    required_error: "Network field is required.",
   }),
   note: z.string({
     required_error: "Note field is required.",
@@ -179,10 +170,7 @@ function ProfileForm({
           // server:(data?.server!==null)?data?.server:"null",
           name:(data?.name!==null)?data?.name?.toString():"null",
           amount:(data?.amount!==null)? data?.amount?.toString():"null",
-          price:(data?.price!==null)?data?.price?.toString():"null",
-          note:(data?.note!==null)?data?.note?.toString():"null",
-          category:(data?.category!==null)?data?.category?.toString():"null",
-          network:(data?.network!==null)?data?.network?.toString():"null"
+          note:(data?.note!==null)?data?.note?.toString():"null"
         },
     })
 
@@ -190,9 +178,6 @@ function ProfileForm({
         const {
             name,
             status,
-            price,
-            category,
-            network,
             note,
             // discount,
             amount
@@ -204,9 +189,6 @@ function ProfileForm({
             Number(status),
             name,
             Number(amount),
-            price,
-            category,
-            network,
             note
             // discount,
             // server
@@ -289,51 +271,12 @@ function ProfileForm({
             />
             <FormField
               control={form.control}
-              name="price"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Price</FormLabel>
-                  <FormControl>
-                      <Input placeholder="price" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="note"
               render={({ field }) => (
                   <FormItem>
                   <FormLabel>Note</FormLabel>
                   <FormControl>
                       <Input placeholder="note" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <FormControl>
-                      <Input placeholder="category" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="network"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Network</FormLabel>
-                  <FormControl>
-                      <Input placeholder="network" {...field} type="text"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>
