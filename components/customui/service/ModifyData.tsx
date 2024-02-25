@@ -102,13 +102,13 @@ export function ModifyDatamodal({
                 {/* Edit user's informations. */}
             </DialogDescription>
           </DialogHeader>
-          <div className="h-[50vh] overflow-y-auto">
+          {/* <div className="h-[50vh] overflow-y-auto"> */}
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-          </div>
+          {/* </div> */}
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button 
@@ -137,13 +137,13 @@ export function ModifyDatamodal({
             {/* Edit user's informations. */}
           </DrawerDescription>
         </DrawerHeader>
-          <ScrollArea className="h-[50vh]">
+          {/* <ScrollArea className="h-[50vh]"> */}
             <ProfileForm 
               id={id}
               modalCloseTrigger={modalCloseTrigger}
               data={data}
             />
-          </ScrollArea>
+          {/* </ScrollArea> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" ref={modalCloseTrigger}>Cancel</Button>
