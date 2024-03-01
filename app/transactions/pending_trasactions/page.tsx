@@ -13,6 +13,9 @@ async function getPendingTransactions() {
           headers: {
               "Content-Type": "application/json",
               "Authorization":`Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+          },
+          next:{
+              tags:["pending_transactions"]
           }
         });
         if(!response.ok){
