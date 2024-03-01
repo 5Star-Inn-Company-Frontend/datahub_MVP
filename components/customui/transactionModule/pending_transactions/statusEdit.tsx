@@ -67,6 +67,7 @@ export function PendingStatusDropdownMenuCheckboxes({
 
     
   return (
+    <div>
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
@@ -139,6 +140,7 @@ export function PendingStatusDropdownMenuCheckboxes({
         {/* <DropdownMenuSeparator /> */}
       </DropdownMenuContent>
     </DropdownMenu>
+  </div>
   )
 }
 
