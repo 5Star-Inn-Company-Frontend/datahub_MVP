@@ -151,8 +151,8 @@ export function SignIn() {
                         <div className="flex justify-end items-end">
                             {
                                 isLoading?
-                                <Button disabled className="w-full">
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                <Button disabled className="w-full text-white">
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin text-white" />
                                     Please wait...
                                 </Button>:
                                 <Button type="submit" className="text-white w-full text-center bg-black" >Submit</Button>
