@@ -45,44 +45,34 @@ import {
 } from "@/components/ui/form"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { ElectricityApiObjectType } from "./electricity";
-import { ModifyElectricity } from "@/actions/serviceModule/server";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { configObjectProp } from "./Configue_list";
+import { ModifyConfgueAction } from "@/actions/configue/action";
 
 const formSchema = z.object({
-  name: z.string({
-    required_error: "Name field is required.",
+  ppkey: z.string({
+    required_error: "PPkey field is required.",
   }),
-  // code: z.string({
-  //   required_error: "Code field is required.",
-  // }),
-  // code10: z.string({
-  //   required_error: "Code10 field is required.",
-  // }),
+  charges: z.string({
+    required_error: "charges field is required.",
+  }),
   status: z.string({
     required_error: "Status field is required.",
-  }),
-  discount: z.string({
-    required_error: "Discount field is required.",
   })
-  // server: z.number({
-  //   required_error: "Server field is required.",
-  // })
 })
 
 interface profileFormPropType{
   id:number,
   modalCloseTrigger :React.MutableRefObject<any>,
-  data:ElectricityApiObjectType 
+  data:configObjectProp
 }
 
 type ModifyPropType={
   id:number,
-  data:ElectricityApiObjectType 
+  data:configObjectProp
 }
 
-export function ModifyElectricitymodal({
+export function ModifyConfigue({
     id,
     data
 }:ModifyPropType) {
@@ -98,7 +88,7 @@ export function ModifyElectricitymodal({
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-white">
           <DialogHeader>
-            <DialogTitle>Modify Electricity</DialogTitle>
+            <DialogTitle>Modify Config</DialogTitle>
             <DialogDescription>
                 {/* Edit user's informations. */}
             </DialogDescription>
@@ -131,7 +121,7 @@ export function ModifyElectricitymodal({
       </DrawerTrigger>
       <DrawerContent className="bg-white p-4">
         <DrawerHeader className="text-left">
-          <DrawerTitle>Modify Electricity</DrawerTitle>
+          <DrawerTitle>Modify Config</DrawerTitle>
           <DrawerDescription>
             {/* Edit user's informations. */}
           </DrawerDescription>
@@ -162,33 +152,24 @@ function ProfileForm({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          status: data?.status?.toString(),
-          discount:(data?.discount!==null)?data?.discount:"null",
-          // server:data?.server,
-          name:(data?.server!==null)?data?.name:"null"
-          // code:(data?.server!==null)?data?.code:"null",
-          // code10:(data?.server!==null)?data?.code10:"null",
+          status: (data?.status!==null)?data?.status?.toString():"null",
+          ppkey:(data?.ppkey!==null)?data?.ppkey?.toString():"null",
+          charges:(data?.charges!==null)?data?.charges?.toString():"null",
         },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         const {
-            name,
+            ppkey,
             status,
-            discount,
-            // code,
-            // server,
-            // code10,
+            charges,
         }=values;
         setIsLoading(true)
-       ModifyElectricity(
+        ModifyConfgueAction(
             id,
             Number(status),
-            name,
-            // code,
-            // code10,
-            discount
-            // server
+            ppkey,
+            Number(charges),
         ).then((response)=>{
             const{
                 message,
@@ -200,7 +181,7 @@ function ProfileForm({
             toast({
                 description:message
             })
-        }).catch((error)=>{
+        }).catch((error:any)=>{
             setIsLoading(false)
             toast({
               variant: "destructive",
@@ -218,43 +199,30 @@ function ProfileForm({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}
-              name="name"
+              name="ppkey"
               render={({ field }) => (
                   <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>PPkey</FormLabel>
                   <FormControl>
-                      <Input placeholder="name" {...field} type="text"/>
+                      <Input placeholder="ppkey" {...field} type="text"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>
               )}
             />
-            {/* <FormField
+            <FormField
               control={form.control}
-              name="code"
+              name="charges"
               render={({ field }) => (
                   <FormItem>
-                  <FormLabel>Code</FormLabel>
+                  <FormLabel>Charges</FormLabel>
                   <FormControl>
-                      <Input placeholder="code" {...field} type="text"/>
+                      <Input placeholder="charges" {...field} type="text"/>
                   </FormControl>
                   <FormMessage />
                   </FormItem>
               )}
-            /> */}
-            {/* <FormField
-              control={form.control}
-              name="code10"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Code10</FormLabel>
-                  <FormControl>
-                      <Input placeholder="code" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            /> */}
+            />
             <FormField
               control={form.control}
               name="status"
@@ -266,7 +234,7 @@ function ProfileForm({
                     defaultValue={field.value}
                   >
                     <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Modify Airtime Status" />
+                        <SelectValue placeholder="Modify  Status" />
                     </SelectTrigger>
                     <SelectContent
                         className="bg-white"
@@ -279,32 +247,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="discount"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Discount</FormLabel>
-                  <FormControl>
-                      <Input placeholder="discount" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            />
-            {/* <FormField
-              control={form.control}
-              name="server"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Server</FormLabel>
-                  <FormControl>
-                      <Input placeholder="server" {...field} type="number"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            /> */}
+            
             <div className="flex justify-end items-end">
                 {
                     isLoading?

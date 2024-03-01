@@ -31,6 +31,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { AiOutlineUser } from "react-icons/ai"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
 const formSchema = z.object({
   firstname: z.string({
@@ -288,7 +289,10 @@ export function Register() {
                         <div className="flex justify-end items-end">
                             {
                                 isLoading?
-                                <Button type="submit" disabled className="text-white w-full text-center bg-black" >Sending request...</Button>: 
+                                <Button disabled className="w-full">
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                    Please wait...
+                                </Button>: 
                                 <Button type="submit" className="text-white w-full text-center bg-black" >Submit</Button>
                             }
                         </div>

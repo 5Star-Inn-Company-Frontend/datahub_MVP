@@ -28,6 +28,7 @@ import { PostRefer } from "@/actions/transactionModule/refer&Earn"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
 const formSchema = z.object({
   refer_text: z.string({
@@ -116,7 +117,10 @@ export function ReferAndEarn() {
                      <div className="flex justify-end items-end">
                         {
                             isLoading?
-                                <Button type="submit" disabled className="text-white" >Sending request...</Button>:
+                            <Button disabled>
+                                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                Please wait...
+                            </Button>:
                                     <Button type="submit" className="text-white" >Submit</Button>
                         }
                     </div>

@@ -98,6 +98,30 @@ async function getTotalFund(storedItem:RequestCookie | undefined) {
   }
 }
 
+async function getMcdBalance(storedItem:RequestCookie | undefined) {
+  try {
+      if(storedItem?.value){
+        const response = await fetch(`${baseUrl}mcd-balance`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer Bearer ${JSON.parse(storedItem?.value)?.access_token}`
+          }
+        });
+        if(!response.ok){
+          throw new Error(`An error occured: ${response.statusText} (status code: ${response.status}`)
+        }
+        const result = await response.json();
+        return result
+      }
+    }catch (error) {
+      return{
+        status :500
+      }
+  }
+}
+
+
 
 export default async function Home() {
   const cookieStore = cookies();
@@ -106,7 +130,7 @@ export default async function Home() {
   const sum = await getTotalTransactionSum(storedItem)
   const fund = await getTotalFund(storedItem)
   const charge = await getTotalCharge(storedItem)
-  // const [sum, count] = await Promise.all([trans_sum, trans_count])
+  const balance = await getMcdBalance(storedItem)
   return (
     <main>
       <DashBoardLayout
@@ -118,7 +142,7 @@ export default async function Home() {
             trans_sum={sum?.total_sum_transaction}
             total_charge={charge?.total_wallet_charge}
             total_fund={fund?.total_wallet_funding}
-            userDetails={storedItem?.value && JSON.parse(storedItem?.value)?.user}
+            balance={balance?.data}
           />
         </Suspense>
       </DashBoardLayout>

@@ -20,7 +20,8 @@ export const DashBoardLayout =({
                 <div 
                     className="flex bg-cl"
                     style={{
-                        height:"86%"
+                        height:"100%",
+                        paddingTop:"6rem"
                     }}
                 >
                     <div className="lg:pe-2 xl:pe-2 md:pe-2 sm:pe-0 xs:pe-0 h-[100%]">

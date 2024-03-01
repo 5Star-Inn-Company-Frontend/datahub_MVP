@@ -98,7 +98,8 @@ export const Airtime_To_Cash=({
                         "User First Name",
                         "User email",
                         "User Phone Number",
-                        "Creation Date"
+                        "Creation Date",
+                        "Actions"
                     ]}
                     caption={"A List of all your airtime to cash"}
                     hideAction={true}
@@ -135,7 +136,6 @@ export const Airtime_To_Cash=({
                                     <TableCell>
                                         <StatusDropdownMenuCheckboxes 
                                             id={id}
-                                            setIsLoading={setIsLoading}
                                         />
                                     </TableCell>
                                 </TableRow>

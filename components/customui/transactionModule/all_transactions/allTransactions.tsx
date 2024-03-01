@@ -40,6 +40,7 @@ export interface transactionApiInterResponse {
 export const All_Transactions=({
     data
 }:transactionApiInterResponse)=>{
+    console.log(data[0]?.server_response)
     const{toast} = useToast();
     const[
         dataSetter,
@@ -118,6 +119,7 @@ export const All_Transactions=({
                             "Previous Balance",
                             "New Balance",
                             "Server",
+                            "Server Response",
                             "Creation Date"
                         ]}
                         caption={"A List of all your transactions"}
@@ -138,6 +140,7 @@ export const All_Transactions=({
                                     status,
                                     type,
                                     remark,
+                                    server_response,
                                     token,
                                     prev_balance,
                                     new_balance,
@@ -162,7 +165,8 @@ export const All_Transactions=({
                                                 token,
                                                 prev_balance,
                                                 new_balance,
-                                                server
+                                                server,
+                                                server_response
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

@@ -3,8 +3,8 @@ import { Logo } from "../global/logo"
 
 export const DashBoardTopNav =()=>{
     return(
-        <div className="lg:p-4 xl:md:p-4 sm:p-2 xs:p-2 h-[14%]">
-        <div className="flex flex-row justify-between w-full h-full px-4 py-2 items-center bg-[#181516] rounded">
+        <div className="lg:p-4 xl:md:p-4 sm:p-2 xs:p-2 fixed left-0 right-0 top-0 z-50">
+        <div className="flex flex-row justify-between w-full h-full px-4 py-2 items-center bg-[#181516] rounded z-50">
             <div className="flex items-center">
                 <div className="me-2 hamburger rounded-full bg-[#ff5718]">
                     <div

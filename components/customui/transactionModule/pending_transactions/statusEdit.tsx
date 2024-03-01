@@ -13,25 +13,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ModifyStatus } from "@/actions/transactionModule/airtime2cash/action"
 import { useToast } from "@/components/ui/use-toast"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
+import { ModifyPendingStatus } from "@/actions/transactionModule/pending_transactions/server/action"
 
 type Checked = DropdownMenuCheckboxItemProps["checked"]
 type dropdownPropType ={
     id:number
 }
-export function StatusDropdownMenuCheckboxes({
+export function PendingStatusDropdownMenuCheckboxes({
     id
 }:dropdownPropType) {
   const { toast } = useToast();
   const [showStatusBar, setShowStatusBar] = React.useState<Checked>(false)
   const [showPanel, setShowPanel] = React.useState<Checked>(false)
   const [showPending, setShowPending] = React.useState<Checked>(false);
+  const [showFailed, setShowFailed] = React.useState<Checked>(false);
   const [isLoading, setIsLoading] = React.useState<Checked>(false);
   const MarkStatus =(modifyto:string)=>{
     setIsLoading(true);
-    ModifyStatus(
+    ModifyPendingStatus(
         id,
         modifyto
     ).then((response)=>{
@@ -83,17 +84,18 @@ export function StatusDropdownMenuCheckboxes({
                 Please wait...
             </Button>:
             (
+              <>
               <DropdownMenuCheckboxItem
               checked={showStatusBar}
               onCheckedChange={()=>{
                 setShowStatusBar((prevState)=>{
                     return !prevState
                 })
-                MarkStatus("1")
+                MarkStatus("4")
               }
             }
             >
-              Mark as SuccessFull
+              Reverse Transaction
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={showPanel}
@@ -101,11 +103,11 @@ export function StatusDropdownMenuCheckboxes({
                 setShowPanel((prevState)=>{
                     return !prevState
                 })
-                MarkStatus("0")
+                MarkStatus("1")
                 }
             }
             >
-              Mark as Failed
+              Mark as SuccessFull
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={showPending}
@@ -113,16 +115,30 @@ export function StatusDropdownMenuCheckboxes({
                 setShowPending((prevState)=>{
                     return !prevState
                 })
-                MarkStatus("2")
+                MarkStatus("0")
                 }
             }
             >
               Mark as Pending
             </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={showFailed}
+              onCheckedChange={()=>{
+                setShowFailed((prevState)=>{
+                    return !prevState
+                })
+                MarkStatus("2")
+                }
+            }
+            >
+              Mark as Failed
+            </DropdownMenuCheckboxItem>
+            </>
             )
         }
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuSeparator /> */}
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
+

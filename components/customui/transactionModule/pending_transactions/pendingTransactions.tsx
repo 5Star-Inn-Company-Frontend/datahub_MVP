@@ -7,6 +7,7 @@ import {
   } from "@/components/ui/table"
 import { useEffect, useState } from "react"
 import Spinner from "../../global/spinner"
+import  {PendingStatusDropdownMenuCheckboxes} from "./statusEdit"
 
 interface ApiResponse {
     id:number,
@@ -71,7 +72,8 @@ export const Pending_Transactions=({
                     "Previous Balance",
                     "New Balance",
                     "Server",
-                    "Creation Date"
+                    "Creation Date",
+                    "Actions"
                 ]}
                 caption={"A List of all pending transactions"}
                 hideAction={true}
@@ -120,6 +122,11 @@ export const Pending_Transactions=({
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
+                                <TableCell>
+                                    <PendingStatusDropdownMenuCheckboxes
+                                        id={id}
+                                    />
+                                </TableCell>
                             </TableRow>
                         )
                     })
