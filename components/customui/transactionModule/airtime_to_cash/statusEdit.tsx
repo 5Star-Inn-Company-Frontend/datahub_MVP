@@ -66,6 +66,7 @@ export function StatusDropdownMenuCheckboxes({
 
     
   return (
+    <div>
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
@@ -83,6 +84,7 @@ export function StatusDropdownMenuCheckboxes({
                 Please wait...
             </Button>:
             (
+              <>
               <DropdownMenuCheckboxItem
               checked={showStatusBar}
               onCheckedChange={()=>{
@@ -119,10 +121,12 @@ export function StatusDropdownMenuCheckboxes({
             >
               Mark as Pending
             </DropdownMenuCheckboxItem>
+            </>
             )
         }
         <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
+    </div>
   )
 }
