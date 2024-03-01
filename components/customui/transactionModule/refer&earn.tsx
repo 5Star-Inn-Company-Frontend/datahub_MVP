@@ -95,7 +95,7 @@ export function ReferAndEarn() {
                         <FormItem>
                         <FormLabel>Refer</FormLabel>
                         <FormControl>
-                            <Input placeholder="refer" {...field} />
+                            <Input placeholder="refer" {...field} required/>
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -108,7 +108,7 @@ export function ReferAndEarn() {
                         <FormItem>
                         <FormLabel>Amount</FormLabel>
                         <FormControl>
-                            <Input placeholder="shadcn" {...field} />
+                            <Input placeholder="shadcn" {...field} required/>
                         </FormControl>
                         <FormMessage />
                         </FormItem>

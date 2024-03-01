@@ -206,6 +206,7 @@ export function WithdrawalFormView({
                                     <Input 
                                         placeholder="Account Number" {...field}
                                         className="w-full border-none" 
+                                        required
                                     />
                                 </IconInput>
                             </FormControl>
@@ -225,6 +226,7 @@ export function WithdrawalFormView({
                                     <Select
                                         onValueChange={field.onChange}
                                         defaultValue={field.value}
+                                        required
                                     >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="select bank code" />
@@ -265,6 +267,7 @@ export function WithdrawalFormView({
                                         <Select
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
+                                            required
                                         >
                                             <SelectTrigger className="w-full">
                                                 <SelectValue placeholder="Select Bank" />
@@ -301,6 +304,7 @@ export function WithdrawalFormView({
                                         <Select
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
+                                            required
                                         >
                                             <SelectTrigger className="w-full">
                                                 <SelectValue placeholder="Select wallet" />
@@ -327,7 +331,10 @@ export function WithdrawalFormView({
                                         <IconInput
                                             icon={<BackpackIcon className="h-4 w-4" />}
                                         >
-                                            <Input placeholder="amount" {...field} />
+                                            <Input 
+                                                placeholder="amount" {...field} 
+                                                className="w-full border-none" 
+                                                required/>
                                         </IconInput>
                                     </FormControl>
                                     <FormMessage />

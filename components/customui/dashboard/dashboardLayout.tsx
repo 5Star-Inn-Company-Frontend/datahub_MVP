@@ -28,7 +28,7 @@ export const DashBoardLayout =({
                         <Nav 
                             style=" z-[1035] relative desktopNav w-60 overflow-hidden dark:bg-zinc-800"/>
                     </div>
-                    <div className="w-full h-full pt-8 overflow-auto">
+                    <div className="w-full h-full lg:pt-8 xl:pt-8 md:pt-8 sm:pt-2 xs:pt-2 overflow-auto">
                         <div className="px-4 h-full overflow-auto w-full">
                             {children}
                         </div>
