@@ -63,7 +63,7 @@ export async function ModifyData(
         body: JSON.stringify({
             "status":status,
             "name":name ==="null"?null:name,
-            "amount":amount ==="null"?null: amount,
+            "amount": amount,
             "note":note ==="null"?null: note
             // "discount":discount,
             // "server":server
@@ -141,7 +141,7 @@ export async function ModifyAirtime2Cash(
         body: JSON.stringify({
             "status":status,
             "network":network ==="null"?null: network,
-            "discount":discount ==="null"?null:discount,
+            "discount":discount,
             "number":number ==="null"?null: number
         })
     });
