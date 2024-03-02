@@ -1,7 +1,7 @@
 import { baseUrl } from "@/actions/baseUrl";
 import { cookies } from "next/headers";
-import { ReferesList } from "@/components/customui/transactionModule/referesList";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { Referers_Transactions } from "@/components/customui/transactionModule/moreRefer/moreRefersList";
 
 async function getReferers() {
   const cookieStore = cookies();
@@ -21,11 +21,13 @@ async function getReferers() {
       return result
     }
 }
-export default async function All_Transaction_Page() {
+export default async function All_Referers_Page() {
   const data = await getReferers()
   return (
     <>
-      <ReferesList data={data?.Referes}/>
+      <Referers_Transactions
+        data={data?.Referes}
+      />
     </>
   )
 }
