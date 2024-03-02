@@ -12,7 +12,6 @@ import { TotalTransactionCard } from "../transactionModule/totalTransactionCard"
 import { ReferAndEarn } from "../transactionModule/refer&earn";
 import { DailyReport } from "../reportModule/dailyReportView/daily_report_view";
 import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface propTypes {
     trans_count:number,
@@ -48,7 +47,7 @@ export const IntroSection=({
             </div>
             <div className="flex flex-col justify-end items-end ">
                 <Button
-                    onClick={()=>window.location.replace("/dashboard/mcd/withdrawals/createWithdrawals")}
+                    onClick={()=>window.location.replace("/mcd/withdrawals/createWithdrawals")}
                     className="bg-black text-white border-white"
                 >
                     <BackpackIcon className="mr-2 h-4 w-4 text-white" /> Withdraw MCD Wallet
@@ -84,8 +83,7 @@ export const IntroSection=({
                 })
             }
         </div>
-        <ScrollArea className="w-full whitespace-nowrap">
-        <div className="flex justify-between item-baseline mb-4 ">
+        <div className="grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
             {
                 [
                     {
@@ -113,14 +111,12 @@ export const IntroSection=({
                             img={img}
                             title={title}
                             key={index}
-                            modifyWidth="w-[24.5rem]"
                         />
                     )
                 })
             }
         </div>
-        <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+
         <div className="grid grid-flow-row-dense lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-1 xs:grid-rows-1 w-full gap-4 mb-4">
             <div className="col-span-2 bg-white rounded p-4 overflow-auto h-[36rem]">
                 <DailyReport/>
@@ -157,7 +153,7 @@ export const IntroSection=({
                                     <Text
                                         style="text-sm mb-4 text-grey-400 text-end cursor-pointer"
                                         value="View more"
-                                        clickFunc={()=> window.location.replace(`/dashboard/transactions/${route}`)}
+                                        clickFunc={()=> window.location.replace(`transactions/${route}`)}
                                     />
                                 </div>
                             )

@@ -4,18 +4,16 @@ import {Text} from "../text"
 interface cardprops {
     img:string,
     title:string,
-    amount:string,
-    modifyWidth?:string
+    amount:string
 }
 export const TotalTransactionCard=({
     img,
     title,
-    amount,
-    modifyWidth
+    amount
 }:cardprops)=>{
     return(
         <div 
-            className={`${modifyWidth?modifyWidth:""} flex bg-white items-center p-4 rounded `}
+            className="flex bg-white items-center p-4 rounded"
         >
             <div className="me-2 relative w-[3rem] h-[3rem]">
                 <Image
