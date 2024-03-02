@@ -54,21 +54,12 @@ const formSchema = z.object({
   name: z.string({
     required_error: "Name field is required.",
   }),
-  // code: z.string({
-  //   required_error: "Code field is required.",
-  // }),
-  // code10: z.string({
-  //   required_error: "Code10 field is required.",
-  // }),
   status: z.string({
     required_error: "Status field is required.",
   }),
   discount: z.string({
     required_error: "Discount field is required.",
   })
-  // server: z.number({
-  //   required_error: "Server field is required.",
-  // })
 })
 
 interface profileFormPropType{
@@ -164,10 +155,7 @@ function ProfileForm({
         defaultValues: {
           status: data?.status?.toString(),
           discount:(data?.discount!==null)?data?.discount:"null",
-          // server:data?.server,
           name:(data?.server!==null)?data?.name:"null"
-          // code:(data?.server!==null)?data?.code:"null",
-          // code10:(data?.server!==null)?data?.code10:"null",
         },
     })
 
@@ -229,32 +217,8 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            {/* <FormField
-              control={form.control}
-              name="code"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Code</FormLabel>
-                  <FormControl>
-                      <Input placeholder="code" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            /> */}
-            {/* <FormField
-              control={form.control}
-              name="code10"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Code10</FormLabel>
-                  <FormControl>
-                      <Input placeholder="code" {...field} type="text"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            /> */}
+            
+            
             <FormField
               control={form.control}
               name="status"
@@ -292,19 +256,7 @@ function ProfileForm({
                   </FormItem>
               )}
             />
-            {/* <FormField
-              control={form.control}
-              name="server"
-              render={({ field }) => (
-                  <FormItem>
-                  <FormLabel>Server</FormLabel>
-                  <FormControl>
-                      <Input placeholder="server" {...field} type="number"/>
-                  </FormControl>
-                  <FormMessage />
-                  </FormItem>
-              )}
-            /> */}
+            
             <div className="flex justify-end items-end">
                 {
                     isLoading?

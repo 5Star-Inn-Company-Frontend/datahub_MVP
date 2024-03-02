@@ -17,7 +17,7 @@ export const ViewLayout =({
                     <ol className="list-reset flex">
                         <li>
                             <a
-                                href="/"
+                                href="/dashboard"
                                 className="text-[#ff5718] text-sm  transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
                                 >Dashboard
                             </a>

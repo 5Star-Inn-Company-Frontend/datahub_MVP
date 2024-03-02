@@ -23,8 +23,8 @@ export async function ModifyAirtime(
         },
         body: JSON.stringify({
             "status":status,
-            "network":network,
-            "discount":discount
+            "network":network ==="null"?null:nework,
+            "discount":discount ==="null"?null:discount
             // "server":server
         })
     });
@@ -62,9 +62,9 @@ export async function ModifyData(
         },
         body: JSON.stringify({
             "status":status,
-            "name":name,
-            "amount":amount,
-            "note":note
+            "name":name ==="null"?null:name,
+            "amount":amount ==="null"?null: amount,
+            "note":note ==="null"?null: note
             // "discount":discount,
             // "server":server
         })
@@ -102,9 +102,9 @@ export async function ModifyBetting(
         },
         body: JSON.stringify({
             "status":status,
-            "name":name,
-            "code":code,
-            "discount":discount
+            "name":name ==="null"?null:name,
+            "code":code ==="null"?null:code,
+            "discount":discount ==="null"?null: discount
             // "server":server
         })
     });
@@ -140,9 +140,9 @@ export async function ModifyAirtime2Cash(
         },
         body: JSON.stringify({
             "status":status,
-            "network":network,
-            "discount":discount,
-            "number":number
+            "network":network ==="null"?null: network,
+            "discount":discount ==="null"?null:discount,
+            "number":number ==="null"?null: number
         })
     });
     if(!response.ok){
@@ -180,12 +180,10 @@ export async function ModifyTvPlan(
         },
         body: JSON.stringify({
             "status":status,
-            "name":name,
-            "type":type,
-            "price":price,
-            // "code":code,
-            "discount":discount
-            // "server":server
+            "name":name ==="null"?null: name,
+            "type":type ==="null"?null:type,
+            "price":price ==="null"?null:price,
+            "discount":discount ==="null"?null:discount
         })
     });
     if(!response.ok){
@@ -206,10 +204,7 @@ export async function ModifyElectricity(
     id:number,
     status:number,
     name:string,
-    // code:string,
-    // code10:string,
     discount:string
-    // server:number
 ) {
     const cookieStore = cookies();
     const storedItem = cookieStore.get("datahubToken");
@@ -222,11 +217,8 @@ export async function ModifyElectricity(
         },
         body: JSON.stringify({
             "status":status,
-            "name":name,
-            // "code":code,
-            // "code10":code10,
-            "discount":discount
-            // "server":server
+            "name":name ==="null"?null:name,
+            "discount":discount ==="null"?null:discount
         })
     });
     if(!response.ok){

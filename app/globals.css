@@ -6,6 +6,9 @@ main{
   height: 100vh!important;
   background:#f5ede9;
 }
+body{
+  height:100%;
+}
 @layer base {
   :root {
       height: 100vh!important;

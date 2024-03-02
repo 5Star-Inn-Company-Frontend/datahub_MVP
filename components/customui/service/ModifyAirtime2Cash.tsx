@@ -156,7 +156,7 @@ function ProfileForm({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          status: data?.status === 1?"1":"0",
+          status: data?.status?.toString(),
           number:(data?.number!==null)?data?.number?.toString():"null",
           network:(data?.network!==null)?data?.network?.toString():"null",
           discount:(data?.discount!==null)?data?.discount?.toString():"null",

@@ -63,12 +63,6 @@ const formSchema = z.object({
   note: z.string({
     required_error: "Note field is required.",
   })
-  // discount: z.string({
-  //   required_error: "Discount field is required.",
-  // }),
-  // server: z.string({
-  //   required_error: "Server field is required.",
-  // })
 })
 
 interface profileFormPropType{
@@ -167,8 +161,6 @@ function ProfileForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
           status: data?.status?.toString(),
-          // discount:(data?.discount!==null)?data?.discount:"null",
-          // server:(data?.server!==null)?data?.server:"null",
           name:(data?.name!==null)?data?.name?.toString():"null",
           amount:(data?.amount!==null)? data?.amount?.toString():"null",
           note:(data?.note!==null)?data?.note?.toString():"null"
