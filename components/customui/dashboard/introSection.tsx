@@ -47,7 +47,7 @@ export const IntroSection=({
             </div>
             <div className="flex flex-col justify-end items-end ">
                 <Button
-                    onClick={()=>window.location.replace("/mcd/withdrawals/createWithdrawals")}
+                    onClick={()=>window.location.replace("/dashboard/mcd/withdrawals/createWithdrawals")}
                     className="bg-black text-white border-white"
                 >
                     <BackpackIcon className="mr-2 h-4 w-4 text-white" /> Withdraw MCD Wallet
@@ -153,7 +153,7 @@ export const IntroSection=({
                                     <Text
                                         style="text-sm mb-4 text-grey-400 text-end cursor-pointer"
                                         value="View more"
-                                        clickFunc={()=> window.location.replace(`transactions/${route}`)}
+                                        clickFunc={()=> window.location.replace(`/dashboard/transactions/${route}`)}
                                     />
                                 </div>
                             )
