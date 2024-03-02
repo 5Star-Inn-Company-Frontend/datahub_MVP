@@ -85,7 +85,7 @@ export const IntroSection=({
             }
         </div>
         <ScrollArea className="w-full whitespace-nowrap">
-        <div className="grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 xs:grid-rows-3 w-full gap-4 mb-4">
+        <div className="flex justify-between item-baseline mb-4 ">
             {
                 [
                     {
@@ -113,6 +113,7 @@ export const IntroSection=({
                             img={img}
                             title={title}
                             key={index}
+                            modifyWidth="w-[24.5rem]"
                         />
                     )
                 })
