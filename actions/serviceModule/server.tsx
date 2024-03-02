@@ -23,7 +23,7 @@ export async function ModifyAirtime(
         },
         body: JSON.stringify({
             "status":status,
-            "network":network ==="null"?null:nework,
+            "network":network ==="null"?null:network,
             "discount":discount ==="null"?null:discount
             // "server":server
         })
