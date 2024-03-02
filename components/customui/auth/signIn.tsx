@@ -72,7 +72,7 @@ export function SignIn() {
                 toast({
                     description:`Authenticated as ${data?.user?.email}`
                 })
-                window.location.href ="/";
+                window.location.href ="/dashboard";
             }else{
                 toast({
                     variant: "destructive",

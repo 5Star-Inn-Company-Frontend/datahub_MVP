@@ -8,6 +8,10 @@ export default async function middleware(req:NextRequest){
     if(req.nextUrl.pathname.startsWith("/_next")){
         return NextResponse.next()
     }
+    if(storedItem && req.nextUrl.pathname ==="/"){
+        const absoluteURL = new URL("/dashboard", req.nextUrl.origin);
+        return NextResponse.redirect(absoluteURL.toString());
+    }
     if(!storedItem && !publicRoutes.includes(req.nextUrl.pathname)){
         const absoluteURL = new URL("/auth/signin", req.nextUrl.origin);
         return NextResponse.redirect(absoluteURL.toString());

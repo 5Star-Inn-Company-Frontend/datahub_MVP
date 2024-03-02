@@ -63,12 +63,6 @@ const formSchema = z.object({
   discount: z.string({
     required_error: "Discount field is required.",
   }),
-  // server: z.number({
-  //   required_error: "Server field is required.",
-  // }),
-  // code: z.string({
-  //   required_error: "Code field is required.",
-  // }),
   price: z.string({
     required_error: "Price field is required.",
   })

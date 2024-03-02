@@ -4,7 +4,10 @@
  
 main{
   height: 100vh!important;
-  background:#f5ede9;
+  background:#f9fafb;
+}
+body{
+  height:100%;
 }
 @layer base {
   :root {
