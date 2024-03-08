@@ -72,7 +72,6 @@ export const MCD_Transactions=({
                         <TableLayout
                             tableHeadRow={[
                                 "S/N",
-                                "Id",
                                 "Name",
                                 "Amount",
                                 "Status",
@@ -123,7 +122,6 @@ export const MCD_Transactions=({
                                             <TableCell className="font-medium">{index +1}</TableCell>
                                             {
                                                 [
-                                                    id,
                                                     name,
                                                     amount,
                                                     status,

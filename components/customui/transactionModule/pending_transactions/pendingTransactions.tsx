@@ -13,6 +13,8 @@ interface ApiResponse {
     id:number,
     user_id:number,
     title:string,
+    lastname:string,
+    phone:string,
     amount:number,
     charges:number,
     commission:number,
@@ -58,7 +60,8 @@ export const Pending_Transactions=({
             <TableLayout
                 tableHeadRow={[
                     "S/N",
-                    "User Id",
+                    "Last Name",
+                    "Phone",
                     "Title",
                     "Amount",
                     "Charges",
@@ -71,7 +74,7 @@ export const Pending_Transactions=({
                     "Token",
                     "Previous Balance",
                     "New Balance",
-                    "Server",
+                    "Server Response",
                     "Creation Date",
                     "Actions"
                 ]}
@@ -89,6 +92,8 @@ export const Pending_Transactions=({
                             commission,
                             reference,
                             recipient,
+                            lastname,
+                            phone,
                             status,
                             type,
                             remark,
@@ -105,7 +110,8 @@ export const Pending_Transactions=({
                                 <TableCell className="font-medium">{index +1}</TableCell>
                                 {
                                     [
-                                        user_id,
+                                        lastname,
+                                        phone,
                                         title,
                                         amount,
                                         charges,
