@@ -65,7 +65,6 @@ export const MCD_Withrawals=({
                         <TableLayout
                             tableHeadRow={[
                                 "S/N",
-                                "Id",
                                 "Amount",
                                 "Status",
                                 "User Name",
@@ -101,7 +100,6 @@ export const MCD_Withrawals=({
                                             <TableCell className="font-medium">{index +1}</TableCell>
                                             {
                                                 [
-                                                    id,
                                                     amount,
                                                     status,
                                                     user_name,
