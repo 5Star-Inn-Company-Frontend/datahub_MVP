@@ -4,7 +4,7 @@ import { Logo } from "../global/logo"
 export const DashBoardTopNav =()=>{
     return(
         <div className="lg:p-4 xl:md:p-4 sm:p-2 xs:p-2 fixed left-0 right-0 top-0 z-50">
-        <div className="flex flex-row justify-between w-full h-full px-4 py-4 items-center bg-[#181516] rounded z-50">
+        <div className="flex flex-row justify-between w-full h-full px-4 py-4 items-center bg-white rounded z-50">
             <div className="flex items-center">
                 <div className="me-2 hamburger rounded-full bg-[#ff5718]">
                     <div
@@ -26,25 +26,16 @@ export const DashBoardTopNav =()=>{
                         </span>
                     </div>
                 </div>
-                <div className="flex items-center">
-                    <Logo
-                        size="1.5rem"
-                        style="me-2"
-                    />
-                    <Text
-                        style="text-md text-start text-white font-semibold"
-                        value="DataHubs"
-                    />
-                </div>
+                <Logo/>
             </div>
             <div className="ms-2 flex flex-row items-center justify-between items-center xl:w-[83%] lg:w-[83%] md:w-[83%] sm:w-[70%] xs:w-[70%] xxs:w-[70%]">
                 <div className="w-fit ">
                     <Text
-                        style="text-xs text-start text-[#ff5718] font-semibold"
+                        style="text-xs text-start font-semibold"
                         value="Welcome"
                     />
                     <Text
-                        style="lg:text-md xl:text-md md:text-md sm:text-md xs:text-md text-start text-white font-semibold"
+                        style="lg:text-md xl:text-md md:text-md sm:text-md xs:text-md text-start font-semibold"
                         value="Hello Admin"
                     />
                 </div>
