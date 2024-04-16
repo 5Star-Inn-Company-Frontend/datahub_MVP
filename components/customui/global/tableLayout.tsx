@@ -42,12 +42,16 @@ export const TableLayout =({
                             placeholder="Type query..."
                             onChange ={(e)=>handleChange && handleChange(e.target.value)} 
                         />
-                        <Button 
-                            type="submit"
-                            className="bg-black text-white"
-                            onClick={handleSearch}
-                            >Search
-                        </Button>
+                        {
+                            handleSearch &&(
+                            <Button 
+                                type="submit"
+                                className="bg-black text-white"
+                                onClick={handleSearch}
+                                >Search
+                            </Button>
+                            )
+                        }
                     </div>
                 </div>
             )

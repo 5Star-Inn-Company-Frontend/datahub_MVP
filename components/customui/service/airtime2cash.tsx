@@ -33,10 +33,21 @@ export const Airtime_To_CashService=({
         setIsLoading
     ]=useState(false)
     const[
+        querydata,
+        setquerydata
+    ]=useState<airtime2cashObjectProp[]>([]);
+    const[
         isMounted,
         setIsMounted
     ] = useState(false);
     const { toast } = useToast()
+    const handleChange =(e:string)=>{
+        const queryResponse = data?.filter((resp)=>resp.network.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+    useEffect(()=>{
+        setquerydata(data)
+    },[data])
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -63,10 +74,10 @@ export const Airtime_To_CashService=({
                     "Creation Date"
                 ]}
                 caption={"A List of airtime to cash"}
-                hideAction={true}
+                handleChange={handleChange}
             >
                 {
-                    data?.map((info,index)=>{
+                    querydata?.map((info,index)=>{
                         const{
                             id,
                             network,

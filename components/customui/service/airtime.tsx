@@ -34,7 +34,21 @@ export const AirtimeService=({
         isMounted,
         setIsMounted
     ] = useState(false);
-    const { toast } = useToast()
+    const { toast } = useToast();
+    
+    const[
+        querydata,
+        setquerydata
+    ]=useState<AirtimeApiObjectType[]>([]);
+
+    const handleChange =(e:string)=>{
+        const queryResponse = apiParameter?.filter((resp)=>resp.network.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+    useEffect(()=>{
+        setquerydata(apiParameter)
+    },[apiParameter])
+    
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -64,10 +78,10 @@ export const AirtimeService=({
                                 "Action"
                             ]}
                             caption={"A list of your airtime"}
-                            hideAction={true}
+                            handleChange={handleChange}
                         >
                             {
-                                apiParameter?.map((info,index)=>{
+                                querydata?.map((info,index)=>{
                                     const{
                                         id,
                                         network,

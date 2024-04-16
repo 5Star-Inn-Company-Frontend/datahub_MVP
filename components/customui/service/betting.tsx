@@ -37,6 +37,19 @@ export const BettingService =({
         setIsMounted
     ] = useState(false);
     const { toast } = useToast()
+    const[
+        querydata,
+        setquerydata
+    ]=useState<BettingApiObjectType[]>([]);
+
+    const handleChange =(e:string)=>{
+        const queryResponse = apiParameter?.filter((resp)=>resp.name.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+    useEffect(()=>{
+        setquerydata(apiParameter)
+    },[apiParameter])
+
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -64,11 +77,11 @@ export const BettingService =({
                             // "Server",
                             "Creation Date"
                         ]}
+                        handleChange={handleChange}
                         caption={"A list of bettings"}
-                        hideAction={true}
                     >
                         {
-                            apiParameter?.map((info,index)=>{
+                            querydata?.map((info,index)=>{
                                 const{
                                     id,
                                     name,
