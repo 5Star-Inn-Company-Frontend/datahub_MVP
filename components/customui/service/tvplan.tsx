@@ -40,6 +40,21 @@ export const TvService =({
         setIsMounted
     ] = useState(false);
     const { toast } = useToast()
+
+    const[
+        querydata,
+        setquerydata
+    ]=useState<CabletvApiObjectType[]>([]);
+
+    const handleChange =(e:string)=>{
+        const queryResponse = apiParameter?.filter((resp)=>resp.name.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+
+    useEffect(()=>{
+        setquerydata(apiParameter)
+    },[apiParameter])
+
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -71,10 +86,10 @@ export const TvService =({
                             "Creation Date"
                         ]}
                         caption={"A list of tv plans"}
-                        hideAction={true}
+                        handleChange={handleChange}
                     >
                         {
-                            apiParameter?.map((info,index)=>{
+                            querydata?.map((info,index)=>{
                                 const{
                                     id,
                                     name,

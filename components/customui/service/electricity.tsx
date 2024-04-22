@@ -38,6 +38,21 @@ export const ElectricityService=({
         setIsMounted
     ] = useState(false);
     const { toast } = useToast()
+
+    const[
+        querydata,
+        setquerydata
+    ]=useState<ElectricityApiObjectType[]>([]);
+
+    const handleChange =(e:string)=>{
+        const queryResponse = apiParameter?.filter((resp)=>resp.name.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+
+    useEffect(()=>{
+        setquerydata(apiParameter)
+    },[apiParameter])
+
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -67,10 +82,10 @@ export const ElectricityService=({
                             "Creation Date"
                         ]}
                         caption={"A list of electricity bills"}
-                        hideAction={true}
+                        handleChange={handleChange}
                     >
                         {
-                            apiParameter?.map((info,index)=>{
+                            querydata?.map((info,index)=>{
                                 const{
                                     id,
                                     name,

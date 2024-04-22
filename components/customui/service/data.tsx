@@ -45,6 +45,19 @@ export const DataService=({
         setIsMounted
     ] = useState(false);
     const { toast } = useToast()
+    const[
+        querydata,
+        setquerydata
+    ]=useState<DataApiObjectType[]>([]);
+
+    const handleChange =(e:string)=>{
+        const queryResponse = apiParameter?.filter((resp)=>resp.category.toLowerCase().includes(e?.toLowerCase()) || resp.network.toLowerCase().includes(e?.toLowerCase()))
+        setquerydata(queryResponse)
+    }
+    useEffect(()=>{
+        setquerydata(apiParameter)
+    },[apiParameter])
+    
     useEffect(()=>{
         setIsMounted(true)
     },[])
@@ -81,10 +94,10 @@ export const DataService=({
                                 "Creation Date"
                             ]}
                             caption={"A list of data"}
-                            hideAction={true}
+                            handleChange={handleChange}
                         >
                             {
-                                apiParameter?.map((info,index)=>{
+                                querydata?.map((info,index)=>{
                                     const{
                                         id,
                                         network,
