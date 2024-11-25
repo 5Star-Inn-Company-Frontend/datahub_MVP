@@ -122,7 +122,7 @@ export function SignIn() {
                             <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="email"/>
+                                <Input placeholder="admin@gmail.com" {...field} type="email"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -135,7 +135,7 @@ export function SignIn() {
                             <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} type="password"/>
+                                <Input placeholder="password" {...field} type="password"/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
