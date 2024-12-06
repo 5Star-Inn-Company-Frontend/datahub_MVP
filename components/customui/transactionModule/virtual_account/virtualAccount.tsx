@@ -82,19 +82,15 @@ export const Vitual_Account_Transactions=({
                     <TableLayout
                         tableHeadRow={[
                             "S/N",
-                            "User Id",
-                            "Status",
                             "Account Name",
                             "Account Number",
                             "Provider",
                             "Domain",
-                            "Assignment",
                             "User First Name",
                             "User Last Name",
                             "User Phone",
                             "User Email",
-                            "User Account Name",
-                            "User Account Number",
+                            "Status",
                             "Creation Date",
                         ]}
                         caption={"A List of all virtual account transactions"}
@@ -119,19 +115,15 @@ export const Vitual_Account_Transactions=({
                                         <TableCell className="font-medium">{index +1}</TableCell>
                                         {
                                             [
-                                                user_id,
-                                                status,
                                                 account_name,
                                                 account_number,
                                                 provider,
                                                 domain,
-                                                assignment,
                                                 user?.firstname,
                                                 user?.lastname,
                                                 user?.phone,
                                                 user?.email,
-                                                user?.account_name,
-                                                user?.account_number
+                                                status,
                                             ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                         }
                                         <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

@@ -17,8 +17,9 @@ interface ApiResponse {
     gender:string, 
     dob:string, 
     email:string, 
-    referer_id:string | null, 
-    email_verified_at:string | null, 
+    referer_id:string | null,
+    referee:any,
+    email_verified_at:string | null,
     status:number, 
     status_reason:string, 
     package:string, 
@@ -57,25 +58,17 @@ export const Referers_Transactions=({
             <TableLayout
                 tableHeadRow={[
                     "S/N",
-                    "id",
                     "firstname", 
                     "lastname", 
                     "address", 
                     "phone", 
                     "gender", 
                     "dob", 
-                    "email", 
-                    "referer_id", 
-                    "email_verified_at", 
+                    "email",
+                    "Referred By",
                     "status", 
                     "status_reason", 
-                    "package", 
-                    "pin", 
-                    "role_id", 
-                    "bvn", 
-                    "bank_code", 
-                    "account_name", 
-                    "account_number", 
+                    "package",
                     "created_at"
                     
                 ]}
@@ -92,17 +85,9 @@ export const Referers_Transactions=({
                             phone, 
                             gender, 
                             dob, 
-                            email, 
-                            referer_id, 
-                            email_verified_at, 
+                            email,
                             status, 
                             status_reason,
-                            pin, 
-                            role_id, 
-                            bvn, 
-                            bank_code, 
-                            account_name, 
-                            account_number, 
                             created_at
                         }=info;
                         return(
@@ -110,25 +95,17 @@ export const Referers_Transactions=({
                                 <TableCell className="font-medium">{index +1}</TableCell>
                                 {
                                     [
-                                    id,
                                     firstname, 
                                     lastname, 
                                     address, 
                                     phone, 
                                     gender, 
                                     dob, 
-                                    email, 
-                                    referer_id, 
-                                    email_verified_at, 
-                                    status, 
+                                    email,
+                                     `${info.referee.firstname} ${info.referee.lastname} `,
+                                    status,
                                     status_reason, 
-                                    info.package, 
-                                    pin, 
-                                    role_id, 
-                                    bvn, 
-                                    bank_code, 
-                                    account_name, 
-                                    account_number
+                                    info.package,
                                     ]?.map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>
