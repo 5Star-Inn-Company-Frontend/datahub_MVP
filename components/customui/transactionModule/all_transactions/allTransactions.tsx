@@ -111,7 +111,7 @@ export const All_Transactions=({
                             "Charges",
                             "Commision",
                             "Reference",
-                            "Recepient",
+                            "Recipient",
                             "Status",
                             "Type",
                             "Remark",

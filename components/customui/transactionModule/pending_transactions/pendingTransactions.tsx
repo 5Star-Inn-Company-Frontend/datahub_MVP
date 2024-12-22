@@ -67,7 +67,7 @@ export const Pending_Transactions=({
                     "Charges",
                     "Commision",
                     "Reference",
-                    "Recepient",
+                    "Recipient",
                     "Status",
                     "Type",
                     "Remark",
@@ -124,7 +124,7 @@ export const Pending_Transactions=({
                                         token,
                                         prev_balance,
                                         new_balance,
-                                        server,
+                                        server_response,
                                     ].map((bodyInfo,index)=><TableCell key={index}>{bodyInfo}</TableCell>)
                                 }
                                 <TableCell>{new Date(created_at).toLocaleString()}</TableCell>

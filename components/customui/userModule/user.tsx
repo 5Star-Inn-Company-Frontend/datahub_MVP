@@ -39,7 +39,7 @@ export const Users_Transactions=({
                     "Charges",
                     "Commision",
                     "Reference",
-                    "Recepient",
+                    "Recipient",
                     "Status",
                     "Type",
                     "Remark",

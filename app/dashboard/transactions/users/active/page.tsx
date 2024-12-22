@@ -18,6 +18,8 @@ async function getActiveUsers() {
         throw new Error(`An error occured: ${response.statusText} status code: ${response.status}.`)
       }
       const result =await response.json();
+        console.log("getActiveUsers");
+        console.log(result);
       return result
     }
    }catch (error) {

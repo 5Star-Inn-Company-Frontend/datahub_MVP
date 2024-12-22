@@ -41,7 +41,6 @@ export const Dormant_Users_Transactions=({
             <TableLayout
                 tableHeadRow={[
                     "S/N",
-                    "ID",
                 "Firstname",
                 "Lastname",
                 "Address",
@@ -68,7 +67,6 @@ export const Dormant_Users_Transactions=({
                     data?.map((info,index)=>{
                         if(info?.user_details){
                         const{
-                            id,
                             firstname,
                             lastname,
                             address,
@@ -92,7 +90,6 @@ export const Dormant_Users_Transactions=({
                                 <TableCell className="font-medium">{index +1}</TableCell>
                                 {
                                     [
-                                        id,
                                         firstname,
                                         lastname,
                                         address,
