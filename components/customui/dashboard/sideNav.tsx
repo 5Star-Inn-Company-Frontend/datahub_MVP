@@ -230,7 +230,7 @@ export const Nav =({
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                                 </svg>
                             </span>
-                            <span>Mcd</span>
+                            <span>MCD</span>
                             <span
                                 className="absolute right-0 ml-auto mr-[0.8rem] transition-transform duration-300 motion-reduce:transition-none [&>svg]:h-3 [&>svg]:w-3 [&>svg]:fill-gray-600 group-hover:[&>svg]:border-[#ff5718]-600 group-focus:[&>svg]:border-[#ff5718]-600 group-active:[&>svg]:border-[#ff5718]-600 group-[te-sidenav-state-active]:[&>svg]:border-[#ff5718]-600 dark:[&>svg]:fill-gray-300"
                                 data-te-sidenav-rotate-icon-ref>
