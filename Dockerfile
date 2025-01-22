@@ -13,6 +13,9 @@ RUN npm install
 # Step 5: Copy the rest of the application code
 COPY . .
 
+# Set any ENVs
+ARG NEXT_PUBLIC_DATAHUB_API=${NEXT_PUBLIC_DATAHUB_API}
+
 # Step 6: Build the Next.js app
 RUN npm run build
 
