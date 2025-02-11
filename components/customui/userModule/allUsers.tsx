@@ -154,8 +154,8 @@ export const All_Users=({
                                             [
                                               firstname,
                                               lastname,
-                                              address,
                                               `${naira.format(wallet_balance?.balance)}`,
+                                              address,
                                               phone,
                                               gender,
                                               dob,
