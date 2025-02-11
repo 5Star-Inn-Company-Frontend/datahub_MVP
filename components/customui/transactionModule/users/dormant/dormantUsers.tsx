@@ -27,6 +27,11 @@ export const Dormant_Users_Transactions=({
         setIsMounted(true)
     },[])
     
+    let naira = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+    });
+    
     if(!isMounted){
         return <Spinner/>
     }
@@ -43,6 +48,7 @@ export const Dormant_Users_Transactions=({
                     "S/N",
                 "Firstname",
                 "Lastname",
+                "Wallet Balance",
                 "Address",
                 "Phone",
                 "Gender",
@@ -69,6 +75,7 @@ export const Dormant_Users_Transactions=({
                         const{
                             firstname,
                             lastname,
+                            wallet_balance,
                             address,
                             phone,
                             gender,
@@ -92,6 +99,7 @@ export const Dormant_Users_Transactions=({
                                     [
                                         firstname,
                                         lastname,
+                                        `${naira.format(wallet_balance?.balance)}`,
                                         address,
                                         phone,
                                         gender,

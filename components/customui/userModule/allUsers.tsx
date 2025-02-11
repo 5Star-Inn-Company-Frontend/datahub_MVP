@@ -72,6 +72,13 @@ export const All_Users=({
             }
         })
     }
+
+        
+    let naira = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+    });
+    
     
     if(!isMounted){
         return <Spinner/>
@@ -91,6 +98,7 @@ export const All_Users=({
                             "S/N",
                             "Firstname",
                             "Lastname",
+                            "Wallet Balance",
                             "Address",
                             "Phone",
                             "Gender",
@@ -120,6 +128,7 @@ export const All_Users=({
                                     id,
                                     firstname,
                                     lastname,
+                                    wallet_balance,
                                     address,
                                     phone,
                                     gender,
@@ -146,6 +155,7 @@ export const All_Users=({
                                               firstname,
                                               lastname,
                                               address,
+                                              `${naira.format(wallet_balance?.balance)}`,
                                               phone,
                                               gender,
                                               dob,

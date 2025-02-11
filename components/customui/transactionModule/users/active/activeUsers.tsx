@@ -12,6 +12,7 @@ export interface UserDetailsPropType {
     id:number,
     firstname:string,
     lastname:string,
+    wallet_balance:any,
     address:string,
     phone:string,
     gender:string,
@@ -48,6 +49,11 @@ export const Active_Users_Transactions=({
     useEffect(()=>{
         setIsMounted(true)
     },[])
+
+    let naira = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+    });
     
     if(!isMounted){
         return <Spinner/>
@@ -65,6 +71,7 @@ export const Active_Users_Transactions=({
                     "S/N",
                     "Firstname",
                     "Lastname",
+                    "Wallet Balance",
                     "Address",
                     "Phone",
                     "Gender",
@@ -91,6 +98,7 @@ export const Active_Users_Transactions=({
                         const{
                             firstname,
                             lastname,
+                            wallet_balance,
                             address,
                             phone,
                             gender,
@@ -115,6 +123,7 @@ export const Active_Users_Transactions=({
                                     [
                                         firstname,
                                         lastname,
+                                        `${naira.format(wallet_balance?.balance)}`,
                                         address,
                                         phone,
                                         gender,
